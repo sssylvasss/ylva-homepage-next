@@ -3,7 +3,6 @@ import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutl
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import ReactPlayer from "react-player/youtube";
 // Only loads the YouTube player
-
 //Card
 export const TitleH2 = styled.h2`
   font-size: 16px;
@@ -71,9 +70,13 @@ export const CardDivMain = styled.main`
 export const CollageImage = styled.img`
   @media (min-width: 820px) {
     object-fit: cover;
+    width: 250px;
   }
-
+  @media (min-width: 991px) {
+    width: 300px;
+  }
   @media (min-width: 1200px) {
+    width: 400px;
   }
 `;
 
@@ -253,4 +256,16 @@ export const PlayerReact = styled(ReactPlayer)`
 export const VideoDiv = styled.div`
   position: relative;
   padding-top: 56.25%;
+`;
+
+export const TableDiv = styled.div`
+  @media (min-width: 992px) {
+    display: none;
+  }
+`;
+export const LaptopDiv = styled.div`
+  display: none;
+  @media (min-width: 992px) {
+    display: block;
+  }
 `;

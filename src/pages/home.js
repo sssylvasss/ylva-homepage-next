@@ -1,11 +1,8 @@
 import React from "react";
+import Collage from "./collage";
 
 export const Home = () => {
-  return (
-    <div style={{ border: "2px solid" }}>
-      <h1>home</h1>
-    </div>
-  );
+  return <Collage />;
 };
 
 export default Home;

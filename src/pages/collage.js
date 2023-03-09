@@ -3,7 +3,6 @@ import Dialog from "@mui/material/Dialog";
 import { useContentful } from "../useContentful";
 import { ImageCard } from "../Components/art/ImageCard";
 import ImageList from "@mui/material/ImageList";
-import MediaQuery from "react-responsive";
 import ImageListItem from "@mui/material/ImageListItem";
 
 import {
@@ -17,6 +16,8 @@ import {
   ArrowForward,
   ArrowBack,
   ModalDiv,
+  LaptopDiv,
+  TableDiv,
 } from "../Components/art/StylingArt";
 
 export const Collage = () => {
@@ -24,7 +25,6 @@ export const Collage = () => {
   const { getCollage } = useContentful();
   const [showModal, setShowModal] = useState(false);
   const [activeCollage, setActiveCollage] = useState();
-  // const [selectedSerie, setSelectedSerie] = useState();
 
   useEffect(() => {
     getCollage().then((response) => {
@@ -84,64 +84,19 @@ export const Collage = () => {
     setShowModal(false);
     setActiveCollage(null);
   };
-  // const handleSerieChange = (e) => {
-  // 	const theSerie = newImageArray.find((imageSerie) => imageSerie.serie === e);
-  // 	setSelectedSerie(theSerie);
-  // };
+
   return (
     <Main>
-      <MediaQuery minWidth={992}>
-        {/* <div>
-					<select
-						name='imageSerie'
-						value={selectedSerie ? selectedSerie.serie : ''}
-						onChange={(e) => handleSerieChange(e.target.value)}
-					>
-						<option value=''>----</option>
-						{newImageArray.map((imageSerie, i) => (
-							<option key={i} value={imageSerie.serie}>
-								{imageSerie?.serie}
-							</option>
-						))}
-					</select>
-				</div> */}
-        {/* {selectedSerie ? (
-					<>
-						<div style={{ display: 'flex', justifyContent: 'center' }}>
-							<TitleH1>
-								{selectedSerie.serie}, <span> </span>
-								{selectedSerie.year}
-							</TitleH1>
-						</div>
-						<ImageSectionDiv>
-							<ImageSectionInnerDiv>
-								{selectedSerie.collages?.map((collage) => (
-									<>
-										<ImageCard
-											key={collage?.collageId}
-											collage={collage}
-											openModal={openModal}
-										/>
-									</>
-								))}
-							</ImageSectionInnerDiv>
-						</ImageSectionDiv>
-					</>
-				) : ( */}
+      <LaptopDiv>
         <ImageList variant='masonry' cols={3} gap={8}>
-          {collages.map((collage) => (
-            <ImageListItem key={collage?.collageId}>
-              <ImageCard
-                key={collage?.collageId}
-                collage={collage}
-                openModal={openModal}
-              />
+          {collages.map((collage, index) => (
+            <ImageListItem key={index}>
+              <ImageCard key={index} collage={collage} openModal={openModal} />
             </ImageListItem>
           ))}
         </ImageList>
-        {/* )} */}
-      </MediaQuery>
-      <MediaQuery maxWidth={991}>
+      </LaptopDiv>
+      <TableDiv>
         {newImageArray.map((imageSerie) => (
           <Fragment key={imageSerie.serie}>
             <div style={{ display: "flex", justifyContent: "center" }}>
@@ -152,10 +107,10 @@ export const Collage = () => {
             </div>
             <ImageSectionDiv>
               <ImageSectionInnerDiv>
-                {imageSerie.collages?.map((collage) => (
+                {imageSerie.collages?.map((collage, index) => (
                   <>
                     <ImageCard
-                      key={collage?.collageId}
+                      key={index}
                       collage={collage}
                       openModal={openModal}
                     />
@@ -165,7 +120,7 @@ export const Collage = () => {
             </ImageSectionDiv>
           </Fragment>
         ))}
-      </MediaQuery>
+      </TableDiv>
       <Dialog
         onClose={onClose}
         open={showModal}

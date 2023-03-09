@@ -5,7 +5,7 @@ import { Ul } from "./styleHeader";
 export const RightNavBar = (props) => {
   return (
     <Ul open={props.open}>
-      <Link href={"/collage"} passHref>
+      <Link href={"/"} passHref>
         <li onClick={() => props.setOpen(false)}>Collage</li>
       </Link>
       <Link href={"/video"} passHref>
