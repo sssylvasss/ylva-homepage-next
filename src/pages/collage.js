@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Fragment } from "react";
-import Dialog from "@mui/material/Dialog";
 import { useContentful } from "../useContentful";
 import { ImageCard } from "../Components/art/ImageCard";
 import ImageList from "@mui/material/ImageList";
@@ -10,15 +9,14 @@ import {
   ImageSectionDiv,
   TitleH1,
   ImageSectionInnerDiv,
-  ArrowButtonRight,
   ModalImage,
-  ArrowButtonLeft,
   ArrowForward,
   ArrowBack,
   ModalDiv,
   LaptopDiv,
   TableDiv,
 } from "../Components/art/StylingArt";
+import { Modal } from "@/components/modal/Modal";
 
 export const Collage = () => {
   const [collages, setCollages] = useState([]);
@@ -80,11 +78,6 @@ export const Collage = () => {
     }
   };
 
-  const onClose = () => {
-    setShowModal(false);
-    setActiveCollage(null);
-  };
-
   return (
     <Main>
       <LaptopDiv>
@@ -121,38 +114,23 @@ export const Collage = () => {
           </Fragment>
         ))}
       </TableDiv>
-      <Dialog
-        onClose={onClose}
-        open={showModal}
-        PaperProps={{
-          style: {
-            backgroundColor: "transparent",
-            boxShadow: "none",
-            height: "100vh",
-            display: "flex",
-            justifyContent: "center",
-            position: "relative",
-            flexDirection: "row",
-            width: "100vw",
-            margin: "0",
-            padding: "0",
-            overFlow: "hidden",
-          },
-        }}
-      >
-        <ModalDiv>
-          <ArrowButtonLeft onClick={() => imageSlide(false)}>
-            <ArrowBack />
-          </ArrowButtonLeft>
-          <ModalImage
-            alt='collage'
-            src={activeCollage?.collageImage?.file.url}
-          />
-          <ArrowButtonRight onClick={() => imageSlide(true)}>
-            <ArrowForward />
-          </ArrowButtonRight>
-        </ModalDiv>
-      </Dialog>
+
+      {showModal ? (
+        <Modal setShowModal={setShowModal} setActiveCollage={setActiveCollage}>
+          <ModalDiv>
+            <ArrowBack onClick={() => imageSlide(false)} />
+
+            <ModalImage
+              alt='collage'
+              src={activeCollage?.collageImage?.file.url}
+            />
+
+            <ArrowForward onClick={() => imageSlide(true)} />
+          </ModalDiv>
+        </Modal>
+      ) : (
+        <></>
+      )}
     </Main>
   );
 };

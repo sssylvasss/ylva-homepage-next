@@ -151,57 +151,40 @@ export const ImageSectionInnerDiv = styled.div`
 export const ModalDiv = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
   @media (min-width: 820px) {
-    width: 100vw;
-  }
-`;
-
-export const ArrowButtonLeft = styled.button`
-  background: none;
-  border: none;
-  width: 5%;
-  height: 70%;
-  @media (min-width: 820px) {
-    width: 10%;
-  }
-`;
-export const ArrowButtonRight = styled.button`
-  background: none;
-  border: none;
-  width: 5%;
-  height: 70%;
-  @media (min-width: 820px) {
-    width: 10%;
+    padding: 0;
   }
 `;
 
 export const ModalImage = styled.img`
-  max-height: 100%;
   background: none;
-  max-width: 80%;
   object-fit: contain;
+  max-width: 85%;
+  max-height: 90vh;
   @media (min-width: 820px) {
-    height: 100vh;
-    width: 100vw;
   }
 `;
 export const ArrowBack = styled(ArrowBackIosNewOutlinedIcon)`
-  opacity: 0;
   @media (min-width: 520px) {
     opacity: 1;
     color: #fc4103;
     cursor: pointer;
+    font-size: 50px;
+  }
+  @media (min-width: 820px) {
+    padding: 40px 20px 40px 0;
   }
 `;
 
 export const ArrowForward = styled(ArrowForwardIosOutlinedIcon)`
-  opacity: 0;
   @media (min-width: 520px) {
     opacity: 1;
     color: #fc4103;
     cursor: pointer;
+    font-size: 50px;
+  }
+  @media (min-width: 820px) {
+    padding: 40px 0 40px 20px;
   }
 `;
 
