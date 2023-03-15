@@ -12,7 +12,33 @@ code {
 }
 a {
 	color: #fc4103;
+	text-decoration: none;
 }
 a:hover {
 	color: #000;
+}
+
+li {
+	text-decoration: none;
+}
+/* Masonry one item on mobile */
+@media screen and (max-width: 767px) {
+	.gallery-masonry-wrapper.gallery-masonry-list--ready {
+		height: auto !important;
+	}
+	figure.gallery-masonry-item {
+		position: relative !important;
+		width: 100% !important;
+		transform: unset !important;
+	}
+	.gallery-masonry-item-wrapper {
+		height: auto !important;
+	}
+	.gallery-masonry .gallery-masonry-item[data-loaded] img {
+		width: 100% !important;
+	}
+	.gallery-masonry {
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
 }
