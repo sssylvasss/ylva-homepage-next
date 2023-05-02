@@ -29,8 +29,6 @@ export const Cv = () => {
 					<CvP>{text.soloExhibitionsText}</CvP>
 					<Cvh2>{text.groupExhibitions}</Cvh2>
 					<CvP>{text.groupExhibitionsText}</CvP>
-					<Cvh2>{text.publicWork}</Cvh2>
-					<CvP>{text.publicWorkText}</CvP>
 					<Cvh2>{text.screeningsAndFilmFestivals}</Cvh2>
 					<CvP>{text.screeningsAndFilmFestivalsText}</CvP>
 					<Cvh2>{text.grants}</Cvh2>

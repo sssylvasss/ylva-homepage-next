@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { useContentful } from '../useContentful';
-import { ImageCard } from '../Components/art/ImageCard';
+import { ImageCard } from '../components/art/ImageCard';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 
@@ -15,7 +15,7 @@ import {
 	ModalDiv,
 	LaptopDiv,
 	TableDiv,
-} from '../Components/art/StylingArt';
+} from '../components/art/StylingArt';
 import { Modal } from '@/components/modal/Modal';
 
 export const Collage = () => {
