@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import VideoReactPlayer from "../Components/art/VideoReactPlayer";
+import VideoReactPlayer from "../components/art/VideoReactPlayer";
 import {
   MainVideoDiv,
   VideoTitleH2,
   VideoTextP,
   VideoTextDiv,
-} from "../Components/art/StylingArt";
+} from "../components/art/StylingArt";
 import { useContentful } from "../useContentful";
 
 export const Video = () => {
