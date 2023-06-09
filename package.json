@@ -9,19 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/icons-material": "^5.11.0",
-    "@mui/material": "^5.11.8",
-    "@mui/styled-engine-sc": "^5.11.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.4",
+    "@mui/styled-engine-sc": "^5.12.0",
     "@next/font": "^13.4.4",
-    "contentful": "^9.3.0",
-    "eslint": "8.32.0",
-    "eslint-config-next": "13.1.5",
+    "contentful": "^10.2.3",
+    "eslint": "8.42.0",
+    "eslint-config-next": "13.4.4",
     "next": "13.4.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-player": "^2.11.0",
+    "react-player": "^2.12.0",
     "react-responsive": "^9.0.2",
     "styled-components": "^5.3.6"
   }
