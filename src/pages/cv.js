@@ -21,7 +21,7 @@ export const Cv = () => {
 				mail@ylvalandofflindberg.com
 			</a>
 
-			{cv.map((text, i) => (
+			{cv?.map((text, i) => (
 				<Fragment key={i}>
 					<Cvh2>{text.publicCollections}</Cvh2>
 					<CvP>{text.publicCollectionsText}</CvP>
