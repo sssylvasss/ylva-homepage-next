@@ -7,11 +7,8 @@ export const useContentful = () => {
 	//   host: process.env.NEXT_PUBLIC_CONTENTFUL_URL,
 	// });
 	const client = createClient({
-		space: process.env.CONTENTFUL_SPACE_ID,
-		accessToken:
-			process.env.IS_PREVIEW === 'true'
-				? process.env.CONTENTFUL_PREVIEW_TOKEN
-				: process.env.CONTENTFUL_DELIVERY_TOKEN,
+		space: process.env.NEXT_CONTENTFUL_SPACE_ID,
+		accessToken: process.env.NEXT_CONTENTFUL_DELIVERY_TOKEN,
 	});
 
 	const getCollage = async () => {
