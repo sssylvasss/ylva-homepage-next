@@ -8,7 +8,10 @@ export const useContentful = () => {
 	// });
 	const client = createClient({
 		space: process.env.NEXT_CONTENTFUL_SPACE_ID,
-		accessToken: process.env.NEXT_CONTENTFUL_DELIVERY_TOKEN,
+		accessToken:
+			process.env.NEXT_IS_PREVIEW === 'true'
+				? process.env.NEXT_CONTENTFUL_PREVIEW_TOKEN
+				: process.env.NEXT_CONTENTFUL_DELIVERY_TOKEN,
 	});
 
 	const getCollage = async () => {
