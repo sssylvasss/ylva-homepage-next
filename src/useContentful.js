@@ -1,11 +1,6 @@
 import { createClient } from 'contentful';
 
 export const useContentful = () => {
-	// const client = createClient({
-	//   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
-	//   accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_API,
-	//   host: process.env.NEXT_PUBLIC_CONTENTFUL_URL,
-	// });
 	const client = createClient({
 		space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
 		accessToken:
