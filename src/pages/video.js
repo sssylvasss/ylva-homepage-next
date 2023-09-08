@@ -1,43 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import VideoReactPlayer from '../components/art/VideoReactPlayer';
+import React, { useState, useEffect } from "react";
+import VideoReactPlayer from "../components/art/VideoReactPlayer";
 import {
-	MainVideoDiv,
-	VideoTitleH2,
-	VideoTextP,
-	VideoTextDiv,
-} from '../components/art/StylingArt';
-import { useContentful } from '../useContentful';
+  InnerVideoWrapper,
+  MainVideoDiv,
+  VideoTextDiv,
+} from "../components/art/StylingArt";
+import { useContentful } from "../useContentful";
+import { TextP, TitleH2 } from "@/styles/globalStyledComponents";
 
 export const Video = () => {
-	const { getVideo } = useContentful();
+  const { getVideo } = useContentful();
 
-	const [videos, setVideos] = useState([]);
+  const [videos, setVideos] = useState([]);
 
-	useEffect(() => {
-		getVideo().then((response) => {
-			setVideos(response);
-		});
-	}, []);
+  useEffect(() => {
+    getVideo().then((response) => {
+      setVideos(response);
+    });
+  }, []);
 
-	return (
-		<MainVideoDiv>
-			{videos?.map((video, i) => (
-				<div style={{ margin: '30px 0 60px 0' }} key={i}>
-					<VideoReactPlayer
-						embedId={video?.id}
-						image={video.videoImage?.file.url}
-					/>
-					<VideoTextDiv>
-						<VideoTitleH2>{video?.title}</VideoTitleH2>
-						<VideoTextP>{video.description}</VideoTextP>
-						{video?.videoText ? (
-							<VideoTextP>{video?.videoText}</VideoTextP>
-						) : null}
-					</VideoTextDiv>
-				</div>
-			))}
-		</MainVideoDiv>
-	);
+  return (
+    <MainVideoDiv>
+      {videos?.map((video, i) => (
+        <InnerVideoWrapper key={i}>
+          <VideoReactPlayer
+            embedId={video?.id}
+            image={video.videoImage?.file.url}
+          />
+          <VideoTextDiv>
+            <TitleH2>{video?.title}</TitleH2>
+            <TextP>{video.description}</TextP>
+            {video?.videoText ? <TextP>{video?.videoText}</TextP> : null}
+          </VideoTextDiv>
+        </InnerVideoWrapper>
+      ))}
+    </MainVideoDiv>
+  );
 };
 
 export default Video;

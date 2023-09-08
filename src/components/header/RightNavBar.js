@@ -14,9 +14,9 @@ export const RightNavBar = (props) => {
       <Link href={"/cv"} passHref>
         <li onClick={() => props.setOpen(false)}>Bio</li>
       </Link>
-      {/* <Link href={'/sapasisters'} passHref>
-				<li onClick={() => props.setOpen(false)}>SAPA</li>
-			</Link> */}
+      <Link href={"/sapasisters"} passHref>
+        <li onClick={() => props.setOpen(false)}>Sapa Sisters</li>
+      </Link>
     </Ul>
   );
 };
