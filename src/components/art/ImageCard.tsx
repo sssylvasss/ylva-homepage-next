@@ -11,18 +11,19 @@ import {
   TableDiv,
   LaptopDiv,
 } from "./StylingArt";
+import { ICollage } from "../../pages/collage";
 
 interface ImageCardProps{
-  collage: any,
+  collage: ICollage,
   openModal: Function,
-  key: number,
+  index: number,
 }
 
 
-export const ImageCard: React.FC<ImageCardProps> = ({ collage, openModal, key}) => {
+export const ImageCard: React.FC<ImageCardProps> = ({ collage, openModal, index}) => {
   return (
     <>
-      <CardDivMain key={key} onClick={() => openModal(collage?.collageId)}>
+      <CardDivMain key={index} onClick={() => openModal(collage?.collageId)}>
         <CollageImage
           alt={collage.collageTitle}
           src={collage.collageImage?.file?.url}
