@@ -1,11 +1,7 @@
 import { createClient } from 'contentful';
 
 export const useContentful = () => {
-	// const client = createClient({
-	//   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
-	//   accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_API,
-	//   host: process.env.NEXT_PUBLIC_CONTENTFUL_URL,
-	// });
+
 	const client = createClient({
 		space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
 		accessToken:
@@ -18,9 +14,9 @@ export const useContentful = () => {
 		try {
 			const entries = await client.getEntries({
 				content_type: 'spiritOfVietnam',
-				select: 'fields',
+				
 			});
-			const filteredEntries = entries.items.map((item) => {
+			const filteredEntries = entries.items.map((item: any )=> {
 				const collageImage = item.fields.image.fields;
 
 				return {
@@ -38,8 +34,8 @@ export const useContentful = () => {
 		try {
 			const entries = await client.getEntries({
 				content_type: 'cv',
-				select: 'fields',
-			});
+		
+			}) ;
 			const filteredEntries = entries.items.map((item) => {
 				return {
 					...item.fields,
@@ -54,9 +50,9 @@ export const useContentful = () => {
 		try {
 			const entries = await client.getEntries({
 				content_type: 'video',
-				select: 'fields',
+		
 			});
-			const filteredEntries = entries.items.map((item) => {
+			const filteredEntries = entries.items.map((item: any ) => {
 				const videoImage = item.fields.videoImage.fields;
 				return {
 					...item.fields,

@@ -22,7 +22,6 @@ export const Footer = () => {
           <a
             target='_blank'
             rel='noopener noreferrer'
-            tabIndex='1'
             href='https://github.com/sssylvasss'
           >
             <Icon src='../assets/github_black.svg' alt='Github linked icon' />
@@ -30,7 +29,6 @@ export const Footer = () => {
           <a
             target='_blank'
             rel='noopener noreferrer'
-            tabIndex='2'
             href='https://www.linkedin.com/in/ylva-landoff-lindberg/'
           >
             <Icon
@@ -41,7 +39,6 @@ export const Footer = () => {
           <a
             target='_blank'
             rel='noopener noreferrer'
-            tabIndex='3'
             href='mailto:mail@ylvalandofflindberg.com'
           >
             <Icon src='../assets/email_black.svg' alt='Mail linked icon' />

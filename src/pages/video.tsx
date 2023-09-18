@@ -6,7 +6,7 @@ import {
   VideoTextDiv,
 } from "../components/art/StylingArt";
 import { useContentful } from "../useContentful";
-import { TextP, TitleH2 } from "@/styles/globalStyledComponents";
+import { TextP, TitleH2 } from "../styles/globalStyledComponents";
 
 export const Video = () => {
   const { getVideo } = useContentful();

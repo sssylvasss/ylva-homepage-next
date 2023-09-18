@@ -1,7 +1,7 @@
 import Head from "next/head";
 // import Image from "next/image";
 import React from "react";
-import Home from "../pages/home";
+import Home from "./home";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <link
           rel='preconnect'
           href='https://fonts.gstatic.com'
-          crossOrigin='true'
+       
         />
       </Head>
       <Home />

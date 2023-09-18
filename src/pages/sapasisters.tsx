@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { TextP, TitleH1, MainWrapper } from "../styles/globalStyledComponents";
 
 export const Sapasisters = () => {
@@ -50,7 +51,6 @@ export const Sapasisters = () => {
         <a
           target='_blank'
           rel='noopener noreferrer'
-          tabIndex='2'
           href='https://www.sapasisters.com'
         >
           www.sapasisters.com
