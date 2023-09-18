@@ -16,11 +16,11 @@ import { ICollage } from "../../pages/collage";
 interface ImageCardProps{
   collage: ICollage,
   openModal: Function,
-  index: number,
+
 }
 
 
-export const ImageCard: React.FC<ImageCardProps> = ({ collage, openModal, index}) => {
+export const ImageCard: React.FC<ImageCardProps> = ({ collage, openModal}, index) => {
   return (
     <>
       <CardDivMain key={index} onClick={() => openModal(collage?.collageId)}>
