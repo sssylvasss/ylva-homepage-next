@@ -80,7 +80,7 @@ export const Collage = () => {
       // initial value nedan
     }, []);
 
-  const openModal = (id: any) => {
+  const openModal = (id: number) => {
     const activeCollageIndex = collages.findIndex((co: { collageId: any; }) => co.collageId === id);
     setActiveCollage(collages[activeCollageIndex]);
     setShowModal(true);
@@ -88,7 +88,7 @@ export const Collage = () => {
 
   const imageSlide = (next: boolean) => {
     const imageIndex = collages.findIndex(
-      (co) => co.collageId === activeCollage.collageId
+      (co: { collageId: number; }) => co.collageId === activeCollage.collageId
     );
     if (next) {
       if (imageIndex === collages.length - 1) {
@@ -114,7 +114,7 @@ export const Collage = () => {
           {collages?.map((collage:ICollage , index: number) => (
        
             <ImageListItem key={index}>
-              <ImageCard index={index} collage={collage} openModal={openModal} />
+              <ImageCard key={index} collage={collage} openModal={openModal} />
            
             </ImageListItem>
          

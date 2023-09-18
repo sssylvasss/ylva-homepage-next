@@ -1,19 +1,24 @@
 import React from "react";
 
 import { VideoDiv, PlayerReact, VideoImg } from "./StylingArt";
+import { IVideo } from "../../pages/video";
+import { UrlObject } from "url";
 
 interface VideoReactPlayerProps{
   embedId: string,
-  image: any,
+  imageUrl: string,
 }
+
+
 
 const tabNumber = 1;
 
-const VideoReactPlayer: React.FC<VideoReactPlayerProps> = ({embedId,image }) => (
+const VideoReactPlayer: React.FC<VideoReactPlayerProps> = ({embedId, imageUrl }) => (
 
 
   <VideoDiv>
-    <VideoImg alt='Video' src={image} />
+
+    <VideoImg alt='Video' src={imageUrl} />
     <PlayerReact
       previewTabIndex= {tabNumber}
       url={`https://www.youtube.com/watch?v=${embedId}`}
