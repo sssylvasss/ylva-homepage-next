@@ -4,8 +4,8 @@ import { CloseIcon } from "./StyleModal";
 
 interface ModalProps{
   children: ReactNode,
-  setShowModal: any,
-  setActiveCollage: any,
+  setShowModal: Function,
+  setActiveCollage: Function,
 }
 
 export const Modal: React.FC<ModalProps> = ({children, setShowModal, setActiveCollage }) => {

@@ -4,7 +4,7 @@ import { Ul } from "./styleHeader";
 
 interface RightNavBarProps{
   open: boolean,
-  setOpen: any,
+  setOpen: Function,
 }
 export const RightNavBar: React.FC<RightNavBarProps> = ({open, setOpen}) => {
   return (

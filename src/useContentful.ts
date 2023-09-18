@@ -2,6 +2,41 @@ import { createClient } from 'contentful';
 
 export const useContentful = () => {
 
+
+	interface ICollageItem{
+		fields: {
+			collageId: number,
+			collageTitle: string,
+			image:any
+		},
+		metadata: {
+			tags: []
+		},
+		sys: any,
+		videoImage: {
+			description: string,
+			file: any,
+			titlel: string,
+		  }
+	}
+
+	interface IVideoItem {
+		fields: {
+		description: string,
+		id: string,
+	
+		title: string,
+		videoImage: {
+			fields: {},
+			description: string,
+			file: any,
+			titlel: string,
+		  },
+		}
+		  metadata: any,
+		  sys: any
+	}
+
 	const client = createClient({
 		space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
 		accessToken:
@@ -16,9 +51,8 @@ export const useContentful = () => {
 				content_type: 'spiritOfVietnam',
 				
 			});
-			const filteredEntries = entries.items.map((item: any )=> {
+			const filteredEntries = entries.items.map((item: ICollageItem )=> {
 				const collageImage = item.fields.image.fields;
-
 				return {
 					...item.fields,
 					collageImage,
@@ -52,8 +86,10 @@ export const useContentful = () => {
 				content_type: 'video',
 		
 			});
-			const filteredEntries = entries.items.map((item: any ) => {
+		
+			const filteredEntries = entries.items.map((item: IVideoItem ) => {
 				const videoImage = item.fields.videoImage.fields;
+
 				return {
 					...item.fields,
 					videoImage,

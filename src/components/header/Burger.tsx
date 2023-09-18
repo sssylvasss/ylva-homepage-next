@@ -3,7 +3,7 @@ import { StyledBurger } from "./styleHeader";
 
 interface BurgerProps{
   open: boolean,
-  setOpen: any,
+  setOpen: Function,
 }
 
 export const Burger: React.FC<BurgerProps> = ({open, setOpen}) => {
