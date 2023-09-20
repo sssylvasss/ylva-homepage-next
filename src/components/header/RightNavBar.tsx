@@ -1,11 +1,13 @@
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
+
 import { Ul } from "./styleHeader";
 
 interface RightNavBarProps{
   open: boolean,
   setOpen: Function,
 }
+
 export const RightNavBar: React.FC<RightNavBarProps> = ({open, setOpen}) => {
   return (
     <Ul open={open}>

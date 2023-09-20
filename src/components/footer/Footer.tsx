@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Main,
   Wrapper,
@@ -46,7 +47,7 @@ export const Footer = () => {
         </Nav>
       </Wrapper>
       <BottomTextWrapper>
-        <Text> Website Developed by Ylva Landoff Lindberg</Text>
+        <Text>Website Developed by Ylva Landoff Lindberg</Text>
       </BottomTextWrapper>
     </Main>
   );

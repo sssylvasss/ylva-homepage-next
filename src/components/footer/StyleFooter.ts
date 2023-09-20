@@ -10,6 +10,7 @@ export const Main = styled.div`
 		flex-direction: row;
 	}
 `;
+
 export const Wrapper = styled.div`
 	width: 100%;
 	display: flex;
@@ -27,11 +28,13 @@ export const Nav = styled.nav`
     justify-content: center;
     margin 20px;
 `;
+
 export const Icon = styled.img`
 	width: 50px;
 	margin: 5px;
 	opacity: 0.9;
 `;
+
 export const BottomTextWrapper = styled.div`
     width: 100%;
     justify-content: center;

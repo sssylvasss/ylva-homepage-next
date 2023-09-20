@@ -30,6 +30,7 @@ export const Ul = styled.ul<{open: boolean}>`
   flex-flow: row nowrap;
   z-index: 1;
   margin-right: 0;
+  
   li {
     padding: 18px 10px;
     &:hover {

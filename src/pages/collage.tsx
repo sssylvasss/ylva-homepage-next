@@ -20,14 +20,17 @@ import { Modal } from "../components/modal/Modal";
 
 
 export interface ICollage{
-  collageId(collageId: any): void;
-  collageTitle: string;
-  collageImage: any;
-  size: any;
-  serie: any;
-  year: ReactNode;
-  collage: {
   collageId: number,
+  collageTitle: string,
+  collages: ICollage[],
+  collageImage: {
+    description: string,
+    file: any,
+  };
+  size: string | null,
+  serie: string | null,
+  year: string | null,
+  collage: {
   collageImage: {
       description
       : string,
@@ -47,23 +50,25 @@ export interface ICollage{
 }
 
 export const Collage = () => {
-  const [collages, setCollages]: any = useState([]);
+  const [collages, setCollages] = useState<ICollage[]>([]);
   const { getCollage } = useContentful();
-  const [showModal, setShowModal]: any = useState(false);
-  const [activeCollage, setActiveCollage]: any = useState();
+  const [showModal, setShowModal] = useState(false);
+  const [activeCollage, setActiveCollage] = useState<null | ICollage>();
 
   useEffect(() => {
-    getCollage().then((response) => {
-      setCollages(response?.sort((a: any, b: any) => a.collageId - b.collageId));
+    getCollage().then((response: []) => {
+      setCollages(response?.sort((a: ICollage, b: ICollage) => a.collageId - b.collageId));
     });
   }, [getCollage]);
+
+
 
   // acc= acumilera(ansamla). reduce kan ha upp till 4 parametrar, index är nr 3
   const newImageArray = collages
     ?.sort((a: { collageId: number; }, b: { collageId: number; }) => b.collageId - a.collageId)
-    .reduce((acc: { serie: any; collages?: any[]; }[], curr: { serie: any; year: any; }) => {
+    .reduce((acc: { serie; collages?; }[], curr: { serie; year; }) => {
       if (acc.some(({ serie }) => serie === curr.serie)) {
-        acc.map((accElement: { serie: any; collages: any[]; }) => {
+        acc.map((accElement: { serie; collages; }) => {
           if (accElement.serie === curr.serie) {
             accElement.collages.push(curr);
           }
@@ -88,7 +93,7 @@ export const Collage = () => {
 
   const imageSlide = (next: boolean) => {
     const imageIndex = collages.findIndex(
-      (co: { collageId: number; }) => co.collageId === activeCollage.collageId
+      (co: ICollage) => co.collageId === activeCollage.collageId
     );
     if (next) {
       if (imageIndex === collages.length - 1) {
@@ -122,7 +127,7 @@ export const Collage = () => {
         </ImageList>
       </LaptopDiv>
       <TableDiv>
-        {newImageArray?.map((imageSerie: { serie: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode; year: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode; collages: any[]; }, index: React.Key) => (
+        {newImageArray?.map((imageSerie: ICollage, index: number) => (
           <Fragment key={index}>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <TitleH1>
@@ -130,6 +135,7 @@ export const Collage = () => {
                 {imageSerie.year}
               </TitleH1>
             </div>
+           
             <ImageSectionDiv>
               <ImageSectionInnerDiv>
                 {imageSerie.collages?.map((collage:ICollage, index: number) => (
@@ -165,4 +171,3 @@ export const Collage = () => {
   );
 };
 
-export default Collage;

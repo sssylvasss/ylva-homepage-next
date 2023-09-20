@@ -1,9 +1,9 @@
-import Head from "next/head";
-// import Image from "next/image";
 import React from "react";
-import Home from "./home";
+import Head from "next/head";
 
-function App() {
+import { Home }from "./home";
+
+const App = () =>{
   return (
     <>
       <Head>

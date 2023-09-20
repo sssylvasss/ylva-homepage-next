@@ -64,8 +64,6 @@ export const CardDivMain = styled.main`
     }
   }
 
-  @media (min-width: 1200px) {
-  }
 `;
 
 export const CollageImage = styled.img`
@@ -93,9 +91,6 @@ export const Main = styled.div`
   @media (min-width: 820px) {
     width: 100%;
   }
-
-  @media (min-width: 1200px) {
-  }
 `;
 
 export const ImageSectionDiv = styled.div`
@@ -117,9 +112,8 @@ export const ImageSectionDiv = styled.div`
       display: none;
     }
 
-	@media (min-width: 1200px) {
-		}
 `;
+
 export const ImageSectionInnerDiv = styled.div`
   width: 100%;
   display: flex;
@@ -135,8 +129,6 @@ export const ImageSectionInnerDiv = styled.div`
     height: 400px;
   }
 
-  @media (min-width: 1200px) {
-  }
 `;
 
 //modal

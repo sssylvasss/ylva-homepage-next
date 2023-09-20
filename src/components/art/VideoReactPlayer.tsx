@@ -1,8 +1,7 @@
 import React from "react";
 
 import { VideoDiv, PlayerReact, VideoImg } from "./StylingArt";
-import { IVideo } from "../../pages/video";
-import { UrlObject } from "url";
+
 
 interface VideoReactPlayerProps{
   embedId: string,
