@@ -4,7 +4,7 @@ https://ylvalandofflindberg.com/
 
 This is my website, a space where I share my visual art.
 
-Build in Next.js, styled with Styled components, Contentful(CMS)
+Build in Next.js, TypeScript, styled with Styled components, Contentful(CMS)
 
 ## Getting Started
 

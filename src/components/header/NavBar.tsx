@@ -3,6 +3,7 @@ import { Burger } from "./Burger";
 import { RightNavBar } from "./RightNavBar";
 import { Nav, TitleText } from "./styleHeader";
 
+
 export const NavBar = () => {
   const [open, setOpen] = useState(false);
 

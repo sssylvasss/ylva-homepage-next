@@ -1,9 +1,9 @@
-import Head from "next/head";
-// import Image from "next/image";
 import React from "react";
-import Home from "../pages/home";
+import Head from "next/head";
 
-function App() {
+import { Home }from "./home";
+
+const App = () =>{
   return (
     <>
       <Head>
@@ -15,7 +15,7 @@ function App() {
         <link
           rel='preconnect'
           href='https://fonts.gstatic.com'
-          crossOrigin='true'
+       
         />
       </Head>
       <Home />

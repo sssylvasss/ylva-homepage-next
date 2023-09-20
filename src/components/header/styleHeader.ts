@@ -24,12 +24,13 @@ export const Nav = styled.nav`
 
 //RightNavBar
 
-export const Ul = styled.ul`
+export const Ul = styled.ul<{open: boolean}>`
   list-style: none;
   display: flex;
   flex-flow: row nowrap;
   z-index: 1;
   margin-right: 0;
+  
   li {
     padding: 18px 10px;
     &:hover {
@@ -46,10 +47,13 @@ export const Ul = styled.ul`
     right: 0;
     height: 100vh;
     width: 100px;
-    padding-top: 3.5rem;
-    transition: transform 0.3s ease-in-out;
+    padding: 5rem 1rem 0 1rem;
 
+    transition: transform 0.3s ease-in-out;
+    margin: 0;
     li {
+      width: 100%;
+
       color: #fff;
       &:hover {
         color: #fac78c;
@@ -67,39 +71,39 @@ export const NavLink = styled(Link)`
 
 export const StyledBurger = styled.div`
     width: 2rem;
-    height 2rem;
+    height: 2rem;
     position: fixed;
     right: 10%;
     display: flex;
     z-index: 20;
-    display: none;
-
-    @media (max-width: 768px){
-        display:flex;
-        justify-content: space-around;
-        flex-flow: column nowrap;
+    display:flex;
+    justify-content: space-around;
+    flex-flow: column nowrap;
+    @media (min-width: 769px){
+      display: none;
     }
 
-    div {
-        width: 2rem;
-        height: 0.25rem;
-        background-color: ${({ open }) => (open ? "#fff" : "#fc4103")};
-        border-radius: 10px;
-        transform-origin: 0;
-        transition: all 0.3s linear;
+`;
 
-        &:nth-child(1) {
-            transform: ${({ open }) => (open ? "rotate(42deg)" : "rotate(0)")}
-        }
-        &:nth-child(2) {
-            transform: ${({ open }) =>
-              open ? "translateX(100%)" : "translateX(0)"}
-        }
-        &:nth-child(2){
-            opacity: ${({ open }) => (open ? 0 : 1)}
-        }
-        &:nth-child(3) {
-            transform: ${({ open }) => (open ? "rotate(-42deg)" : "rotate(0)")}
-        }
-    }
+export const Div = styled.div<{open: boolean}>`
+width: 2rem;
+height: 0.25rem;
+background-color: ${({ open }) => (open ? "#fff" : "#fc4103")};
+border-radius: 10px;
+transform-origin: 0;
+transition: all 0.3s linear;
+
+&:nth-child(1) {
+    transform: ${({ open }) => (open ? "rotate(42deg)" : "rotate(0)")}
+}
+&:nth-child(2) {
+    transform: ${({ open }) =>
+      open ? "translateX(100%)" : "translateX(0)"}
+}
+&:nth-child(2){
+    opacity: ${({ open }) => (open ? 0 : 1)}
+}
+&:nth-child(3) {
+    transform: ${({ open }) => (open ? "rotate(-42deg)" : "rotate(0)")}
+}
 `;
