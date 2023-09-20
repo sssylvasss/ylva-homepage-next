@@ -80,6 +80,7 @@ export const useContentful = () => {
 			console.log(`error fetching data": ${err}`);
 		}
 	};
+	
 	const getVideo = async () => {
 		try {
 			const entries = await client.getEntries({
