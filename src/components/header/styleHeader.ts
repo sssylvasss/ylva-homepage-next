@@ -24,12 +24,13 @@ export const Nav = styled.nav`
 
 //RightNavBar
 
-export const Ul = styled.ul`
+export const Ul = styled.ul<{open: boolean}>`
   list-style: none;
   display: flex;
   flex-flow: row nowrap;
   z-index: 1;
   margin-right: 0;
+  
   li {
     padding: 18px 10px;
     &:hover {
@@ -65,7 +66,7 @@ export const NavLink = styled(Link)`
 
 //Burger
 
-export const StyledBurger = styled.div`
+export const StyledBurger = styled.div<{open: boolean}>`
     width: 2rem;
     height 2rem;
     position: fixed;

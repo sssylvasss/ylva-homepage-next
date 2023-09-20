@@ -1,5 +1,5 @@
 import React from "react";
-import { any } from "prop-types";
+
 
 import {
   CardDivMain,
@@ -11,14 +11,22 @@ import {
   TableDiv,
   LaptopDiv,
 } from "./StylingArt";
+import { ICollage } from "../../pages/collage";
 
-export const ImageCard = ({ collage, openModal, index }) => {
+interface ImageCardProps{
+  collage: ICollage,
+  openModal: Function,
+
+}
+
+
+export const ImageCard: React.FC<ImageCardProps> = ({ collage, openModal}, index) => {
   return (
     <>
       <CardDivMain key={index} onClick={() => openModal(collage?.collageId)}>
         <CollageImage
           alt={collage.collageTitle}
-          src={collage.collageImage?.file.url}
+          src={collage.collageImage?.file?.url}
         />
         <TableDiv>
           <TextDiv1>
@@ -47,8 +55,3 @@ export const ImageCard = ({ collage, openModal, index }) => {
   );
 };
 
-ImageCard.propTypes = {
-  collage: any,
-  openModal: any,
-  index: any,
-};
