@@ -171,3 +171,4 @@ export const Collage = () => {
   );
 };
 
+export default Collage
