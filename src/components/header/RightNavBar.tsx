@@ -20,9 +20,9 @@ export const RightNavBar: React.FC<RightNavBarProps> = ({open, setOpen}) => {
       <Link href={"/cv"} passHref>
         <li onClick={() => setOpen(false)}>Bio</li>
       </Link>
-      <Link href={"/sapasisters"} passHref>
+      {/* <Link href={"/sapasisters"} passHref>
         <li onClick={() => setOpen(false)}>Sapa Sisters</li>
-      </Link>
+      </Link> */}
     </Ul>
   );
 };
