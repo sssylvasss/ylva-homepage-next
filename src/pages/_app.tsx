@@ -8,7 +8,13 @@ const roboto = Roboto({
   subsets: ["latin"],
 });
 
-export default function App({ Component, pageProps }) {
+interface AppProps {
+  Component: React.ComponentType<any>;
+  pageProps: any;
+}
+
+
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
