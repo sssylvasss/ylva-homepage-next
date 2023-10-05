@@ -3,7 +3,7 @@ import Link from "next/link";
 //NavBar
 
 export const TitleText = styled.h1`
-  font-size: 30px;
+
   font-weight: 600;
 `;
 
