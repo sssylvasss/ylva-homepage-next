@@ -25,9 +25,7 @@ export const Video = () => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    getVideo().then((response) => {
-      setVideos(response);
-    });
+    getVideo().then((response: any) => setVideos(response));
   }, []);
 
   return (

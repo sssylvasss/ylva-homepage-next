@@ -7,8 +7,9 @@ export const Cv = () => {
   const { getCv } = useContentful();
 
   useEffect(() => {
-    getCv().then((response) => {
+    getCv().then((response: any) => {
       setCv(response);
+      console.log("response", response)
     });
   }, []);
 
@@ -21,7 +22,7 @@ export const Cv = () => {
         mail@ylvalandofflindberg.com
       </a>
 
-      {cv?.map((text, i) => (
+      {cv?.map((text: any, i) => (
         <Fragment key={i}>
           <TitleH2>{text.publicCollections}</TitleH2>
           <TextP>{text.publicCollectionsText}</TextP>
