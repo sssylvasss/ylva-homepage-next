@@ -31,7 +31,7 @@ export interface ICollage{
       title: string,
     },
     image: {
-      fileds: any,
+      fields: any,
       metadata: any,
       sys: any,
       serie: string,
