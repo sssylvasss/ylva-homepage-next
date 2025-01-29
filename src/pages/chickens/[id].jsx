@@ -30,8 +30,9 @@ const Chicken = () => {
           <Image
             src={`https:${chicken.photo}`}
             alt={`Chicken ${chicken.id}`}
-            width={700} // Add appropriate width
-            height={933} // Add appropriate height
+            fill
+            style={{ objectFit: 'contain' }}
+            sizes="(max-width: 768px) 100vw,  (max-width: 1200px) 50vw, 33vw"
           />
         )}
       </div>
