@@ -4,15 +4,20 @@ import { Main } from "../../components/art/StylingArt";
 import { useContentful } from "../../useContentful";
 import React, { useEffect, useState } from "react";
 
+interface Chicken {
+  id: number;
+  photo: string | null;
+}
+
 const Chicken = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [chicken, setChicken] = useState(null);
+  const [chicken, setChicken] = useState<Chicken | null>(null);
   const { getChickenById } = useContentful();
 
   useEffect(() => {
     if (id) {
-      getChickenById(id as string).then((response: any) => {
+      getChickenById(id as string).then((response: Chicken | null) => {
         setChicken(response);
       });
     }
@@ -25,12 +30,14 @@ const Chicken = () => {
   return (
     <Main>
       <div>
-        <Image
-          src={`https:${chicken.photo}`}
-          alt={`Chicken ${chicken.id}`}
-          width={700} // Add appropriate width
-          height={933} // Add appropriate height
-        />
+        {chicken.photo && (
+          <Image
+            src={`https:${chicken.photo}`}
+            alt={`Chicken ${chicken.id}`}
+            width={500} // Add appropriate width
+            height={933} // Add appropriate height
+          />
+        )}
       </div>
     </Main>
   );

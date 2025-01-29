@@ -89,7 +89,12 @@ export const useContentful = () => {
       console.log(`error fetching data: ${err}`);
     }
   };
-  const getChickenById = async (id: string) => {
+  interface Chicken {
+    id: number;
+    photo: string | null;
+  }
+
+  const getChickenById = async (id: string): Promise<Chicken | null> => {
     try {
       const entries = await client.getEntries({
         content_type: "chickens",
@@ -104,6 +109,7 @@ export const useContentful = () => {
       };
     } catch (err) {
       console.log(`error fetching data: ${err}`);
+      return null;
     }
   };
 
