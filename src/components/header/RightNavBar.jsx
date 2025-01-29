@@ -3,12 +3,8 @@ import Link from "next/link";
 
 import { Ul } from "./styleHeader";
 
-interface RightNavBarProps{
-  open: boolean,
-  setOpen: Function,
-}
 
-export const RightNavBar: React.FC<RightNavBarProps> = ({open, setOpen}) => {
+export const RightNavBar = ({open, setOpen}) => {
   return (
     <Ul open={open}>
       <Link href={"/"} passHref>

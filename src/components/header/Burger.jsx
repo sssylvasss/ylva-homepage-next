@@ -1,12 +1,10 @@
 import React from "react";
-import { StyledBurger, Div } from "./styleHeader";
+import { Div, StyledBurger } from "./styleHeader";
 
-interface BurgerProps{
-  open: boolean,
-  setOpen: Function,
-}
 
-export const Burger: React.FC<BurgerProps> = ({open, setOpen}) => {
+
+
+export const Burger = ({open, setOpen}) => {
   const showMenu = () => {
     if (open) {
       setOpen(false);
@@ -23,3 +21,4 @@ export const Burger: React.FC<BurgerProps> = ({open, setOpen}) => {
     </StyledBurger>
   );
 };
+

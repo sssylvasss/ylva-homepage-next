@@ -7,7 +7,7 @@ export const Cv = () => {
   const { getCv } = useContentful();
 
   useEffect(() => {
-    getCv().then((response: any) => {
+    getCv().then((response) => {
       setCv(response);
       console.log("response", response)
     });
@@ -17,12 +17,13 @@ export const Cv = () => {
     <MainWrapper>
       <TextP>Contact:</TextP>
       <TextP>+46 704 92 44 75</TextP>
+      <TextP>Stockholm, Sweden</TextP>
 
       <a href='mailto:mail@ylvalandofflindberg.com'>
         mail@ylvalandofflindberg.com
       </a>
 
-      {cv?.map((text: any, i) => (
+      {cv?.map((text, i) => (
         <Fragment key={i}>
           <TitleH2>{text.publicCollections}</TitleH2>
           <TextP>{text.publicCollectionsText}</TextP>

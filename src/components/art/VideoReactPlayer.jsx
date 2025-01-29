@@ -1,18 +1,10 @@
 import React from "react";
-
 import { VideoDiv, PlayerReact, VideoImg } from "./StylingArt";
-
-
-interface VideoReactPlayerProps{
-  embedId: string,
-  imageUrl: string,
-}
-
 
 
 const tabNumber = 1;
 
-const VideoReactPlayer: React.FC<VideoReactPlayerProps> = ({embedId, imageUrl }) => (
+const VideoReactPlayer = ({embedId, imageUrl }) => (
 
 
   <VideoDiv>

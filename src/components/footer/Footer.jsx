@@ -9,7 +9,7 @@ import {
   Text,
 } from "./StyleFooter";
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <Main>
       <Wrapper>
@@ -52,3 +52,5 @@ export const Footer = () => {
     </Main>
   );
 };
+
+export default Footer;

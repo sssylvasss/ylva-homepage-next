@@ -7,30 +7,19 @@ import {
 } from "../components/art/StylingArt";
 import { useContentful } from "../useContentful";
 import { TextP, TitleH2 } from "../styles/globalStyledComponents";
-export interface IVideo {
-  videoText: string | null,
-  description: string | null,
-  id: string,
-  title: string,
-  videoImage: {
-    description: string,
-    file: any,
-    titlel: string,
-  }
 
-}
 export const Video = () => {
   const { getVideo } = useContentful();
 
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    getVideo().then((response: any) => setVideos(response));
+    getVideo().then((response) => setVideos(response));
   }, []);
 
   return (
     <MainVideoDiv>
-      {videos?.map((video: IVideo, i) => (
+      {videos?.map((video, i) => (
         <InnerVideoWrapper key={i}>
           <VideoReactPlayer
             embedId={video?.id}

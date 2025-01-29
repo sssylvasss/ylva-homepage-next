@@ -1,53 +1,12 @@
 import { createClient } from "contentful";
 
 export const useContentful = () => {
-  // interface ICollageItem{
-
-  // 	fields: {
-  // 		collageId: number,
-  // 		collageTitle: string,
-  // 		image: {
-  // 			fields: any,
-  // 			metadata: any,
-  // 			sys: any,
-  // 			serie: string,
-  // 			year: string,
-  // 		  }
-  // 	},
-  // 	metadata: {
-  // 		tags: []
-  // 	},
-  // 	sys: any,
-  // 	collageImage: {
-  // 		description: string,
-  // 		file: any,
-  // 		titlel: string,
-  // 	  }
-
-  // }
-
-  // interface IVideoItem {
-  // 	fields: {
-  // 	description: string,
-  // 	id: string,
-  // 	title: string,
-  // 	videoImage: {
-  // 		fields: {},
-  // 		description: string,
-  // 		file: any,
-  // 		titlel: string,
-  // 	  },
-  // 	}
-  // 	  metadata: any,
-  // 	  sys: any
-  // }
-
   const client = createClient({
-    space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID!,
+    space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID || "",
     accessToken:
       process.env.NEXT_PUBLIC_IS_PREVIEW === "true"
-        ? process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN!
-        : process.env.NEXT_PUBLIC_CONTENTFUL_DELIVERY_TOKEN!,
+        ? process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN || ""
+        : process.env.NEXT_PUBLIC_CONTENTFUL_DELIVERY_TOKEN || "",
   });
 
   const getCollage = async () => {
@@ -55,7 +14,7 @@ export const useContentful = () => {
       const entries = await client.getEntries({
         content_type: "spiritOfVietnam",
       });
-      const filteredEntries = entries.items.map((item: any) => {
+      const filteredEntries = entries.items.map((item) => {
         const collageImage = item.fields.image.fields;
         return {
           ...item.fields,
@@ -64,7 +23,8 @@ export const useContentful = () => {
       });
       return filteredEntries;
     } catch (err) {
-      console.log(`error fetching data": ${err}`);
+      console.log(`error fetching data: ${err}`);
+      return [];
     }
   };
 
@@ -75,38 +35,35 @@ export const useContentful = () => {
       });
       const filteredEntries = entries.items.map((item) => {
         const { nr, photo } = item.fields;
-        const photoUrl =
-          photo && (photo as any).fields
-            ? (photo as any).fields.file.url
-            : null;
+        const photoUrl = photo ? photo.fields.file.url : null;
         return {
-          id: nr,
+          nr,
           photo: photoUrl,
         };
       });
       return filteredEntries;
     } catch (err) {
       console.log(`error fetching data: ${err}`);
+      return [];
     }
   };
-  interface Chicken {
-    id: number;
-    photo: string | null;
-  }
 
-  const getChickenById = async (id: string): Promise<Chicken | null> => {
+  const getChickenById = async (id) => {
     try {
       const entries = await client.getEntries({
         content_type: "chickens",
         "fields.nr": id,
       });
       const item = entries.items[0];
-      const { nr, photo } = item.fields;
-      const photoUrl = photo ? photo.fields.file.url : null;
-      return {
-        id: nr,
-        photo: photoUrl,
-      };
+      if (item) {
+        const { nr, photo } = item.fields;
+        const photoUrl = photo ? photo.fields.file.url : null;
+        return {
+          nr,
+          photo: photoUrl,
+        };
+      }
+      return null;
     } catch (err) {
       console.log(`error fetching data: ${err}`);
       return null;
@@ -125,7 +82,8 @@ export const useContentful = () => {
       });
       return filteredEntries;
     } catch (err) {
-      console.log(`error fetching data": ${err}`);
+      console.log(`error fetching data: ${err}`);
+      return [];
     }
   };
 
@@ -134,10 +92,8 @@ export const useContentful = () => {
       const entries = await client.getEntries({
         content_type: "video",
       });
-
-      const filteredEntries = entries.items.map((item: any) => {
+      const filteredEntries = entries.items.map((item) => {
         const videoImage = item.fields.videoImage.fields;
-
         return {
           ...item.fields,
           videoImage,
@@ -145,7 +101,8 @@ export const useContentful = () => {
       });
       return filteredEntries;
     } catch (err) {
-      console.log(`error fetching data": ${err}`);
+      console.log(`error fetching data: ${err}`);
+      return [];
     }
   };
 

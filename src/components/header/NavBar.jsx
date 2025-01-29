@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { Burger } from "./Burger";
-import { RightNavBar } from "./RightNavBar";
+
+
 import { Nav, TitleText } from "./styleHeader";
 
+import { RightNavBar } from "./RightNavBar";
+import{ Burger } from "./Burger";
 
-export const NavBar = () => {
+
+const NavBar = () => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -15,3 +18,4 @@ export const NavBar = () => {
     </Nav>
   );
 };
+export default NavBar;

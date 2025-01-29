@@ -1,15 +1,11 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { useRouter } from "next/router";
-
-import { NavBar } from "./header/NavBar";
-import { Footer } from "./footer/Footer";
 import { Main } from "../styles/globalStyledComponents";
+import NavBar from "./header/NavBar";
+import Footer from "./footer/Footer";
 
-interface LayoutProps {
-  children: ReactNode;
-}
 
-export const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout = ({ children }) => {
   const router = useRouter();
   const { pathname } = router;
   return (
@@ -20,3 +16,5 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     </Main>
   );
 };
+
+export default Layout;

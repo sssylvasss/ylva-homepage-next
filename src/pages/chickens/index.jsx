@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { Main } from "../../components/art/StylingArt";
 import { useContentful } from "../../useContentful";
@@ -9,14 +8,14 @@ const Chickens = () => {
   const { getChickens } = useContentful();
 
   useEffect(() => {
-    getChickens().then((response: any) => {
+    getChickens().then((response) => {
       setChickens(response);
     });
   }, [getChickens]);
 
   return (
     <Main>
-      {chickens?.map((chicken: any, i: number) => (
+      {chickens?.map((chicken, i) => (
         <div key={i}>
           <Image
             src={`https:${chicken.photo}`}

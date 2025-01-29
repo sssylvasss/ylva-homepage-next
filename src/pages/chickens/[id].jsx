@@ -4,20 +4,16 @@ import { Main } from "../../components/art/StylingArt";
 import { useContentful } from "../../useContentful";
 import React, { useEffect, useState } from "react";
 
-interface Chicken {
-  id: number;
-  photo: string | null;
-}
 
 const Chicken = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [chicken, setChicken] = useState<Chicken | null>(null);
+  const [chicken, setChicken] = useState(null);
   const { getChickenById } = useContentful();
 
   useEffect(() => {
     if (id) {
-      getChickenById(id as string).then((response: Chicken | null) => {
+      getChickenById(id).then((response) => {
         setChicken(response);
       });
     }

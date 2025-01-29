@@ -29,8 +29,6 @@
     "styled-jsx": "^5.1.6"
   },
   "devDependencies": {
-    "@types/node": "^22.7.5",
-    "@types/react": "^18.3.11",
-    "typescript": "^5.6.3"
+
   }
 }

@@ -1,20 +1,17 @@
 import "../styles/globals.css";
-import {Layout} from "../components/Layout";
+
 import { Roboto } from "next/font/google";
 import Head from "next/head";
+import Layout from "../components/Layout";
 
 const roboto = Roboto({
   weight: "300",
   subsets: ["latin"],
 });
 
-interface AppProps {
-  Component: React.ComponentType<any>;
-  pageProps: any;
-}
 
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>

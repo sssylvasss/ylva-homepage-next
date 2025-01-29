@@ -24,7 +24,7 @@ export const Nav = styled.nav`
 
 //RightNavBar
 
-export const Ul = styled.ul<{open: boolean}>`
+export const Ul = styled.ul`
   list-style: none;
   display: flex;
   flex-flow: row nowrap;
@@ -69,7 +69,7 @@ export const NavLink = styled(Link)`
 
 //Burger
 
-export const StyledBurger = styled.div`
+export const StyledBurger = styled.button`
     width: 2rem;
     height: 2rem;
     position: fixed;
@@ -85,7 +85,7 @@ export const StyledBurger = styled.div`
 
 `;
 
-export const Div = styled.div<{open: boolean}>`
+export const Div = styled.div`
 width: 2rem;
 height: 0.25rem;
 background-color: ${({ open }) => (open ? "#fff" : "#fc4103")};
