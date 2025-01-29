@@ -30,7 +30,7 @@ const Chicken = () => {
           <Image
             src={`https:${chicken.photo}`}
             alt={`Chicken ${chicken.id}`}
-            width={500} // Add appropriate width
+            width={700} // Add appropriate width
             height={933} // Add appropriate height
           />
         )}
