@@ -69,7 +69,7 @@ export const NavLink = styled(Link)`
 
 //Burger
 
-export const StyledBurger = styled.button`
+export const StyledBurger = styled.div`
     width: 2rem;
     height: 2rem;
     position: fixed;
