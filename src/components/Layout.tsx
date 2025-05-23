@@ -4,10 +4,14 @@ import { Main } from "../styles/globalStyledComponents";
 import NavBar from "./header/NavBar";
 import Footer from "./footer/Footer";
 
+interface LayoutProps {
+  children: React.ReactNode;
+}
 
-const Layout = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   const router = useRouter();
   const { pathname } = router;
+
   return (
     <Main>
       {pathname.startsWith("/chicken") || <NavBar />}

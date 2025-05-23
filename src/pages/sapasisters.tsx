@@ -1,7 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import { TextP, TitleH1, MainWrapper } from "../styles/globalStyledComponents";
+import type { NextPage } from "next";
 
-export const Sapasisters = () => {
+const Sapasisters: NextPage = () => {
   return (
     <MainWrapper>
       <TitleH1>
@@ -49,9 +50,9 @@ export const Sapasisters = () => {
       <TextP>
         Join us on this journey of empowerment, adventure, and positive change.{" "}
         <a
-          target='_blank'
-          rel='noopener noreferrer'
-          href='https://www.sapasisters.com'
+          target="blank"
+          rel="noopener noreferrer"
+          href="https://www.sapasisters.com"
         >
           www.sapasisters.com
         </a>

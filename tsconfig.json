@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "target": "es5",
     "lib": [
       "dom",
       "dom.iterable",
@@ -16,14 +17,20 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin",
+        "tags": ["styled", "css", "sty"]
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "styles/**/*.css"
-, "src/useContentful.js", "src/styles/globalStyledComponents.jsx", "src/pages/video.jsx", "src/pages/sapasisters.jsx", "src/pages/index.jsx", "src/pages/home.jsx", "src/pages/cv.jsx", "src/pages/collage.jsx", "src/pages/_document.jsx", "src/pages/_app.jsx", "src/pages/chickens/index.jsx", "src/pages/chickens/[id].jsx", "src/components/Layout.jsx", "src/components/modal/StyleModal.js", "src/components/modal/Modal.jsx", "src/components/header/styleHeader.js", "src/components/header/RightNavBar.jsx", "src/components/header/NavBar.jsx", "src/components/header/Burger.jsx", "src/components/footer/StyleFooter.js", "src/components/footer/Footer.jsx", "src/components/art/VideoReactPlayer.jsx", "src/components/art/StylingArt.js", "src/components/art/ImageCard.jsx"  ],
+  ],
   "exclude": [
     "node_modules"
   ]

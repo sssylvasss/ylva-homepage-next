@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   Main,
   Wrapper,
@@ -9,7 +8,7 @@ import {
   Text,
 } from "./StyleFooter";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <Main>
       <Wrapper>
@@ -21,28 +20,28 @@ const Footer = () => {
         </div>
         <Nav>
           <a
-            target='_blank'
-            rel='noopener noreferrer'
-            href='https://github.com/sssylvasss'
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/sssylvasss"
           >
-            <Icon src='../assets/github_black.svg' alt='Github linked icon' />
+            <Icon src="../assets/github_black.svg" alt="Github linked icon" />
           </a>
           <a
-            target='_blank'
-            rel='noopener noreferrer'
-            href='https://www.linkedin.com/in/ylva-landoff-lindberg/'
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.linkedin.com/in/ylva-landoff-lindberg/"
           >
             <Icon
-              src='../assets/linkedin_black.svg'
-              alt='Linkdin linked icon'
+              src="../assets/linkedin_black.svg"
+              alt="LinkedIn linked icon"
             />
           </a>
           <a
-            target='_blank'
-            rel='noopener noreferrer'
-            href='mailto:mail@ylvalandofflindberg.com'
+            target="_blank"
+            rel="noopener noreferrer"
+            href="mailto:mail@ylvalandofflindberg.com"
           >
-            <Icon src='../assets/email_black.svg' alt='Mail linked icon' />
+            <Icon src="../assets/email_black.svg" alt="Mail linked icon" />
           </a>
         </Nav>
       </Wrapper>

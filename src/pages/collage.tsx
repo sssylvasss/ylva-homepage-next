@@ -3,7 +3,6 @@ import { useContentful } from "../useContentful";
 import { ImageCard } from "../components/art/ImageCard";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-
 import {
   Main,
   ImageSectionDiv,
@@ -17,54 +16,60 @@ import {
   TableDiv,
 } from "../components/art/StylingArt";
 import { Modal } from "../components/modal/Modal";
+import type { Collage as CollageType } from "../types/contentful";
+import type { NextPage } from "next";
 
+interface ImageSerie {
+  serie: string;
+  year: string | null;
+  collages: CollageType[];
+}
 
-export const Collage = () => {
-  const [collages, setCollages] = useState([]);
+const CollagePage: NextPage = () => {
+  const [collages, setCollages] = useState<CollageType[]>([]);
   const { getCollage } = useContentful();
-  const [showModal, setShowModal] = useState(false);  
-  const [activeCollage, setActiveCollage] = useState();
+  const [showModal, setShowModal] = useState(false);
+  const [activeCollage, setActiveCollage] = useState<CollageType | undefined>();
 
   useEffect(() => {
     getCollage().then((response) => {
-      setCollages(response?.sort((a, b) => a.collageId - b.collageId));
+      setCollages(response.sort((a, b) => a.collageId - b.collageId));
     });
   }, [getCollage]);
 
-
-
-  // acc= acumilera(ansamla). reduce kan ha upp till 4 parametrar, index är nr 3
   const newImageArray = collages
-    ?.sort((a, b) => b.collageId - a.collageId)
-    .reduce((acc, curr) => {
+    .sort((a, b) => b.collageId - a.collageId)
+    .reduce<ImageSerie[]>((acc, curr) => {
       if (acc.some(({ serie }) => serie === curr.serie)) {
-        acc.map((accElement) => {
+        acc.forEach((accElement) => {
           if (accElement.serie === curr.serie) {
-            accElement?.collages?.push(curr);
+            accElement.collages.push(curr);
           }
         });
         return acc;
       } else {
-        const obj = {
-          serie: curr.serie ? curr.serie : curr.year,
-          year: curr.serie ? curr.year : null,
+        const obj: ImageSerie = {
+          serie: curr.serie || curr.year || "",
+          year: curr.serie ? curr.year || null : null,
           collages: [curr],
         };
         return [...acc, obj];
       }
-      // initial value nedan
     }, []);
 
-  const openModal = (id) => {
+  const openModal = (id: number) => {
     const activeCollageIndex = collages.findIndex((co) => co.collageId === id);
     setActiveCollage(collages[activeCollageIndex]);
     setShowModal(true);
   };
 
-  const imageSlide = (next) => {
+  const imageSlide = (next: boolean) => {
+    if (!activeCollage) return;
+
     const imageIndex = collages.findIndex(
-      (co) => co.collageId === activeCollage?.collageId
+      (co) => co.collageId === activeCollage.collageId
     );
+
     if (next) {
       if (imageIndex === collages.length - 1) {
         setActiveCollage(collages[0]);
@@ -80,37 +85,36 @@ export const Collage = () => {
     }
   };
 
-
-
   return (
     <Main>
       <LaptopDiv>
-        <ImageList variant='masonry' cols={3} gap={8}>
-          {collages?.map((collage , index) => (
-       
-            <ImageListItem key={index}>
-              <ImageCard key={index} collage={collage} openModal={openModal} />
-           
+        <ImageList variant="masonry" cols={3} gap={8}>
+          {collages.map((collage) => (
+            <ImageListItem key={collage.collageId}>
+              <ImageCard collage={collage} openModal={openModal} />
             </ImageListItem>
-         
           ))}
         </ImageList>
       </LaptopDiv>
       <TableDiv>
-        {newImageArray?.map((imageSerie, index) => (
+        {newImageArray.map((imageSerie, index) => (
           <Fragment key={index}>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <TitleH1>
-                {imageSerie.serie}, <span> </span>
-                {imageSerie.year}
+                {imageSerie.serie}
+                {imageSerie.year && (
+                  <>
+                    , <span> </span>
+                    {imageSerie.year}
+                  </>
+                )}
               </TitleH1>
             </div>
-           
             <ImageSectionDiv>
               <ImageSectionInnerDiv>
-                {imageSerie.collages?.map((collage, index) => (
+                {imageSerie.collages.map((collage) => (
                   <ImageCard
-                    key={index}
+                    key={collage.collageId}
                     collage={collage}
                     openModal={openModal}
                   />
@@ -121,24 +125,20 @@ export const Collage = () => {
         ))}
       </TableDiv>
 
-      {showModal ? (
+      {showModal && (
         <Modal setShowModal={setShowModal} setActiveCollage={setActiveCollage}>
           <ModalDiv>
             <ArrowBack onClick={() => imageSlide(false)} />
-
             <ModalImage
-              alt='collage'
+              alt="collage"
               src={activeCollage?.collageImage?.file.url}
             />
-
             <ArrowForward onClick={() => imageSlide(true)} />
           </ModalDiv>
         </Modal>
-      ) : (
-        <></>
       )}
     </Main>
   );
 };
 
-export default Collage
+export default CollagePage;
