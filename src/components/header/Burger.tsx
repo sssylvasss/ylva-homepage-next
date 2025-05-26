@@ -1,12 +1,12 @@
 import React from "react";
-import { Div, StyledBurger } from "./styleHeader";
+import { Div, StyledBurger } from "./styles/Burger.styles";
 
 interface BurgerProps {
   open: boolean;
   setOpen: (open: boolean) => void;
 }
 
-export const Burger: React.FC<BurgerProps> = ({ open, setOpen }) => {
+const Burger: React.FC<BurgerProps> = ({ open, setOpen }) => {
   const showMenu = () => {
     setOpen(!open);
   };

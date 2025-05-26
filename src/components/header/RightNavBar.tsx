@@ -7,22 +7,24 @@ interface RightNavBarProps {
   setOpen: (open: boolean) => void;
 }
 
-export const RightNavBar: React.FC<RightNavBarProps> = ({ open, setOpen }) => {
-  const handleClick = () => {
-    setOpen(false);
-  };
-
+const RightNavBar: React.FC<RightNavBarProps> = ({ open, setOpen }) => {
   return (
     <Ul open={open}>
-      <Link href="/" passHref>
-        <li onClick={handleClick}>Collage</li>
-      </Link>
-      <Link href="/video" passHref>
-        <li onClick={handleClick}>Video</li>
-      </Link>
-      <Link href="/cv" passHref>
-        <li onClick={handleClick}>Bio</li>
-      </Link>
+      <li>
+        <Link href="/" onClick={() => setOpen(false)}>
+          COLLAGE
+        </Link>
+      </li>
+      <li>
+        <Link href="/video" onClick={() => setOpen(false)}>
+          VIDEO
+        </Link>
+      </li>
+      <li>
+        <Link href="/cv" onClick={() => setOpen(false)}>
+          CV
+        </Link>
+      </li>
       {/* <Link href="/sapasisters" passHref>
         <li onClick={handleClick}>Sapa Sisters</li>
       </Link> */}

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Main = styled.div`
+export const PageContainer = styled.div`
   width: 90%;
   max-width: 2000px;
   display: flex;
@@ -12,29 +12,31 @@ export const Main = styled.div`
   }
 `;
 
-export const MainWrapper = styled.div`
+export const ContentWrapper = styled.div`
   margin: 20px;
 `;
 
-export const TextP = styled.p`
+export const GlobalText = styled.p`
   white-space: pre-wrap;
   line-height: 1;
   text-align: left;
 `;
-export const TitleH2 = styled.h2`
-  font-weight: 800;
-  font-size: 20px;
-  text-align: left;
-  margin: 50px 0 20px 0;
-`;
-export const TitleH1 = styled.h1`
+
+export const SectionTitle = styled.h2`
   font-weight: 800;
   font-size: 20px;
   text-align: left;
   margin: 50px 0 20px 0;
 `;
 
-export const HeaderH2 = styled.h2`
+export const PageTitle = styled.h1`
+  font-weight: 800;
+  font-size: 20px;
+  text-align: left;
+  margin: 50px 0 20px 0;
+`;
+
+export const SubsectionTitle = styled.h2`
   font-size: 16px;
   font-weight: 600;
   margin-top: 30px;

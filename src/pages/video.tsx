@@ -6,7 +6,7 @@ import {
   VideoTextDiv,
 } from "../components/art/StylingArt";
 import { useContentful } from "../useContentful";
-import { TextP, TitleH2 } from "../styles/globalStyledComponents";
+import { GlobalText, SectionTitle } from "../styles/globalStyledComponents";
 import type { Video as VideoType } from "../types/contentful";
 import type { NextPage } from "next";
 
@@ -27,9 +27,9 @@ const VideoPage: NextPage = () => {
             imageUrl={video.videoImage?.file.url}
           />
           <VideoTextDiv>
-            <TitleH2>{video.title}</TitleH2>
-            <TextP>{video.description}</TextP>
-            {video.videoText && <TextP>{video.videoText}</TextP>}
+            <SectionTitle>{video.title}</SectionTitle>
+            <GlobalText>{video.description}</GlobalText>
+            {video.videoText && <GlobalText>{video.videoText}</GlobalText>}
           </VideoTextDiv>
         </InnerVideoWrapper>
       ))}

@@ -2,6 +2,41 @@ import styled from "styled-components";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 
+export const VideoDiv = styled.div`
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+`;
+
+export const PlayerReact = styled.iframe`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`;
+
+export const VideoImg = styled.img`
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+`;
+
+export const TableDiv = styled.div`
+  @media (min-width: 820px) {
+    display: none;
+  }
+`;
+
+export const LaptopDiv = styled.div`
+  display: none;
+  @media (min-width: 820px) {
+    display: block;
+    width: 90%;
+  }
+`;
+
 // Card styles
 export const TitleH2 = styled.h2`
   font-size: 16px;
@@ -90,56 +125,32 @@ export const Main = styled.div`
 `;
 
 export const ImageSectionDiv = styled.div`
-  width: 100vw;
   display: flex;
-  align-items: center;
-  margin: auto 0;
-  flex-direction: column;
-
-  @media (min-width: 820px) {
-    overflow-y: hidden;
-    overflow-x: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    width: 100%;
-    padding: 0 30px 30px 30px;
-    ::-webkit-scrollbar {
-      display: none;
-    }
-  }
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
 `;
 
 export const ImageSectionInnerDiv = styled.div`
-  width: 100%;
   display: flex;
-  align-items: center;
-  margin: auto 0;
-  flex-direction: column;
-
-  @media (min-width: 820px) {
-    flex-direction: row;
-    align-items: bottom;
-    margin-bottom: 40px;
-    width: auto;
-    height: 400px;
-  }
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
 `;
 
 // Modal styles
 export const ModalDiv = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
-  @media (min-width: 820px) {
-    padding: 0;
-  }
+  width: 100%;
+  height: 100%;
 `;
 
 export const ModalImage = styled.img`
-  background: none;
-  object-fit: contain;
-  max-width: 85%;
+  max-width: 90%;
   max-height: 90vh;
+  object-fit: contain;
 `;
 
 export const ArrowBack = styled(ArrowBackIosNewOutlinedIcon)`
@@ -182,12 +193,5 @@ export const MainVideoDiv = styled.div`
 `;
 
 export const InnerVideoWrapper = styled.div`
-  margin: 30px 0 60px 0;
-`;
-
-export const VideoImg = styled.img`
-  left: 0;
-  top: 0;
-  position: absolute;
-  width: 100%;
+  margin-bottom: 40px;
 `;
