@@ -26,22 +26,22 @@ export const StyledBurger = styled.button`
 export const Div = styled.div<{ open: boolean }>`
   width: 2rem;
   height: 0.25rem;
-  background: ${({ open }) => (open ? "#0D0C1D" : "#0D0C1D")};
+  background: ${({ open }) => (open ? "#ffffff" : "#fc4103")};
   border-radius: 10px;
-  transition: all 0.3s linear;
+  transition: all 0.3s ease-in-out;
   position: relative;
   transform-origin: 1px;
 
-  :first-child {
+  &:first-child {
     transform: ${({ open }) => (open ? "rotate(45deg)" : "rotate(0)")};
   }
 
-  :nth-child(2) {
+  &:nth-child(2) {
     opacity: ${({ open }) => (open ? "0" : "1")};
     transform: ${({ open }) => (open ? "translateX(20px)" : "translateX(0)")};
   }
 
-  :nth-child(3) {
+  &:nth-child(3) {
     transform: ${({ open }) => (open ? "rotate(-45deg)" : "rotate(0)")};
   }
 `;
