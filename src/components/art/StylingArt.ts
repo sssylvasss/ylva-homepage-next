@@ -3,6 +3,19 @@ import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutl
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import ReactPlayer from "react-player";
 
+// Theme constants
+const BREAKPOINTS = {
+  mobile: "520px",
+  tablet: "820px",
+  desktop: "991px",
+} as const;
+
+const COLORS = {
+  white: "#ffff",
+  orange: "#fc4103",
+  modalOverlay: "rgba(0, 0, 0, 0.5)",
+} as const;
+
 export const VideoContainer = styled.div`
   position: relative;
   padding-top: 56.25%;
@@ -37,16 +50,20 @@ export const VideoImg = styled.img`
 `;
 
 export const TableDiv = styled.div`
-  @media (min-width: 820px) {
+  @media (min-width: ${BREAKPOINTS.tablet}) {
     display: none;
   }
 `;
 
 export const LaptopDiv = styled.div`
   display: none;
-  @media (min-width: 820px) {
+  @media (min-width: ${BREAKPOINTS.tablet}) {
     display: block;
     width: 90%;
+  }
+  @media (min-width: ${BREAKPOINTS.mobile}) {
+    display: block;
+    width: 100%;
   }
 `;
 
@@ -56,8 +73,12 @@ export const TitleH2 = styled.h2`
   font-weight: 800;
   margin: 5px;
 
-  @media (min-width: 991px) {
-    color: #ffff;
+  @media (max-width: ${BREAKPOINTS.mobile}) {
+    margin: 5px 20px 5px 0;
+  }
+
+  @media (min-width: ${BREAKPOINTS.desktop}) {
+    color: ${COLORS.white};
   }
 `;
 
@@ -66,8 +87,13 @@ export const TextP = styled.p`
   font-weight: 200;
   margin: 0 5px 5px 5px;
   padding: 0 10px 10px 0;
-  @media (min-width: 991px) {
-    color: #ffff;
+
+  @media (max-width: ${BREAKPOINTS.mobile}) {
+    margin: 0 20px 5px 0;
+  }
+
+  @media (min-width: ${BREAKPOINTS.desktop}) {
+    color: ${COLORS.white};
   }
 `;
 
@@ -75,8 +101,12 @@ export const TextDiv1 = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
-  @media (min-width: 820px) {
-    max-width: 270px;
+  padding-left: 0;
+  max-width: 270px;
+
+  @media (max-width: ${BREAKPOINTS.mobile}) {
+    padding-left: 0;
+    max-width: 100%;
   }
 `;
 
@@ -96,7 +126,7 @@ export const CardDivMain = styled.main`
   width: 90%;
   margin-bottom: 15px;
 
-  @media (min-width: 820px) {
+  @media (min-width: ${BREAKPOINTS.tablet}) {
     margin: 10px;
     width: auto;
     align-content: left;
@@ -106,33 +136,46 @@ export const CardDivMain = styled.main`
       position: absolute;
       bottom: 0;
       width: 100%;
-      background-color: rgba(000, 0, 0, 0.5);
+      background-color: ${COLORS.modalOverlay};
     }
   }
 `;
 
 export const CollageImage = styled.img`
   object-fit: cover;
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+
+  @media (min-width: ${BREAKPOINTS.tablet}) {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
 `;
 
 // ImageGallery styles
 export const TitleH1 = styled.h1`
   font-size: 20px;
   font-weight: 800;
-  margin: 40px 5px 30px 5px;
+  margin: 40px 20px 30px 20px;
   padding: 5px 0 10px 0;
   border-bottom: 2px solid;
-  width: 90%;
-  @media (min-width: 820px) {
+  width: calc(100% - 40px);
+
+  @media (min-width: ${BREAKPOINTS.tablet}) {
     width: 100%;
+    margin: 40px 5px 30px 5px;
+  }
+  @media (max-width: ${BREAKPOINTS.mobile}) {
+    margin: 40px 20px 30px 0;
   }
 `;
 
 export const Main = styled.div`
   height: 100%;
 
-  @media (min-width: 820px) {
+  @media (min-width: ${BREAKPOINTS.tablet}) {
     width: 100%;
   }
 `;
@@ -167,25 +210,25 @@ export const ModalImage = styled.img`
 `;
 
 export const ArrowBack = styled(ArrowBackIosNewOutlinedIcon)`
-  @media (min-width: 520px) {
+  @media (min-width: ${BREAKPOINTS.mobile}) {
     opacity: 1;
-    color: #fc4103;
+    color: ${COLORS.orange};
     cursor: pointer;
     font-size: 50px;
   }
-  @media (min-width: 820px) {
+  @media (min-width: ${BREAKPOINTS.tablet}) {
     padding: 40px 20px 40px 0;
   }
 `;
 
 export const ArrowForward = styled(ArrowForwardIosOutlinedIcon)`
-  @media (min-width: 520px) {
+  @media (min-width: ${BREAKPOINTS.mobile}) {
     opacity: 1;
-    color: #fc4103;
+    color: ${COLORS.orange};
     cursor: pointer;
     font-size: 50px;
   }
-  @media (min-width: 820px) {
+  @media (min-width: ${BREAKPOINTS.tablet}) {
     padding: 40px 0 40px 20px;
   }
 `;
@@ -200,7 +243,7 @@ export const MainVideoDiv = styled.div`
   display: block;
   flex-direction: column;
   justify-content: center;
-  @media (min-width: 820px) {
+  @media (min-width: ${BREAKPOINTS.tablet}) {
     width: 90%;
   }
 `;
