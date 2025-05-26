@@ -1,6 +1,19 @@
 import styled from "styled-components";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+import ReactPlayer from "react-player";
+
+export const VideoContainer = styled.div`
+  position: relative;
+  padding-top: 56.25%;
+  width: 100%;
+`;
+
+export const StyledReactPlayer = styled(ReactPlayer)`
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
 
 export const VideoDiv = styled.div`
   position: relative;
