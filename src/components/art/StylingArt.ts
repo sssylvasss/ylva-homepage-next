@@ -50,24 +50,22 @@ export const VideoImg = styled.img`
 `;
 
 export const TableDiv = styled.div`
-  @media (min-width: ${BREAKPOINTS.tablet}) {
+  display: block;
+
+  @media (min-width: ${BREAKPOINTS.mobile}) {
     display: none;
   }
 `;
 
 export const LaptopDiv = styled.div`
   display: none;
-  @media (min-width: ${BREAKPOINTS.tablet}) {
+
+  @media (min-width: ${BREAKPOINTS.mobile}) {
     display: block;
     width: 90%;
   }
-  @media (min-width: ${BREAKPOINTS.mobile}) {
-    display: block;
-    width: 100%;
-  }
 `;
 
-// Card styles
 export const TitleH2 = styled.h2`
   font-size: 16px;
   font-weight: 800;
@@ -111,27 +109,12 @@ export const TextDiv1 = styled.div`
 `;
 
 export const TextDiv = styled.div`
-  display: flex;
+  display: none;
   flex-direction: column;
   text-align: left;
-  @media (min-width: 820px) {
-    display: none;
-  }
-`;
-
-export const CardDivMain = styled.main`
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  width: 90%;
-  margin-bottom: 15px;
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
-    margin: 10px;
-    width: auto;
-    align-content: left;
-    position: relative;
-    &:hover ${TextDiv} {
+    &:hover {
       display: flex;
       position: absolute;
       bottom: 0;
@@ -141,13 +124,28 @@ export const CardDivMain = styled.main`
   }
 `;
 
+export const CardDivMain = styled.main`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 90%;
+  margin-bottom: 15px;
+  position: relative;
+
+  @media (min-width: ${BREAKPOINTS.tablet}) {
+    margin: 10px;
+    width: auto;
+    align-content: left;
+  }
+`;
+
 export const CollageImage = styled.img`
   object-fit: cover;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
 
-  @media (min-width: ${BREAKPOINTS.tablet}) {
+  @media (min-width: ${BREAKPOINTS.mobile}) {
     width: 100%;
     margin-left: 0;
     margin-right: 0;
@@ -169,6 +167,7 @@ export const TitleH1 = styled.h1`
   }
   @media (max-width: ${BREAKPOINTS.mobile}) {
     margin: 40px 20px 30px 0;
+    width: 100%;
   }
 `;
 
