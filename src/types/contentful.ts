@@ -14,7 +14,6 @@ export interface ContentfulImage {
   description?: string;
 }
 
-// Field definitions
 export interface ICollageFields {
   collageId: EntryFields.Integer;
   collageTitle: EntryFields.Text;
