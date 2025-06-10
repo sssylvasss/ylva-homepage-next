@@ -54,32 +54,32 @@ export interface IChickenFields {
   photo: Asset;
 }
 
-// Entry types that implement EntrySkeletonType
-export interface ICollageSkeleton extends EntrySkeletonType {
+// Entry skeleton types
+export interface CollageEntryType extends EntrySkeletonType {
   fields: ICollageFields;
   contentTypeId: "spiritOfVietnam";
 }
 
-export interface IVideoSkeleton extends EntrySkeletonType {
+export interface VideoEntryType extends EntrySkeletonType {
   fields: IVideoFields;
   contentTypeId: "video";
 }
 
-export interface ICVSkeleton extends EntrySkeletonType {
+export interface CVEntryType extends EntrySkeletonType {
   fields: ICVFields;
   contentTypeId: "cv";
 }
 
-export interface IChickenSkeleton extends EntrySkeletonType {
+export interface ChickenEntryType extends EntrySkeletonType {
   fields: IChickenFields;
   contentTypeId: "chickens";
 }
 
-// Entry types using Entry with skeleton types
-export type CollageEntry = Entry<ICollageSkeleton>;
-export type VideoEntry = Entry<IVideoSkeleton>;
-export type CVEntry = Entry<ICVSkeleton>;
-export type ChickenEntry = Entry<IChickenSkeleton>;
+// Entry types
+export type CollageEntry = Entry<CollageEntryType>;
+export type VideoEntry = Entry<VideoEntryType>;
+export type CVEntry = Entry<CVEntryType>;
+export type ChickenEntry = Entry<ChickenEntryType>;
 
 // Simplified types for use in components
 export interface Collage {
