@@ -1,5 +1,5 @@
 import React from "react";
-import { Div, StyledBurger } from "./styles/Burger.styles";
+import { StyledBurger } from "./styles/Burger.styles";
 
 interface BurgerProps {
   open: boolean;
@@ -7,20 +7,11 @@ interface BurgerProps {
 }
 
 const Burger: React.FC<BurgerProps> = ({ open, setOpen }) => {
-  const showMenu = () => {
-    setOpen(!open);
-  };
-
   return (
-    <StyledBurger
-      onClick={showMenu}
-      aria-label="Toggle menu"
-      role="button"
-      aria-expanded={open}
-    >
-      <Div open={open} />
-      <Div open={open} />
-      <Div open={open} />
+    <StyledBurger $open={open} onClick={() => setOpen(!open)}>
+      <div />
+      <div />
+      <div />
     </StyledBurger>
   );
 };

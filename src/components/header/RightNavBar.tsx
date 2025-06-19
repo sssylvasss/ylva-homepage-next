@@ -25,6 +25,11 @@ const RightNavBar: React.FC<RightNavBarProps> = ({ open, setOpen }) => {
           CV
         </Link>
       </li>
+      <li>
+        <Link href="/contact" onClick={() => setOpen(false)}>
+          CONTACT
+        </Link>
+      </li>
       {/* <Link href="/sapasisters" passHref>
         <li onClick={handleClick}>Sapa Sisters</li>
       </Link> */}
