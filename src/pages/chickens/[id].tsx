@@ -3,13 +3,13 @@ import Image from "next/image";
 import { Main } from "../../components/art/StylingArt";
 import { useContentful } from "../../useContentful";
 import React, { useEffect, useState } from "react";
-import type { Chicken } from "../../types/contentful";
 import type { NextPage } from "next";
 
 const ChickenPage: NextPage = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [chicken, setChicken] = useState<Chicken | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [chicken, setChicken] = useState<any | null>(null);
   const { getChickenById } = useContentful();
 
   useEffect(() => {

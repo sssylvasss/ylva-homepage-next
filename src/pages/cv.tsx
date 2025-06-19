@@ -5,11 +5,11 @@ import {
   ContentWrapper,
 } from "../styles/globalStyledComponents";
 import { useContentful } from "../useContentful";
-import type { CV as CVType } from "../types/contentful";
 import type { NextPage } from "next";
 
 const CVPage: NextPage = () => {
-  const [cv, setCv] = useState<CVType[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [cv, setCv] = useState<any[]>([]);
   const { getCv } = useContentful();
 
   useEffect(() => {

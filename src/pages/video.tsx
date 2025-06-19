@@ -7,12 +7,12 @@ import {
 } from "../components/art/StylingArt";
 import { useContentful } from "../useContentful";
 import { GlobalText, SectionTitle } from "../styles/globalStyledComponents";
-import type { Video as VideoType } from "../types/contentful";
 import type { NextPage } from "next";
 
 const VideoPage: NextPage = () => {
   const { getVideo } = useContentful();
-  const [videos, setVideos] = useState<VideoType[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [videos, setVideos] = useState<any[]>([]);
 
   useEffect(() => {
     getVideo().then((response) => setVideos(response));

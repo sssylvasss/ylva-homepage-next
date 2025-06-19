@@ -16,20 +16,22 @@ import {
   TableDiv,
 } from "../components/art/StylingArt";
 import { Modal } from "../components/modal/Modal";
-import type { Collage as CollageType } from "../types/contentful";
 import type { NextPage } from "next";
 
 interface ImageSerie {
   serie: string;
   year: string | null;
-  collages: CollageType[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  collages: any[];
 }
 
 const CollagePage: NextPage = () => {
-  const [collages, setCollages] = useState<CollageType[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [collages, setCollages] = useState<any[]>([]);
   const { getCollage } = useContentful();
   const [showModal, setShowModal] = useState(false);
-  const [activeCollage, setActiveCollage] = useState<CollageType | undefined>();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [activeCollage, setActiveCollage] = useState<any | undefined>();
 
   useEffect(() => {
     getCollage().then((response) => {
