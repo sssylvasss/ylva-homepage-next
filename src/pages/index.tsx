@@ -375,18 +375,11 @@ const SmallCircleText = styled.span<{ $type: "cv" | "contact" }>`
 
 const Home: NextPage = () => {
   const [shouldAnimate, setShouldAnimate] = useState(false);
-  const [isFirstMount, setIsFirstMount] = useState(true);
+  // const [isFirstMount, setIsFirstMount] = useState(true);
 
   useEffect(() => {
-    if (isFirstMount) {
-      const hasVisited = localStorage.getItem("hasVisitedHome");
-      if (!hasVisited) {
-        setShouldAnimate(true);
-        localStorage.setItem("hasVisitedHome", "true");
-      }
-      setIsFirstMount(false);
-    }
-  }, [isFirstMount]);
+    setShouldAnimate(true);
+  }, []);
 
   return (
     <>
