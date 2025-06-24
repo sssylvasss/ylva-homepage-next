@@ -21,7 +21,7 @@ const VideoPage: NextPage = () => {
 
   return (
     <>
-      <Head>
+      <Head key="video-head">
         <title>Video | Ylva</title>
         <meta
           name="description"

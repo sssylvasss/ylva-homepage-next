@@ -167,7 +167,7 @@ const CloverContainer = styled.div`
   width: 300px;
   height: 300px;
   margin: 0 auto;
-  z-index: 20;
+  z-index: 1;
   overflow: visible;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
@@ -192,7 +192,7 @@ const CircleLink = styled(Link)<{
   justify-content: center;
   text-decoration: none;
   cursor: pointer;
-  z-index: 20;
+  z-index: 1;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     width: 500px;

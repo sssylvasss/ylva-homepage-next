@@ -11,8 +11,8 @@ const RightNavBar: React.FC<RightNavBarProps> = ({ open, setOpen }) => {
   return (
     <Ul open={open}>
       <li>
-        <Link href="/" onClick={() => setOpen(false)}>
-          COLLAGE
+        <Link href="/collage" onClick={() => setOpen(false)}>
+          ART
         </Link>
       </li>
       <li>

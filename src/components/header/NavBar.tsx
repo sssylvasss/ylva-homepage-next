@@ -8,9 +8,10 @@ const NavBar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
   const router = useRouter();
   const isDarkMode = router.pathname === "/code";
+  const isLandingPage = router.pathname === "/" || router.pathname === "/home";
 
   return (
-    <Nav $isDark={isDarkMode}>
+    <Nav $isDark={isDarkMode} $isTransparent={isLandingPage}>
       <TitleLink href="/">
         <TitleText $isDark={isDarkMode}>YLVA LANDOFF LINDBERG</TitleText>
       </TitleLink>

@@ -24,7 +24,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     if (pathname === "/") {
       return isMobile;
     }
-    return !pathname.startsWith("/chicken");
+    return !pathname.startsWith("/chicken") && pathname !== "/contact";
   };
 
   return (

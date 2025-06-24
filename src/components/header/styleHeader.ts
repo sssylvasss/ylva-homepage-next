@@ -3,6 +3,7 @@ import Link from "next/link";
 
 interface DarkModeProps {
   $isDark?: boolean;
+  $isTransparent?: boolean;
 }
 
 export const Nav = styled.nav<DarkModeProps>`
@@ -15,8 +16,9 @@ export const Nav = styled.nav<DarkModeProps>`
   position: fixed;
   top: 0;
   left: 0;
-  background-color: ${({ $isDark }) => ($isDark ? "#1a1a1a" : "white")};
-  z-index: 5;
+  background-color: ${({ $isDark, $isTransparent }) =>
+    $isTransparent ? "transparent" : $isDark ? "#1a1a1a" : "white"};
+  z-index: 1000;
   transition: background-color 0.3s ease;
 `;
 
@@ -54,7 +56,7 @@ export const Ul = styled.ul<{ open: boolean }>`
   width: 170px;
   padding-top: 5rem;
   transition: transform 0.3s ease-in-out;
-  z-index: 4;
+  z-index: 1000;
 
   li {
     padding: 18px 10px;
