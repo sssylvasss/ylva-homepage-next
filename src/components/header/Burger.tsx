@@ -1,26 +1,18 @@
 import React from "react";
-import { Div, StyledBurger } from "./styles/Burger.styles";
+import { StyledBurger } from "./styles/Burger.styles";
 
 interface BurgerProps {
   open: boolean;
   setOpen: (open: boolean) => void;
+  $isDark?: boolean;
 }
 
-const Burger: React.FC<BurgerProps> = ({ open, setOpen }) => {
-  const showMenu = () => {
-    setOpen(!open);
-  };
-
+const Burger: React.FC<BurgerProps> = ({ open, setOpen, $isDark }) => {
   return (
-    <StyledBurger
-      onClick={showMenu}
-      aria-label="Toggle menu"
-      role="button"
-      aria-expanded={open}
-    >
-      <Div open={open} />
-      <Div open={open} />
-      <Div open={open} />
+    <StyledBurger $open={open} $isDark={$isDark} onClick={() => setOpen(!open)}>
+      <div />
+      <div />
+      <div />
     </StyledBurger>
   );
 };

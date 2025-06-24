@@ -173,6 +173,7 @@ export const TitleH1 = styled.h1`
 
 export const Main = styled.div`
   height: 100%;
+  margin-top: 85px; /* 65px header height + 20px extra spacing */
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
     width: 100%;
@@ -242,6 +243,7 @@ export const MainVideoDiv = styled.div`
   display: block;
   flex-direction: column;
   justify-content: center;
+  margin-top: 85px; /* 65px header height + 20px extra spacing */
   @media (min-width: ${BREAKPOINTS.tablet}) {
     width: 90%;
   }

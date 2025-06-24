@@ -14,6 +14,7 @@ export const PageContainer = styled.div`
 
 export const ContentWrapper = styled.div`
   margin: 20px;
+  padding-top: 85px; /* 65px header height + 20px extra space */
 `;
 
 export const GlobalText = styled.p`

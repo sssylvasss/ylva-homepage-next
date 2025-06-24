@@ -1,72 +1,74 @@
 import styled from "styled-components";
+import Link from "next/link";
 
-export const Nav = styled.nav`
+interface DarkModeProps {
+  $isDark?: boolean;
+  $isTransparent?: boolean;
+}
+
+export const Nav = styled.nav<DarkModeProps>`
   width: 100%;
   height: 65px;
   padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: ${({ $isDark, $isTransparent }) =>
+    $isTransparent ? "transparent" : $isDark ? "#1a1a1a" : "white"};
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+`;
 
-  @media (max-width: 768px) {
-    justify-content: flex-start;
+export const TitleLink = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.orange};
+
+  &:hover {
+    opacity: 0.8;
+    text-shadow: 0 0 8px rgba(255, 165, 0, 0.6);
   }
 `;
 
-export const TitleText = styled.h1`
+export const TitleText = styled.h1<DarkModeProps>`
   font-size: 16px;
   font-weight: 800;
   margin: 0;
   padding: 15px 0;
   white-space: nowrap;
+  color: inherit;
+  transition: all 0.3s ease;
 `;
 
 export const Ul = styled.ul<{ open: boolean }>`
   list-style: none;
   display: flex;
-  align-items: center;
+  flex-flow: column nowrap;
+  background-color: ${({ theme }) => theme.colors.orange};
+  position: fixed;
+  transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
+  top: 0;
+  right: 0;
+  height: 100%;
+  min-height: 100vh;
   margin: 0;
-  padding: 0;
-
-  @media (max-width: 768px) {
-    flex-flow: column nowrap;
-    background-color: #fc4103;
-    position: fixed;
-    transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 170px;
-    padding-top: 3.5rem;
-    transition: transform 0.3s ease-in-out;
-    z-index: 1;
-
-    li {
-      padding: 18px 10px;
-      color: white;
-      font-weight: bold;
-    }
-
-    a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
+  width: 170px;
+  padding-top: 5rem;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
 
   li {
     padding: 18px 10px;
+    color: white;
+    font-weight: bold;
   }
 
   a {
+    color: white;
     text-decoration: none;
-    color: inherit;
+    font-weight: bold;
 
     &:hover {
       text-decoration: underline;
