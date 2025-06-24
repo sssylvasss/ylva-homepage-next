@@ -1,36 +1,42 @@
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 import styled, { keyframes } from "styled-components";
 import type { NextPage } from "next";
 
 const glowAnimation = keyframes`
   0% {
-    box-shadow: 0 0 5px rgba(0, 255, 255, 0.2),
-                0 0 10px rgba(0, 255, 255, 0.2),
-                0 0 15px rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 5px rgba(255, 165, 0, 0.2),
+                0 0 10px rgba(255, 165, 0, 0.2),
+                0 0 15px rgba(255, 165, 0, 0.2);
   }
   50% {
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3),
-                0 0 20px rgba(0, 255, 255, 0.3),
-                0 0 30px rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.3),
+                0 0 20px rgba(255, 165, 0, 0.3),
+                0 0 30px rgba(255, 165, 0, 0.3);
   }
   100% {
-    box-shadow: 0 0 5px rgba(0, 255, 255, 0.2),
-                0 0 10px rgba(0, 255, 255, 0.2),
-                0 0 15px rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 5px rgba(255, 165, 0, 0.2),
+                0 0 10px rgba(255, 165, 0, 0.2),
+                0 0 15px rgba(255, 165, 0, 0.2);
   }
 `;
 
 const CodeContainer = styled.div`
   min-height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem 1rem;
-  background-color: ${({ theme }) => theme.colors.white};
-  width: 100%;
+  background-color: #1a1a1a;
   box-sizing: border-box;
   position: relative;
+  margin: 0;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     padding: 5rem 2rem 2rem 2rem;
@@ -51,22 +57,6 @@ const Title = styled.h1`
   margin-bottom: 3rem;
   text-align: center;
   position: relative;
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 3px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      ${({ theme }) => theme.colors.orange},
-      transparent
-    );
-  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     font-size: 3.5rem;
@@ -89,18 +79,19 @@ const ProjectsGrid = styled.div`
 `;
 
 const ProjectCard = styled.div`
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(30, 30, 30, 0.95);
   border-radius: 15px;
   padding: 1.5rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   animation: ${glowAnimation} 3s infinite ease-in-out;
 
   &:hover {
     transform: translateY(-5px);
+    background: rgba(35, 35, 35, 0.95);
   }
 
   &::before {
@@ -109,7 +100,7 @@ const ProjectCard = styled.div`
     top: 10px;
     right: 10px;
     font-family: monospace;
-    color: rgba(0, 0, 0, 0.1);
+    color: rgba(255, 255, 255, 0.1);
     font-size: 1.2rem;
   }
 `;
@@ -117,11 +108,12 @@ const ProjectCard = styled.div`
 const ProjectImage = styled.div`
   width: 100%;
   height: 200px;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   margin-bottom: 1rem;
   overflow: hidden;
   position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 
   img {
     width: 100%;
@@ -143,7 +135,7 @@ const ProjectTitle = styled.h3`
 
 const ProjectDescription = styled.p`
   font-size: 1rem;
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(255, 255, 255, 0.8);
   margin: 0;
   line-height: 1.5;
 `;
@@ -151,12 +143,17 @@ const ProjectDescription = styled.p`
 const TechTag = styled.span`
   display: inline-block;
   padding: 0.3rem 0.8rem;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.05);
   border-radius: 15px;
   margin: 0.5rem 0.5rem 0.5rem 0;
   font-size: 0.9rem;
   color: ${({ theme }) => theme.colors.orange};
   font-family: monospace;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 `;
 
 interface ProjectProps {
@@ -174,7 +171,9 @@ const ProjectCardComponent: React.FC<ProjectProps> = ({
 }) => (
   <ProjectCard>
     <ProjectImage>
-      {imageUrl && <img src={imageUrl} alt={title} />}
+      {imageUrl && (
+        <Image src={imageUrl} alt={title} fill style={{ objectFit: "cover" }} />
+      )}
     </ProjectImage>
     <ProjectTitle>{title}</ProjectTitle>
     <ProjectDescription>{description}</ProjectDescription>
@@ -213,17 +212,16 @@ const Code: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Code | Ylva Oleter</title>
+        <title>Code | sssylvasss </title>
         <meta
           name="description"
-          content="Code projects and development work by Ylva Oleter"
+          content="Code projects and development work by Ylva Landoff Lindberg"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <CodeContainer>
         <ContentSection>
-          <Title>Code Projects</Title>
+          <Title>Code</Title>
           <ProjectsGrid>
             {projects.map((project, index) => (
               <ProjectCardComponent key={index} {...project} />

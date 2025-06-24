@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Head from "next/head";
 import VideoReactPlayer from "../components/art/VideoReactPlayer";
 import {
   InnerVideoWrapper,
@@ -19,21 +20,30 @@ const VideoPage: NextPage = () => {
   }, [getVideo]);
 
   return (
-    <MainVideoDiv>
-      {videos.map((video) => (
-        <InnerVideoWrapper key={video.id}>
-          <VideoReactPlayer
-            embedId={video.id}
-            imageUrl={video.videoImage?.file.url}
-          />
-          <VideoTextDiv>
-            <SectionTitle>{video.title}</SectionTitle>
-            <GlobalText>{video.description}</GlobalText>
-            {video.videoText && <GlobalText>{video.videoText}</GlobalText>}
-          </VideoTextDiv>
-        </InnerVideoWrapper>
-      ))}
-    </MainVideoDiv>
+    <>
+      <Head>
+        <title>Video | Ylva</title>
+        <meta
+          name="description"
+          content="Video projects and creative works by Ylva Landoff Lindberg"
+        />
+      </Head>
+      <MainVideoDiv>
+        {videos.map((video) => (
+          <InnerVideoWrapper key={video.id}>
+            <VideoReactPlayer
+              embedId={video.id}
+              imageUrl={video.videoImage?.file.url}
+            />
+            <VideoTextDiv>
+              <SectionTitle>{video.title}</SectionTitle>
+              <GlobalText>{video.description}</GlobalText>
+              {video.videoText && <GlobalText>{video.videoText}</GlobalText>}
+            </VideoTextDiv>
+          </InnerVideoWrapper>
+        ))}
+      </MainVideoDiv>
+    </>
   );
 };
 

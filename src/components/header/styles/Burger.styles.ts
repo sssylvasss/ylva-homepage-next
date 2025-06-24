@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export const StyledBurger = styled.button<{ $open: boolean }>`
+interface StyledBurgerProps {
+  $open: boolean;
+  $isDark?: boolean;
+}
+
+export const StyledBurger = styled.button<StyledBurgerProps>`
   position: fixed;
   right: 20px;
   top: 15px;
@@ -22,8 +27,8 @@ export const StyledBurger = styled.button<{ $open: boolean }>`
   div {
     width: 2rem;
     height: 0.25rem;
-    background: ${({ $open, theme }) =>
-      $open ? "#ffffff" : theme.colors.orange};
+    background: ${({ $open, $isDark, theme }) =>
+      $open ? "#ffffff" : $isDark ? "#ffffff" : theme.colors.orange};
     border-radius: 10px;
     transition: all 0.3s ease-in-out;
     position: relative;

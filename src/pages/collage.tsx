@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
+import Head from "next/head";
 import { useContentful } from "../useContentful";
 import { ImageCard } from "../components/art/ImageCard";
 import ImageList from "@mui/material/ImageList";
@@ -88,58 +89,71 @@ const CollagePage: NextPage = () => {
   };
 
   return (
-    <Main>
-      <LaptopDiv>
-        <ImageList variant="masonry" cols={3} gap={8}>
-          {collages.map((collage) => (
-            <ImageListItem key={collage.collageId}>
-              <ImageCard collage={collage} openModal={openModal} />
-            </ImageListItem>
+    <>
+      <Head>
+        <title>Art | Ylva </title>
+        <meta
+          name="description"
+          content="Art and collages by Ylva Landoff Lindberg"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Main>
+        <LaptopDiv>
+          <ImageList variant="masonry" cols={3} gap={8}>
+            {collages.map((collage) => (
+              <ImageListItem key={collage.collageId}>
+                <ImageCard collage={collage} openModal={openModal} />
+              </ImageListItem>
+            ))}
+          </ImageList>
+        </LaptopDiv>
+        <TableDiv>
+          {newImageArray.map((imageSerie, index) => (
+            <Fragment key={index}>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <TitleH1>
+                  {imageSerie.serie}
+                  {imageSerie.year && (
+                    <>
+                      , <span> </span>
+                      {imageSerie.year}
+                    </>
+                  )}
+                </TitleH1>
+              </div>
+              <ImageSectionDiv>
+                <ImageSectionInnerDiv>
+                  {imageSerie.collages.map((collage) => (
+                    <ImageCard
+                      key={collage.collageId}
+                      collage={collage}
+                      openModal={openModal}
+                    />
+                  ))}
+                </ImageSectionInnerDiv>
+              </ImageSectionDiv>
+            </Fragment>
           ))}
-        </ImageList>
-      </LaptopDiv>
-      <TableDiv>
-        {newImageArray.map((imageSerie, index) => (
-          <Fragment key={index}>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <TitleH1>
-                {imageSerie.serie}
-                {imageSerie.year && (
-                  <>
-                    , <span> </span>
-                    {imageSerie.year}
-                  </>
-                )}
-              </TitleH1>
-            </div>
-            <ImageSectionDiv>
-              <ImageSectionInnerDiv>
-                {imageSerie.collages.map((collage) => (
-                  <ImageCard
-                    key={collage.collageId}
-                    collage={collage}
-                    openModal={openModal}
-                  />
-                ))}
-              </ImageSectionInnerDiv>
-            </ImageSectionDiv>
-          </Fragment>
-        ))}
-      </TableDiv>
+        </TableDiv>
 
-      {showModal && (
-        <Modal setShowModal={setShowModal} setActiveCollage={setActiveCollage}>
-          <ModalDiv>
-            <ArrowBack onClick={() => imageSlide(false)} />
-            <ModalImage
-              alt="collage"
-              src={activeCollage?.collageImage?.file.url}
-            />
-            <ArrowForward onClick={() => imageSlide(true)} />
-          </ModalDiv>
-        </Modal>
-      )}
-    </Main>
+        {showModal && (
+          <Modal
+            setShowModal={setShowModal}
+            setActiveCollage={setActiveCollage}
+          >
+            <ModalDiv>
+              <ArrowBack onClick={() => imageSlide(false)} />
+              <ModalImage
+                alt="collage"
+                src={activeCollage?.collageImage?.file.url}
+              />
+              <ArrowForward onClick={() => imageSlide(true)} />
+            </ModalDiv>
+          </Modal>
+        )}
+      </Main>
+    </>
   );
 };
 

@@ -4,11 +4,12 @@ import { StyledBurger } from "./styles/Burger.styles";
 interface BurgerProps {
   open: boolean;
   setOpen: (open: boolean) => void;
+  $isDark?: boolean;
 }
 
-const Burger: React.FC<BurgerProps> = ({ open, setOpen }) => {
+const Burger: React.FC<BurgerProps> = ({ open, setOpen, $isDark }) => {
   return (
-    <StyledBurger $open={open} onClick={() => setOpen(!open)}>
+    <StyledBurger $open={open} $isDark={$isDark} onClick={() => setOpen(!open)}>
       <div />
       <div />
       <div />
