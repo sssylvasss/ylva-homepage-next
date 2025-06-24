@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styled, { keyframes } from "styled-components";
 import type { NextPage } from "next";
+import { type ProjectProps, projects as projectData } from "../data/projects";
 
 const glowAnimation = keyframes`
   0% {
@@ -51,18 +52,6 @@ const ContentSection = styled.section`
   z-index: 1;
 `;
 
-const Title = styled.h1`
-  font-size: 2.5rem;
-  color: ${({ theme }) => theme.colors.orange};
-  margin-bottom: 3rem;
-  text-align: center;
-  position: relative;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    font-size: 3.5rem;
-  }
-`;
-
 const ProjectsGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -83,11 +72,14 @@ const ProjectCard = styled.div`
   border-radius: 15px;
   padding: 1.5rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
   animation: ${glowAnimation} 3s infinite ease-in-out;
+  min-width: 320px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     transform: translateY(-5px);
@@ -138,6 +130,11 @@ const ProjectDescription = styled.p`
   color: rgba(255, 255, 255, 0.8);
   margin: 0;
   line-height: 1.5;
+  height: 9rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
 `;
 
 const TechTag = styled.span`
@@ -156,58 +153,140 @@ const TechTag = styled.span`
   }
 `;
 
-interface ProjectProps {
-  title: string;
-  description: string;
-  imageUrl?: string;
-  technologies: string[];
-}
+const LinkButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: ${({ theme }) => theme.colors.orange};
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  flex: 1;
+  min-width: 130px;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  svg {
+    margin-right: 0.5rem;
+  }
+`;
 
 const ProjectCardComponent: React.FC<ProjectProps> = ({
   title,
   description,
   imageUrl,
   technologies,
-}) => (
-  <ProjectCard>
-    <ProjectImage>
-      {imageUrl && (
-        <Image src={imageUrl} alt={title} fill style={{ objectFit: "cover" }} />
-      )}
-    </ProjectImage>
-    <ProjectTitle>{title}</ProjectTitle>
-    <ProjectDescription>{description}</ProjectDescription>
-    <div>
-      {technologies.map((tech, index) => (
-        <TechTag key={index}>{tech}</TechTag>
-      ))}
-    </div>
-  </ProjectCard>
-);
+  projectUrl,
+  githubUrl,
+}) => {
+  return (
+    <ProjectCard>
+      <ProjectImage
+        style={{ cursor: projectUrl ? "pointer" : "default" }}
+        onClick={() => projectUrl && window.open(projectUrl, "_blank")}
+      >
+        {imageUrl && (
+          <Image
+            src={imageUrl}
+            alt={title}
+            fill
+            style={{ objectFit: "cover" }}
+          />
+        )}
+      </ProjectImage>
+      <ProjectTitle>{title}</ProjectTitle>
+      <ProjectDescription>{description}</ProjectDescription>
+      <div
+        style={{
+          margin: "2rem 0 1rem 0",
+          display: "flex",
+          flexDirection: "row",
+          gap: "0.5rem",
+          flexWrap: "nowrap",
+        }}
+      >
+        {projectUrl && (
+          <LinkButton
+            href={projectUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M15 3h6v6"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M10 14L21 3"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            Live Demo
+          </LinkButton>
+        )}
+        {githubUrl && (
+          <LinkButton
+            href={githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            GitHub
+          </LinkButton>
+        )}
+      </div>
+      <div>
+        {technologies.map((tech, index) => (
+          <TechTag key={index}>{tech}</TechTag>
+        ))}
+      </div>
+    </ProjectCard>
+  );
+};
 
 const Code: NextPage = () => {
-  // Example projects - replace with your actual data later
-  const projects: ProjectProps[] = [
-    {
-      title: "Project One",
-      description:
-        "A futuristic web application showcasing innovative technologies and modern design patterns.",
-      technologies: ["React", "TypeScript", "Node.js"],
-    },
-    {
-      title: "Project Two",
-      description:
-        "An AI-powered platform that transforms the way we interact with data.",
-      technologies: ["Python", "TensorFlow", "AWS"],
-    },
-    {
-      title: "Project Three",
-      description:
-        "A blockchain solution for secure and transparent transactions.",
-      technologies: ["Solidity", "Web3.js", "Ethereum"],
-    },
-    // Add more projects as needed
-  ];
+  const projects = projectData;
 
   return (
     <>
@@ -221,7 +300,6 @@ const Code: NextPage = () => {
 
       <CodeContainer>
         <ContentSection>
-          <Title>Code</Title>
           <ProjectsGrid>
             {projects.map((project, index) => (
               <ProjectCardComponent key={index} {...project} />
