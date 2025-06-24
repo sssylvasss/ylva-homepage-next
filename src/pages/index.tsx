@@ -3,34 +3,19 @@ import Head from "next/head";
 import styled, { keyframes, css } from "styled-components";
 import type { NextPage } from "next";
 import Link from "next/link";
+import { useAnimation } from "../context/AnimationContext";
 
 const crashInLeft = keyframes`
   0% {
     opacity: 0;
     transform: translate(-2000px, -50%);
   }
-  30% {
-    opacity: 0.7;
-    transform: translate(400px, -50%) scale(1.2);
-  }
-  45% {
-    transform: translate(-200px, -80%) scale(0.9);
-  }
   60% {
-    transform: translate(100px, -20%) scale(1.1);
-  }
-  75% {
-    transform: translate(-60px, -60%) scale(0.95);
-  }
-  85% {
-    transform: translate(30px, -40%) scale(1.05);
-  }
-  92% {
-    transform: translate(-10px, -45%) scale(0.98);
+    opacity: 0.7;
   }
   100% { 
     opacity: 0.7;
-    transform: translate(0, -50%) scale(1); 
+    transform: translate(0, -50%); 
   }
 `;
 
@@ -39,28 +24,12 @@ const crashInRight = keyframes`
     opacity: 0;
     transform: translate(2000px, -50%);
   }
-  30% {
-    opacity: 0.7;
-    transform: translate(-400px, -50%) scale(1.2);
-  }
-  45% {
-    transform: translate(200px, -20%) scale(0.9);
-  }
   60% {
-    transform: translate(-100px, -80%) scale(1.1);
-  }
-  75% {
-    transform: translate(60px, -40%) scale(0.95);
-  }
-  85% {
-    transform: translate(-30px, -60%) scale(1.05);
-  }
-  92% {
-    transform: translate(10px, -55%) scale(0.98);
+    opacity: 0.7;
   }
   100% { 
     opacity: 0.7;
-    transform: translate(0, -50%) scale(1); 
+    transform: translate(0, -50%); 
   }
 `;
 
@@ -69,64 +38,40 @@ const crashInBottom = keyframes`
     opacity: 0;
     transform: translate(-50%, 2000px);
   }
-  30% {
-    opacity: 0.7;
-    transform: translate(-50%, -400px) scale(1.2);
-  }
-  45% {
-    transform: translate(-80%, 200px) scale(0.9);
-  }
   60% {
-    transform: translate(-20%, -100px) scale(1.1);
-  }
-  75% {
-    transform: translate(-60%, 60px) scale(0.95);
-  }
-  85% {
-    transform: translate(-40%, -30px) scale(1.05);
-  }
-  92% {
-    transform: translate(-45%, 10px) scale(0.98);
+    opacity: 0.7;
   }
   100% { 
     opacity: 0.7;
-    transform: translate(-50%, 0) scale(1); 
+    transform: translate(-50%, 0); 
   }
 `;
 
 const popOutCV = keyframes`
   0% {
     opacity: 0;
-    transform: translate(200px, 0) scale(0);
+    transform: scale(0);
   }
-  50% {
+  60% {
     opacity: 0.7;
-    transform: translate(50px, 0) scale(1.2);
-  }
-  75% {
-    transform: translate(-10px, 0) scale(0.9);
   }
   100% {
     opacity: 0.7;
-    transform: translate(0, 0) scale(1);
+    transform: scale(1);
   }
 `;
 
 const popOutContact = keyframes`
   0% {
     opacity: 0;
-    transform: translate(-200px, 0) scale(0);
+    transform: scale(0);
   }
-  50% {
+  60% {
     opacity: 0.7;
-    transform: translate(-50px, 0) scale(1.2);
-  }
-  75% {
-    transform: translate(10px, 0) scale(0.9);
   }
   100% {
     opacity: 0.7;
-    transform: translate(0, 0) scale(1);
+    transform: scale(1);
   }
 `;
 
@@ -186,7 +131,7 @@ const CircleLink = styled(Link)<{
   height: 200px;
   border-radius: 50%;
   background-color: ${({ theme }) => theme.colors.orange};
-  opacity: ${({ $shouldAnimate }) => ($shouldAnimate ? 0 : 0.7)};
+  opacity: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -200,55 +145,54 @@ const CircleLink = styled(Link)<{
   }
 
   ${({ $position, $shouldAnimate }) => {
+    const baseStyles = css`
+      opacity: ${$shouldAnimate ? 0 : 0.7};
+    `;
+
     switch ($position) {
       case "left":
         return css`
-          top: 30%;
-          left: -10%;
+          ${baseStyles}
+          top: 40%;
+          left: 5%;
+          transform: translateY(-50%);
           animation: ${$shouldAnimate ? crashInLeft : "none"} 2.8s
             cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 
-          @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-            top: 40%;
-            left: 5%;
-            transform: translateY(-50%);
-            animation: ${$shouldAnimate ? crashInLeft : "none"} 2.8s
-              cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+          @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
+            top: 30%;
+            left: -10%;
           }
         `;
       case "right":
         return css`
-          top: 30%;
-          right: -10%;
+          ${baseStyles}
+          top: 40%;
+          right: 5%;
+          transform: translateY(-50%);
           animation: ${$shouldAnimate ? crashInRight : "none"} 2.8s
             cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s forwards;
 
-          @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-            top: 40%;
-            right: 5%;
-            transform: translateY(-50%);
-            animation: ${$shouldAnimate ? crashInRight : "none"} 2.8s
-              cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s forwards;
+          @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
+            top: 30%;
+            right: -10%;
           }
         `;
       case "bottom":
         return css`
-          bottom: -5%;
+          ${baseStyles}
+          bottom: 0%;
           left: 50%;
           transform: translateX(-50%);
           animation: ${$shouldAnimate ? crashInBottom : "none"} 2.8s
             cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s forwards;
 
-          @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-            bottom: 0%;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: ${$shouldAnimate ? crashInBottom : "none"} 2.8s
-              cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s forwards;
+          @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
+            bottom: -5%;
           }
         `;
       default:
-        return "";
+        return baseStyles;
     }
   }}
 
@@ -264,7 +208,7 @@ const CircleLink = styled(Link)<{
           return "scale(1.1)";
       }
     }};
-    opacity: 0.9 !important;
+    opacity: 0.9;
   }
 `;
 
@@ -374,11 +318,16 @@ const SmallCircleText = styled.span<{ $type: "cv" | "contact" }>`
 `;
 
 const Home: NextPage = () => {
-  const [shouldAnimate, setShouldAnimate] = useState(false);
-  // const [isFirstMount, setIsFirstMount] = useState(true);
+  const [shouldAnimate, setShouldAnimate] = useState(true);
+  const { hasSeenAnimation, setHasSeenAnimation } = useAnimation();
 
   useEffect(() => {
-    setShouldAnimate(true);
+    if (hasSeenAnimation) {
+      setShouldAnimate(false);
+    } else {
+      setShouldAnimate(true);
+      setHasSeenAnimation(true);
+    }
   }, []);
 
   return (

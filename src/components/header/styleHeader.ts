@@ -24,10 +24,11 @@ export const Nav = styled.nav<DarkModeProps>`
 
 export const TitleLink = styled(Link)`
   text-decoration: none;
-  color: inherit;
+  color: ${({ theme }) => theme.colors.orange};
 
   &:hover {
     opacity: 0.8;
+    text-shadow: 0 0 8px rgba(255, 165, 0, 0.6);
   }
 `;
 
@@ -37,8 +38,8 @@ export const TitleText = styled.h1<DarkModeProps>`
   margin: 0;
   padding: 15px 0;
   white-space: nowrap;
-  color: ${({ $isDark }) => ($isDark ? "white" : "inherit")};
-  transition: color 0.3s ease;
+  color: inherit;
+  transition: all 0.3s ease;
 `;
 
 export const Ul = styled.ul<{ open: boolean }>`
