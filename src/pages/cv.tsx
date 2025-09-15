@@ -1,24 +1,19 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { Fragment } from "react";
 import Head from "next/head";
 import {
   GlobalText,
   SectionTitle,
   ContentWrapper,
 } from "../styles/globalStyledComponents";
-import { useContentful } from "../useContentful";
-import type { NextPage } from "next";
+import type { NextPage, GetStaticProps } from "next";
+import { fetchCv } from "../lib/contentfulServer";
 
-const CVPage: NextPage = () => {
+interface CVProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [cv, setCv] = useState<any[]>([]);
-  const { getCv } = useContentful();
+  cv: any[];
+}
 
-  useEffect(() => {
-    getCv().then((response) => {
-      setCv(response);
-    });
-  }, [getCv]);
-
+const CVPage: NextPage<CVProps> = ({ cv }) => {
   return (
     <>
       <Head>
@@ -61,3 +56,11 @@ const CVPage: NextPage = () => {
 };
 
 export default CVPage;
+
+export const getStaticProps: GetStaticProps<CVProps> = async () => {
+  const cv = await fetchCv();
+  return {
+    props: { cv },
+    revalidate: 60 * 60, // 1 hour
+  };
+};

@@ -43,7 +43,7 @@ export const PlayerReact = styled.iframe`
   height: 100%;
 `;
 
-export const VideoImg = styled.img`
+export const VideoImg = styled.img.attrs({ loading: "lazy" })`
   width: 100%;
   height: auto;
   cursor: pointer;
@@ -139,7 +139,7 @@ export const CardDivMain = styled.main`
   }
 `;
 
-export const CollageImage = styled.img`
+export const CollageImage = styled.img.attrs({ loading: "lazy" })`
   object-fit: cover;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
@@ -203,7 +203,7 @@ export const ModalDiv = styled.div`
   height: 100%;
 `;
 
-export const ModalImage = styled.img`
+export const ModalImage = styled.img.attrs({ loading: "lazy" })`
   max-width: 90%;
   max-height: 90vh;
   object-fit: contain;

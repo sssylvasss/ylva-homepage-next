@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Head from "next/head";
 import VideoReactPlayer from "../components/art/VideoReactPlayer";
 import {
@@ -6,19 +6,16 @@ import {
   MainVideoDiv,
   VideoTextDiv,
 } from "../components/art/StylingArt";
-import { useContentful } from "../useContentful";
 import { GlobalText, SectionTitle } from "../styles/globalStyledComponents";
-import type { NextPage } from "next";
+import type { NextPage, GetStaticProps } from "next";
+import { fetchVideo } from "../lib/contentfulServer";
 
-const VideoPage: NextPage = () => {
-  const { getVideo } = useContentful();
+interface VideoProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [videos, setVideos] = useState<any[]>([]);
+  videos: any[];
+}
 
-  useEffect(() => {
-    getVideo().then((response) => setVideos(response));
-  }, [getVideo]);
-
+const VideoPage: NextPage<VideoProps> = ({ videos }) => {
   return (
     <>
       <Head key="video-head">
@@ -48,3 +45,11 @@ const VideoPage: NextPage = () => {
 };
 
 export default VideoPage;
+
+export const getStaticProps: GetStaticProps<VideoProps> = async () => {
+  const videos = await fetchVideo();
+  return {
+    props: { videos },
+    revalidate: 60 * 60, // 1 hour
+  };
+};

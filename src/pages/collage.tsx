@@ -1,6 +1,5 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import Head from "next/head";
-import { useContentful } from "../useContentful";
 import { ImageCard } from "../components/art/ImageCard";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
@@ -17,7 +16,8 @@ import {
   TableDiv,
 } from "../components/art/StylingArt";
 import { Modal } from "../components/modal/Modal";
-import type { NextPage } from "next";
+import type { NextPage, GetStaticProps } from "next";
+import { fetchCollage } from "../lib/contentfulServer";
 
 interface ImageSerie {
   serie: string;
@@ -26,19 +26,15 @@ interface ImageSerie {
   collages: any[];
 }
 
-const CollagePage: NextPage = () => {
+interface CollageProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [collages, setCollages] = useState<any[]>([]);
-  const { getCollage } = useContentful();
+  collages: any[];
+}
+
+const CollagePage: NextPage<CollageProps> = ({ collages }) => {
   const [showModal, setShowModal] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [activeCollage, setActiveCollage] = useState<any | undefined>();
-
-  useEffect(() => {
-    getCollage().then((response) => {
-      setCollages(response.sort((a, b) => a.collageId - b.collageId));
-    });
-  }, [getCollage]);
 
   const newImageArray = collages
     .sort((a, b) => b.collageId - a.collageId)
@@ -158,3 +154,14 @@ const CollagePage: NextPage = () => {
 };
 
 export default CollagePage;
+
+export const getStaticProps: GetStaticProps<CollageProps> = async () => {
+  const data = await fetchCollage();
+  const sorted = data.sort((a, b) => a.collageId - b.collageId);
+  return {
+    props: {
+      collages: sorted,
+    },
+    revalidate: 60 * 60, // 1 hour
+  };
+};

@@ -24,12 +24,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     if (pathname === "/") {
       return isMobile;
     }
-    return !pathname.startsWith("/chicken") && pathname !== "/contact";
+    return pathname !== "/contact";
   };
 
   return (
     <PageContainer>
-      {pathname.startsWith("/chicken") || <NavBar />}
+      <NavBar />
       <main>{children}</main>
       {shouldShowFooter() && <Footer />}
     </PageContainer>

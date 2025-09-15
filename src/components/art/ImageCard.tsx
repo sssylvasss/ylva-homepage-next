@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import {
   CardDivMain,
   CollageImage,
@@ -34,7 +35,21 @@ export const ImageCard: React.FC<ImageCardProps> = ({ collage, openModal }) => {
 
   return (
     <CardDivMain onClick={() => openModal(collage.collageId)}>
-      <CollageImage alt={collageTitle} src={collageImage?.file?.url} />
+      {collageImage?.file?.url && (
+        <Image
+          src={
+            collageImage.file.url.startsWith("http")
+              ? collageImage.file.url
+              : `https:${collageImage.file.url}`
+          }
+          alt={collageTitle}
+          width={900}
+          height={600}
+          style={{ width: "100%", height: "auto" }}
+          sizes="(max-width: 520px) 100vw, (max-width: 991px) 90vw, 600px"
+          loading="lazy"
+        />
+      )}
       <TableDiv>
         <TextDiv1>
           <TitleH2>{collageTitle}</TitleH2>

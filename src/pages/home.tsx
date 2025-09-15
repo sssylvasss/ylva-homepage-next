@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import CollagePage from "./collage";
 import type { NextPage } from "next";
 
 const HomePage: NextPage = () => {
@@ -13,7 +12,6 @@ const HomePage: NextPage = () => {
           content="Welcome to Ylva Landoff Lindberg's portfolio - Art, Code, and Creative Works"
         />
       </Head>
-      <CollagePage />
     </>
   );
 };
