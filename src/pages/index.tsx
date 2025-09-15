@@ -328,7 +328,9 @@ const Home: NextPage = () => {
       setShouldAnimate(true);
       setHasSeenAnimation(true);
     }
-  }, []);
+    // Only run once on mount or when context changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasSeenAnimation, setHasSeenAnimation]);
 
   return (
     <>
