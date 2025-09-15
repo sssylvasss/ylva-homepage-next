@@ -76,7 +76,7 @@ export const TitleH2 = styled.h2`
   }
 
   @media (min-width: ${BREAKPOINTS.desktop}) {
-    color: ${COLORS.white};
+    color: ${COLORS.orange};
   }
 `;
 
@@ -91,7 +91,7 @@ export const TextP = styled.p`
   }
 
   @media (min-width: ${BREAKPOINTS.desktop}) {
-    color: ${COLORS.white};
+    color: ${COLORS.orange};
   }
 `;
 
@@ -101,6 +101,7 @@ export const TextDiv1 = styled.div`
   text-align: left;
   padding-left: 0;
   max-width: 270px;
+  color: ${COLORS.orange};
 
   @media (max-width: ${BREAKPOINTS.mobile}) {
     padding-left: 0;
@@ -113,14 +114,15 @@ export const TextDiv = styled.div`
   flex-direction: column;
   text-align: left;
 
-  @media (min-width: ${BREAKPOINTS.tablet}) {
-    &:hover {
-      display: flex;
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      background-color: ${COLORS.modalOverlay};
-    }
+  @media (min-width: ${BREAKPOINTS.desktop}) {
+    display: block;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+    transform: translateY(-8px);
+    transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease,
+      transform 0.3s ease;
   }
 `;
 
@@ -136,6 +138,15 @@ export const CardDivMain = styled.main`
     margin: 10px;
     width: auto;
     align-content: left;
+  }
+
+  @media (min-width: ${BREAKPOINTS.desktop}) {
+    &:hover ${TextDiv} {
+      max-height: 200px;
+      opacity: 1;
+      margin-top: 8px;
+      transform: translateY(0);
+    }
   }
 `;
 
@@ -160,6 +171,7 @@ export const TitleH1 = styled.h1`
   padding: 5px 0 10px 0;
   border-bottom: 2px solid;
   width: calc(100% - 40px);
+  color: ${COLORS.orange};
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
     width: 100%;
@@ -197,6 +209,7 @@ export const ImageSectionInnerDiv = styled.div`
 // Modal styles
 export const ModalDiv = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -213,14 +226,47 @@ export const ModalDiv = styled.div`
   }
 `;
 
-export const ModalImage = styled.img.attrs({ loading: "lazy" })`
+export const ModalFigure = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 90%;
-  max-height: 90vh;
-  object-fit: contain;
 
   @media (orientation: portrait) {
     grid-column: 1 / span 2;
     grid-row: 1;
+    justify-self: center;
+  }
+`;
+
+export const ModalImage = styled.img.attrs({ loading: "lazy" })`
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  display: block;
+  height: auto;
+  margin: 0 auto;
+
+  @media (min-width: ${BREAKPOINTS.desktop}) {
+    max-height: 80vh;
+  }
+
+  @media (orientation: portrait) {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+  }
+`;
+
+export const ModalCaption = styled.div`
+  display: none;
+  color: ${COLORS.orange};
+  text-align: left;
+  margin-top: 12px;
+  line-height: 1.4;
+  width: 100%;
+
+  @media (min-width: ${BREAKPOINTS.desktop}) {
+    display: block;
   }
 `;
 

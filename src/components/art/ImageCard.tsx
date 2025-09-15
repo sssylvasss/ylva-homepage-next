@@ -31,7 +31,7 @@ interface ImageCardProps {
 }
 
 export const ImageCard: React.FC<ImageCardProps> = ({ collage, openModal }) => {
-  const { collageTitle, collageImage, size, serie } = collage;
+  const { collageTitle, collageImage, size, serie, year } = collage as any;
 
   return (
     <CardDivMain onClick={() => openModal(collage.collageId)}>
@@ -59,8 +59,8 @@ export const ImageCard: React.FC<ImageCardProps> = ({ collage, openModal }) => {
       <LaptopDiv>
         <TextDiv>
           <TitleH2>{collageTitle}</TitleH2>
+          {year && <TextP>{year}</TextP>}
           {size && <TextP>{size}cm.</TextP>}
-          {serie && <TextP>{serie}</TextP>}
         </TextDiv>
       </LaptopDiv>
     </CardDivMain>

@@ -28,7 +28,7 @@ export const CloseIcon = styled(CloseOutlinedIcon)`
   position: absolute;
   top: 20px;
   right: 20px;
-  color: white;
+  color: #fc4103;
   cursor: pointer;
   font-size: 2rem !important;
   z-index: 1001;

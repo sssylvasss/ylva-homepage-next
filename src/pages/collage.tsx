@@ -12,6 +12,8 @@ import {
   ArrowForward,
   ArrowBack,
   ModalDiv,
+  ModalFigure,
+  ModalCaption,
   LaptopDiv,
   TableDiv,
 } from "../components/art/StylingArt";
@@ -140,10 +142,17 @@ const CollagePage: NextPage<CollageProps> = ({ collages }) => {
           >
             <ModalDiv>
               <ArrowBack onClick={() => imageSlide(false)} />
-              <ModalImage
-                alt="collage"
-                src={activeCollage?.collageImage?.file.url}
-              />
+              <ModalFigure>
+                <ModalImage
+                  alt="collage"
+                  src={activeCollage?.collageImage?.file.url}
+                />
+                <ModalCaption>
+                  {activeCollage?.collageTitle}
+                  {activeCollage?.size && `, ${activeCollage.size}cm.`}
+                  {activeCollage?.year && `, ${activeCollage.year}`}
+                </ModalCaption>
+              </ModalFigure>
               <ArrowForward onClick={() => imageSlide(true)} />
             </ModalDiv>
           </Modal>
