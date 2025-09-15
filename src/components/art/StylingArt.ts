@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
-import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
+import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import ReactPlayer from "react-player";
 
 // Theme constants
@@ -201,35 +201,84 @@ export const ModalDiv = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+
+  @media (orientation: portrait) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    justify-items: center;
+    align-items: center;
+    row-gap: 8px;
+    column-gap: 32px;
+  }
 `;
 
 export const ModalImage = styled.img.attrs({ loading: "lazy" })`
   max-width: 90%;
   max-height: 90vh;
   object-fit: contain;
+
+  @media (orientation: portrait) {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+  }
 `;
 
 export const ArrowBack = styled(ArrowBackIosNewOutlinedIcon)`
-  @media (min-width: ${BREAKPOINTS.mobile}) {
-    opacity: 1;
-    color: ${COLORS.orange};
-    cursor: pointer;
-    font-size: 50px;
+  position: fixed;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  color: ${COLORS.orange};
+  cursor: pointer;
+  font-size: 50px;
+  z-index: 1001;
+
+  @media (orientation: portrait) {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+    grid-row: 2;
+    grid-column: 1;
+    justify-self: end;
   }
+
   @media (min-width: ${BREAKPOINTS.tablet}) {
-    padding: 40px 20px 40px 0;
+    left: 24px;
+    font-size: 65px;
+  }
+  @media (min-width: ${BREAKPOINTS.desktop}) {
+    font-size: 72px;
   }
 `;
 
 export const ArrowForward = styled(ArrowForwardIosOutlinedIcon)`
-  @media (min-width: ${BREAKPOINTS.mobile}) {
-    opacity: 1;
-    color: ${COLORS.orange};
-    cursor: pointer;
-    font-size: 50px;
+  position: fixed;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  color: ${COLORS.orange};
+  cursor: pointer;
+  font-size: 50px;
+  z-index: 1001;
+
+  @media (orientation: portrait) {
+    position: static;
+    top: auto;
+    right: auto;
+    transform: none;
+    grid-row: 2;
+    grid-column: 2;
+    justify-self: start;
   }
+
   @media (min-width: ${BREAKPOINTS.tablet}) {
-    padding: 40px 0 40px 20px;
+    right: 24px;
+    font-size: 65px;
+  }
+  @media (min-width: ${BREAKPOINTS.desktop}) {
+    font-size: 72px;
   }
 `;
 
