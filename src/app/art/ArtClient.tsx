@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, Fragment } from "react";
+import type { Collage } from "../../lib/contentfulServer";
 import { ImageCard } from "../../components/art/ImageCard";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
@@ -23,16 +24,16 @@ import { Modal } from "../../components/modal/Modal";
 interface ImageSerie {
   serie: string;
   year: string | null;
-  collages: any[];
+  collages: Collage[];
 }
 
 interface ArtClientProps {
-  collages: any[];
+  collages: Collage[];
 }
 
 export default function ArtClient({ collages }: ArtClientProps) {
   const [showModal, setShowModal] = useState(false);
-  const [activeCollage, setActiveCollage] = useState<any | undefined>();
+  const [activeCollage, setActiveCollage] = useState<Collage | undefined>();
 
   const newImageArray = collages
     .sort((a, b) => b.collageId - a.collageId)
@@ -122,7 +123,7 @@ export default function ArtClient({ collages }: ArtClientProps) {
             <ModalFigure>
               <ModalImage
                 alt="collage"
-                src={activeCollage?.collageImage?.file.url}
+                src={activeCollage?.collageImage?.file?.url}
               />
               <ModalCaption>
                 {activeCollage?.collageTitle}

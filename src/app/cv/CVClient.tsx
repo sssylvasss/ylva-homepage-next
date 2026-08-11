@@ -1,6 +1,7 @@
 "use client";
 
 import React, { Fragment } from "react";
+import type { Cv } from "../../lib/contentfulServer";
 import {
   GlobalText,
   SectionTitle,
@@ -8,7 +9,7 @@ import {
 } from "../../styles/globalStyledComponents";
 
 interface CVClientProps {
-  cv: any[];
+  cv: Cv[];
 }
 
 export default function CVClient({ cv }: CVClientProps) {

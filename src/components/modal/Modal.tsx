@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
+import type { Collage } from "../../lib/contentfulServer";
 import { ModalDiv, ModalInnerDiv, CloseIcon } from "./StyleModal";
 
 interface ModalProps {
   children: React.ReactNode;
   setShowModal: (show: boolean) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  setActiveCollage: (collage: any | undefined) => void;
+  setActiveCollage: (collage: Collage | undefined) => void;
 }
 
 export const Modal: React.FC<ModalProps> = ({

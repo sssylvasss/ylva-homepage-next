@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import type { Collage } from "../../lib/contentfulServer";
 import {
   CardDivMain,
-  CollageImage,
   TitleH2,
   TextP,
   TextDiv,
@@ -11,20 +11,6 @@ import {
   TableDiv,
   LaptopDiv,
 } from "./StylingArt";
-
-interface CollageImage {
-  file: {
-    url: string;
-  };
-}
-
-interface Collage {
-  collageId: number;
-  collageTitle: string;
-  collageImage?: CollageImage;
-  size?: string;
-  year?: string;
-}
 
 interface ImageCardProps {
   collage: Collage;

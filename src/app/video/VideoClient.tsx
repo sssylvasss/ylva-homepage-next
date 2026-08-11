@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import type { Video } from "../../lib/contentfulServer";
 import VideoReactPlayer from "../../components/art/VideoReactPlayer";
 import {
   InnerVideoWrapper,
@@ -10,7 +11,7 @@ import {
 import { GlobalText, SectionTitle } from "../../styles/globalStyledComponents";
 
 interface VideoClientProps {
-  videos: any[];
+  videos: Video[];
 }
 
 export default function VideoClient({ videos }: VideoClientProps) {
@@ -20,7 +21,7 @@ export default function VideoClient({ videos }: VideoClientProps) {
         <InnerVideoWrapper key={video.id}>
           <VideoReactPlayer
             embedId={video.id}
-            imageUrl={video.videoImage?.file.url}
+            imageUrl={video.videoImage?.file?.url}
           />
           <VideoTextDiv>
             <SectionTitle>{video.title}</SectionTitle>
