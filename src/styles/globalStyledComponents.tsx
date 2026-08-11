@@ -30,15 +30,3 @@ export const SectionTitle = styled.h2`
   margin: 50px 0 20px 0;
 `;
 
-export const PageTitle = styled.h1`
-  font-weight: 800;
-  font-size: 20px;
-  text-align: left;
-  margin: 50px 0 20px 0;
-`;
-
-export const SubsectionTitle = styled.h2`
-  font-size: 16px;
-  font-weight: 600;
-  margin-top: 30px;
-`;

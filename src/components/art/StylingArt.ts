@@ -28,27 +28,6 @@ export const StyledReactPlayer = styled(ReactPlayer)`
   left: 0;
 `;
 
-export const VideoDiv = styled.div`
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%;
-  height: 0;
-`;
-
-export const PlayerReact = styled.iframe`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-`;
-
-export const VideoImg = styled.img.attrs({ loading: "lazy" })`
-  width: 100%;
-  height: auto;
-  cursor: pointer;
-`;
-
 export const TableDiv = styled.div`
   display: block;
 
@@ -147,19 +126,6 @@ export const CardDivMain = styled.main`
       margin-top: 8px;
       transform: translateY(0);
     }
-  }
-`;
-
-export const CollageImage = styled.img.attrs({ loading: "lazy" })`
-  object-fit: cover;
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-
-  @media (min-width: ${BREAKPOINTS.mobile}) {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
   }
 `;
 

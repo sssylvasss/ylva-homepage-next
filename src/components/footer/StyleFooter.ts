@@ -21,36 +21,6 @@ export const Main = styled.footer<DarkModeProps>`
   box-sizing: border-box;
 `;
 
-export const Wrapper = styled.div`
-  width: 100%;
-  max-width: 1200px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 20px;
-  }
-`;
-
-export const Nav = styled.nav`
-  display: flex;
-  gap: 20px;
-  align-items: center;
-`;
-
-export const Icon = styled.img`
-  width: 24px;
-  height: 24px;
-  transition: opacity 0.2s ease;
-
-  &:hover {
-    opacity: 0.7;
-  }
-`;
-
 export const BottomTextWrapper = styled.div<DarkModeProps>`
   width: 100%;
   text-align: center;
