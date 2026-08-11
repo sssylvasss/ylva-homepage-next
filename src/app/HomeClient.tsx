@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAnimation } from "../context/AnimationContext";
 import {
   LandingContainer,
@@ -17,14 +17,11 @@ import {
 } from "./homeStyling";
 
 export default function HomeClient() {
-  const [shouldAnimate, setShouldAnimate] = useState(true);
   const { hasSeenAnimation, setHasSeenAnimation } = useAnimation();
+  const shouldAnimate = !hasSeenAnimation;
 
   useEffect(() => {
-    if (hasSeenAnimation) {
-      setShouldAnimate(false);
-    } else {
-      setShouldAnimate(true);
+    if (!hasSeenAnimation) {
       setHasSeenAnimation(true);
     }
   }, [hasSeenAnimation, setHasSeenAnimation]);

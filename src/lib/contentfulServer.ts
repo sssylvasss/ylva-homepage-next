@@ -31,7 +31,6 @@ const rawPreview = (
 const isPreview =
   rawPreview === "true" || rawPreview === "1" || rawPreview === "yes";
 
-// eslint-disable-next-line no-console
 if (!contentfulSpaceId)
   console.warn(
     "CONTENTFUL_SPACE_ID/NEXT_PUBLIC_CONTENTFUL_SPACE_ID is not set"

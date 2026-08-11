@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from "react";
+import React, { useSyncExternalStore } from "react";
 import { usePathname } from "next/navigation";
 import { PageContainer } from "../styles/globalStyledComponents";
 import NavBar from "./header/NavBar";
@@ -10,14 +10,17 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+const emptySubscribe = () => () => {};
+
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const pathname = usePathname();
-  const [isMounted, setIsMounted] = useState(false);
+  // True once hydrated on the client; false during SSR and the first client render.
+  const isMounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
   const isMobile = useMediaQuery({ maxWidth: 768 });
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const shouldShowFooter = () => {
     if (!isMounted) return false; // Don't show footer during SSR
