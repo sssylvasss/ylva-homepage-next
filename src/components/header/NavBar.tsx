@@ -1,14 +1,16 @@
+"use client"
 import React, { useState } from "react";
 import { Nav, TitleText, TitleLink } from "./styleHeader";
 import RightNavBar from "./RightNavBar";
 import Burger from "./Burger";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
+
 
 const NavBar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const router = useRouter();
-  const isDarkMode = router.pathname === "/code";
-  const isLandingPage = router.pathname === "/" || router.pathname === "/home";
+  const pathname = usePathname();
+  const isDarkMode = pathname === "/code";
+  const isLandingPage = pathname === "/" || pathname === "/home";
 
   return (
     <Nav $isDark={isDarkMode} $isTransparent={isLandingPage}>

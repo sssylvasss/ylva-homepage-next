@@ -27,8 +27,8 @@ export const StyledBurger = styled.button<StyledBurgerProps>`
   div {
     width: 2rem;
     height: 0.25rem;
-    background: ${({ $open, $isDark, theme }) =>
-      $open ? "#ffffff" : $isDark ? "#ffffff" : theme.colors.orange};
+    background: ${({ $open, $isDark }) =>
+      $open ? "#ffffff" : $isDark ? "#ffffff" : "#fc4103"};
     border-radius: 10px;
     transition: all 0.3s ease-in-out;
     position: relative;

@@ -42,3 +42,11 @@ li {
 		padding-right: 0 !important;
 	}
 }
+:root {
+  --color-white: #ffffff;
+  --color-orange: #fc4103;
+  --color-modal-overlay: rgba(0, 0, 0, 0.5);
+  --breakpoint-mobile: 520px;
+  --breakpoint-tablet: 820px;
+  --breakpoint-desktop: 991px;
+}

@@ -1,10 +1,11 @@
+"use client";
 import React from "react";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { Main, BottomTextWrapper, Text } from "./StyleFooter";
 
 const Footer: React.FC = () => {
-  const router = useRouter();
-  const isDarkMode = router.pathname === "/code";
+  const pathname = usePathname();
+  const isDarkMode = pathname === "/code";
 
   return (
     <Main $isDark={isDarkMode}>

@@ -1,5 +1,6 @@
+"use client"
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { PageContainer } from "../styles/globalStyledComponents";
 import NavBar from "./header/NavBar";
 import Footer from "./footer/Footer";
@@ -10,8 +11,7 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const router = useRouter();
-  const { pathname } = router;
+  const pathname = usePathname();
   const [isMounted, setIsMounted] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 768 });
 

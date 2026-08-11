@@ -1,11 +1,9 @@
-import styled from "styled-components";
 import Link from "next/link";
-
+import styled from "styled-components";
 interface DarkModeProps {
   $isDark?: boolean;
   $isTransparent?: boolean;
 }
-
 export const Nav = styled.nav<DarkModeProps>`
   width: 100%;
   height: 65px;
@@ -21,17 +19,15 @@ export const Nav = styled.nav<DarkModeProps>`
   z-index: 1000;
   transition: background-color 0.3s ease;
 `;
-
 export const TitleLink = styled(Link)`
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.orange};
+  color: var(--color-orange);
 
   &:hover {
     opacity: 0.8;
     text-shadow: 0 0 8px rgba(255, 165, 0, 0.6);
   }
 `;
-
 export const TitleText = styled.h1<DarkModeProps>`
   font-size: 16px;
   font-weight: 800;
@@ -46,7 +42,7 @@ export const Ul = styled.ul<{ open: boolean }>`
   list-style: none;
   display: flex;
   flex-flow: column nowrap;
-  background-color: ${({ theme }) => theme.colors.orange};
+  background-color: var(--color-orange);
   position: fixed;
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
   top: 0;
