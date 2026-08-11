@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAnimation } from "../context/AnimationContext";
 import {
   LandingContainer,
@@ -18,7 +18,9 @@ import {
 
 export default function HomeClient() {
   const { hasSeenAnimation, setHasSeenAnimation } = useAnimation();
-  const shouldAnimate = !hasSeenAnimation;
+  // Decided once per mount so marking the animation "seen" below can't cut
+  // this instance's own crash-in animation short.
+  const [shouldAnimate] = useState(() => !hasSeenAnimation);
 
   useEffect(() => {
     if (!hasSeenAnimation) {
