@@ -3,8 +3,8 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/home',
-        destination: '/collage',
+        source: "/home",
+        destination: "/collage",
         permanent: false,
       },
     ];
@@ -14,10 +14,15 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ['images.ctfassets.net'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.ctfassets.net",
+      },
+    ],
     deviceSizes: [520, 900, 1200],
     imageSizes: [320, 480],
-    formats: ['image/avif', 'image/webp'],
+    formats: ["image/avif", "image/webp"],
   },
 };
 

@@ -14,14 +14,18 @@
     "incremental": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "plugins": [
       {
         "name": "typescript-styled-plugin",
-        "tags": ["styled", "css", "sty"]
+        "tags": [
+          "styled",
+          "css",
+          "sty"
+        ]
       }
     ]
   },
