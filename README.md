@@ -6,36 +6,58 @@ Welcome to my personal website repository! This is a space where I showcase my v
 
 ## Overview
 
-This site is my personal portfolio, showcasing visual art, code projects, and contact details. It’s built with modern web tools and designed for a smooth, responsive experience.
+This site is my personal portfolio, showcasing visual art, code projects, video, and contact details. It's built with modern web tools and designed for a smooth, responsive experience.
 
 ## Technology Stack
 
-- **Framework:** Next.js
-- **Styling:** Styled Components
+- **Framework:** Next.js 16 (App Router)
+- **Styling:** Styled Components (with SSR registry)
 - **Content Management:** Contentful CMS
 - **Language:** TypeScript
-- **UI Components:** Material-UI (MUI)
+- **UI Components:** Material-UI (MUI) icons and image grid
 - **Media:** React Player for video content
 - **Responsive Design:** React Responsive
 
 ## Development
 
 ```bash
+# Install dependencies
+npm install
+
+# Start the dev server
+npm run dev
+
 # Build the application
 npm run build
 
 # Start the production server
 npm start
+
+# Lint
+npm run lint
 ```
+
+### Environment variables
+
+Contentful access is configured via a `.env` file (see `src/lib/contentfulServer.ts`):
+
+- `CONTENTFUL_SPACE_ID`
+- `CONTENTFUL_DELIVERY_TOKEN`
+- `CONTENTFUL_PREVIEW_TOKEN`
+- `CONTENTFUL_IS_PREVIEW` (optional, `true`/`false`)
 
 ## Project Structure
 
+- `/src/app` - Next.js App Router pages and layouts (`art`, `code`, `contact`, `cv`, `video`)
 - `/src/components` - Reusable UI components
-- `/src/pages` - Next.js pages and routing
-- `/src/styles` - Global styles and theme configuration
-- `/public` - Static assets and images
+- `/src/styles` - Global styles (`globals.css`) and shared styled-components
+- `/src/lib` - Contentful client and data fetching
 - `/src/context` - React context providers
 - `/src/data` - Static data and configurations
+- `/src/types` - Shared TypeScript types
+- `/public` - Static assets and images
+
+Each page is split into a server component (`page.tsx`) that fetches Contentful data and a client component (`*Client.tsx`) that handles rendering and interactivity.
 
 ## Features
 
@@ -48,6 +70,3 @@ npm start
 ## License
 
 All rights reserved. The code and artwork in this repository are proprietary.
-
-
-
