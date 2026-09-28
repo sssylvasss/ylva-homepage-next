@@ -8,8 +8,6 @@ export const PageContainer = styled.div`
   align-items: center;
   flex-direction: column;
   margin: 0 auto;
-  @media (min-width: 820px) {
-  }
 `;
 
 export const ContentWrapper = styled.div`
@@ -24,7 +22,7 @@ export const GlobalText = styled.p`
 `;
 
 export const SectionTitle = styled.h2`
-  font-weight: 800;
+  font-weight: 700;
   font-size: 20px;
   text-align: left;
   margin: 50px 0 20px 0;

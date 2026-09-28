@@ -1,16 +1,17 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import type { Collage } from "../../lib/contentfulServer";
 import {
   CardDivMain,
+  CardImage,
+  CardCaption,
   TitleH2,
   TextP,
-  TextDiv,
-  TextDiv1,
-  TableDiv,
-  LaptopDiv,
 } from "./StylingArt";
+
+// Alt text for a collage image; falls back to the serie for untitled collages.
+export const collageAlt = ({ collageTitle, serie }: Collage) =>
+  collageTitle || serie || "Collage by Ylva Landoff Lindberg";
 
 interface ImageCardProps {
   collage: Collage;
@@ -18,40 +19,38 @@ interface ImageCardProps {
 }
 
 export const ImageCard: React.FC<ImageCardProps> = ({ collage, openModal }) => {
-  const { collageTitle, collageImage, size, year } = collage;
+  const { collageTitle, collageImage, size } = collage;
 
   return (
-    <CardDivMain onClick={() => openModal(collage.collageId)}>
+    <CardDivMain
+      role="button"
+      tabIndex={0}
+      aria-label={`Open ${collageAlt(collage)}`}
+      onClick={() => openModal(collage.collageId)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openModal(collage.collageId);
+        }
+      }}
+    >
       {collageImage?.file?.url && (
-        <Image
+        <CardImage
           src={
             collageImage.file.url.startsWith("http")
               ? collageImage.file.url
               : `https:${collageImage.file.url}`
           }
-          alt={collageTitle}
+          alt={collageAlt(collage)}
           width={900}
           height={600}
-          style={{ width: "100%", height: "auto" }}
-          sizes="(max-width: 520px) 100vw, (max-width: 991px) 90vw, 600px"
-          loading="lazy"
+          sizes="(max-width: 520px) 100vw, 600px"
         />
       )}
-      <TableDiv>
-        <TextDiv1>
-          <TitleH2>{collageTitle}</TitleH2>
-          {size && <TextP>{size}cm.</TextP>}
-        </TextDiv1>
-      </TableDiv>
-      <LaptopDiv>
-        <TextDiv>
-          <TitleH2>{collageTitle}</TitleH2>
-          {year && <TextP>{year}</TextP>}
-          {size && <TextP>{size}cm.</TextP>}
-        </TextDiv>
-      </LaptopDiv>
+      <CardCaption>
+        {collageTitle && <TitleH2>{collageTitle}</TitleH2>}
+        {size && <TextP>{size}cm.</TextP>}
+      </CardCaption>
     </CardDivMain>
   );
 };
-
-export default ImageCard;

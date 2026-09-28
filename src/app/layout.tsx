@@ -1,13 +1,25 @@
 import { Roboto } from "next/font/google";
+import localFont from "next/font/local";
 import { AnimationProvider } from "../context/AnimationContext";
 import Layout from "../components/Layout";
 import StyledComponentsRegistry from "./registry";
 import type { Metadata } from "next";
 import "../styles/globals.css";
 
+// The only font on the site: light (300) for text, bold (700) for headings.
 const roboto = Roboto({
-  weight: "300",
+  weight: ["300", "700"],
   subsets: ["latin"],
+});
+
+// Light-only copy of Roboto (latin) for the header and menu, loaded under its own
+// name. With no bold file, the browser draws their bold from the light weight,
+// which gives a thinner bold than Roboto Bold.
+const robotoLight = localFont({
+  src: "../fonts/roboto-light-latin.woff2",
+  weight: "300",
+  display: "swap",
+  variable: "--font-roboto-light",
 });
 
 export const metadata: Metadata = {
@@ -29,7 +41,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={roboto.className}>
+      <body className={`${roboto.className} ${robotoLight.variable}`}>
         <StyledComponentsRegistry>
           <AnimationProvider>
             <Layout>{children}</Layout>

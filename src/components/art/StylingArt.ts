@@ -1,6 +1,5 @@
-import styled from "styled-components";
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
-import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosRounded";
+import styled, { css } from "styled-components";
+import Image from "next/image";
 import ReactPlayer from "react-player";
 
 // Theme constants
@@ -8,12 +7,6 @@ const BREAKPOINTS = {
   mobile: "520px",
   tablet: "820px",
   desktop: "991px",
-} as const;
-
-const COLORS = {
-  white: "#ffff",
-  orange: "#fc4103",
-  modalOverlay: "rgba(0, 0, 0, 0.5)",
 } as const;
 
 export const VideoContainer = styled.div`
@@ -28,124 +21,86 @@ export const StyledReactPlayer = styled(ReactPlayer)`
   left: 0;
 `;
 
-export const TableDiv = styled.div`
-  display: block;
-
-  @media (min-width: ${BREAKPOINTS.mobile}) {
-    display: none;
-  }
-`;
-
-export const LaptopDiv = styled.div`
-  display: none;
-
-  @media (min-width: ${BREAKPOINTS.mobile}) {
-    display: block;
-    width: 90%;
-  }
-`;
-
 export const TitleH2 = styled.h2`
-  font-size: 16px;
-  font-weight: 800;
-  margin: 5px;
-
-  @media (max-width: ${BREAKPOINTS.mobile}) {
-    margin: 5px 20px 5px 0;
-  }
-
-  @media (min-width: ${BREAKPOINTS.desktop}) {
-    color: ${COLORS.orange};
-  }
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
 `;
 
 export const TextP = styled.p`
   font-size: 14px;
-  font-weight: 200;
-  margin: 0 5px 5px 5px;
-  padding: 0 10px 10px 0;
-
-  @media (max-width: ${BREAKPOINTS.mobile}) {
-    margin: 0 20px 5px 0;
-  }
-
-  @media (min-width: ${BREAKPOINTS.desktop}) {
-    color: ${COLORS.orange};
-  }
+  font-weight: 300;
+  margin: 0;
 `;
 
-export const TextDiv1 = styled.div`
+export const CardCaption = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: left;
-  padding-left: 0;
-  max-width: 270px;
-  color: ${COLORS.orange};
-
-  @media (max-width: ${BREAKPOINTS.mobile}) {
-    padding-left: 0;
-    max-width: 100%;
-  }
+  row-gap: 2px;
+  color: var(--color-orange);
+  margin: 5px 0 10px;
 `;
 
-export const TextDiv = styled.div`
-  display: none;
-  flex-direction: column;
-  text-align: left;
-
-  @media (min-width: ${BREAKPOINTS.desktop}) {
-    display: block;
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    margin-top: 0;
-    transform: translateY(-8px);
-    transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease,
-      transform 0.3s ease;
-  }
-`;
-
-export const CardDivMain = styled.main`
+export const CardDivMain = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: left;
   width: 90%;
   margin-bottom: 15px;
-  position: relative;
+  cursor: pointer;
 
-  @media (min-width: ${BREAKPOINTS.tablet}) {
-    margin: 10px;
-    width: auto;
-    align-content: left;
-  }
-
-  @media (min-width: ${BREAKPOINTS.desktop}) {
-    &:hover ${TextDiv} {
-      max-height: 200px;
-      opacity: 1;
-      margin-top: 8px;
-      transform: translateY(0);
-    }
+  &:focus-visible {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 4px;
   }
 `;
 
-// ImageGallery styles
+// Full width on mobile; same height for every image on larger screens
+export const CardImage = styled(Image)`
+  display: block;
+  width: 100%;
+  height: auto;
+
+  @media (min-width: ${BREAKPOINTS.mobile}) {
+    width: auto;
+    max-width: 90vw;
+    height: 240px;
+  }
+
+  @media (min-width: ${BREAKPOINTS.desktop}) {
+    height: 320px;
+  }
+`;
+
+// Series page styles
 export const TitleH1 = styled.h1`
-  font-size: 20px;
-  font-weight: 800;
-  margin: 40px 20px 30px 20px;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 40px 20px 30px 0;
   padding: 5px 0 10px 0;
   border-bottom: 2px solid;
-  width: calc(100% - 40px);
-  color: ${COLORS.orange};
+  width: 100%;
+  color: var(--color-orange);
 
-  @media (min-width: ${BREAKPOINTS.tablet}) {
-    width: 100%;
-    margin: 40px 5px 30px 5px;
+  /* Lines up with the left edge of the images */
+  @media (min-width: ${BREAKPOINTS.mobile}) {
+    margin: 40px 0 30px 0;
   }
+`;
+
+export const SeriesYear = styled.span`
+  font-size: 12px;
+`;
+
+export const SeriesText = styled.p`
+  align-self: flex-start;
+  max-width: 700px;
+  margin: -10px 0 30px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-orange);
+
   @media (max-width: ${BREAKPOINTS.mobile}) {
-    margin: 40px 20px 30px 0;
-    width: 100%;
+    margin: -10px 20px 30px 0;
   }
 `;
 
@@ -158,139 +113,166 @@ export const Main = styled.div`
   }
 `;
 
-export const ImageSectionDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  width: 100%;
-`;
-
 export const ImageSectionInnerDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-`;
 
-// Modal styles
-export const ModalDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+  @media (min-width: ${BREAKPOINTS.mobile}) {
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
 
-  @media (orientation: portrait) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    justify-items: center;
-    align-items: center;
-    row-gap: 8px;
-    column-gap: 32px;
+    & > ${CardDivMain} {
+      /* Card shrinks to the image width so captions wrap under the image */
+      width: min-content;
+      margin: 0;
+    }
+  }
+
+  @media (min-width: ${BREAKPOINTS.desktop}) {
+    gap: 24px;
   }
 `;
 
+export const SeriesWrapper = styled.div`
+  width: 100%;
+
+  @media (min-width: ${BREAKPOINTS.mobile}) {
+    width: 90%;
+    margin: 0 auto;
+  }
+`;
+
+export const SeriesSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+// Modal styles
 export const ModalFigure = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 90%;
 
+  @media (min-width: ${BREAKPOINTS.desktop}) {
+    max-width: none;
+  }
+
+  /* Fixed width so long captions wrap instead of reaching the screen edge.
+     The bottom margin lifts image and caption above the arrows fixed at the bottom. */
   @media (orientation: portrait) {
-    grid-column: 1 / span 2;
-    grid-row: 1;
-    justify-self: center;
+    width: calc(100vw - 32px);
+    max-width: none;
+    margin-bottom: 100px;
   }
 `;
 
+// Leaves room for the caption below the image
 export const ModalImage = styled.img.attrs({ loading: "lazy" })`
   max-width: 100%;
-  max-height: 90vh;
+  max-height: calc(100vh - 100px);
   object-fit: contain;
   display: block;
   height: auto;
   margin: 0 auto;
 
+  /* Keep clear of the arrows at the sides */
   @media (min-width: ${BREAKPOINTS.desktop}) {
-    max-height: 80vh;
+    max-width: calc(100vw - 240px);
   }
 
+  /* Same width for every image; tall images fit inside the box */
   @media (orientation: portrait) {
-    grid-column: 1 / span 2;
-    grid-row: 1;
+    width: 100%;
+    max-height: calc(100dvh - 280px);
   }
 `;
 
 export const ModalCaption = styled.div`
-  display: none;
-  color: ${COLORS.orange};
+  color: var(--color-white);
   text-align: left;
   margin-top: 12px;
   line-height: 1.4;
   width: 100%;
 
-  @media (min-width: ${BREAKPOINTS.desktop}) {
-    display: block;
+  @media (orientation: portrait) {
+    box-sizing: border-box;
+    padding: 0 16px;
+    text-align: center;
+    font-size: 14px;
   }
 `;
 
-export const ArrowBack = styled(ArrowBackIosNewOutlinedIcon)`
+// Arrow buttons with a filled triangle icon (mirrored for "back"). They sit at the sides;
+// in portrait they are fixed near the bottom so they stay in place when the image size changes.
+const arrowStyles = css`
   position: fixed;
   top: 50%;
-  left: 16px;
   transform: translateY(-50%);
-  color: ${COLORS.orange};
+  display: flex;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-white);
   cursor: pointer;
-  font-size: 50px;
   z-index: 1001;
 
+  /* "svg" selector outranks MUI's default icon size */
+  & svg {
+    font-size: 64px;
+
+    @media (min-width: ${BREAKPOINTS.tablet}) {
+      font-size: 80px;
+    }
+    @media (min-width: ${BREAKPOINTS.desktop}) {
+      font-size: 88px;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-white);
+    outline-offset: 4px;
+  }
+
   @media (orientation: portrait) {
-    position: static;
     top: auto;
-    left: auto;
+    bottom: calc(60px + env(safe-area-inset-bottom, 0px));
     transform: none;
-    grid-row: 2;
-    grid-column: 1;
-    justify-self: end;
+  }
+`;
+
+export const ArrowBack = styled.button`
+  ${arrowStyles}
+  left: 16px;
+
+  & svg {
+    transform: scaleX(-1);
   }
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
     left: 24px;
-    font-size: 65px;
   }
-  @media (min-width: ${BREAKPOINTS.desktop}) {
-    font-size: 72px;
+
+  @media (orientation: portrait) {
+    left: calc(50% - 88px);
   }
 `;
 
-export const ArrowForward = styled(ArrowForwardIosOutlinedIcon)`
-  position: fixed;
-  top: 50%;
+export const ArrowForward = styled.button`
+  ${arrowStyles}
   right: 16px;
-  transform: translateY(-50%);
-  color: ${COLORS.orange};
-  cursor: pointer;
-  font-size: 50px;
-  z-index: 1001;
-
-  @media (orientation: portrait) {
-    position: static;
-    top: auto;
-    right: auto;
-    transform: none;
-    grid-row: 2;
-    grid-column: 2;
-    justify-self: start;
-  }
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
     right: 24px;
-    font-size: 65px;
   }
-  @media (min-width: ${BREAKPOINTS.desktop}) {
-    font-size: 72px;
+
+  @media (orientation: portrait) {
+    right: calc(50% - 88px);
   }
 `;
 
@@ -301,9 +283,6 @@ export const VideoTextDiv = styled.div`
 
 export const MainVideoDiv = styled.div`
   width: 100%;
-  display: block;
-  flex-direction: column;
-  justify-content: center;
   margin-top: 85px; /* 65px header height + 20px extra spacing */
   @media (min-width: ${BREAKPOINTS.tablet}) {
     width: 90%;

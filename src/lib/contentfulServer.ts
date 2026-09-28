@@ -91,7 +91,7 @@ type VideoEntrySkeleton = {
 // down to its fields (mirrors the old runtime behaviour of `.fields.image.fields`).
 export interface Collage {
   collageId: number;
-  collageTitle: string;
+  collageTitle?: string;
   serie?: string;
   size?: string;
   year?: string;
