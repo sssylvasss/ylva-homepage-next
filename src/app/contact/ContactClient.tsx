@@ -112,7 +112,9 @@ export default function Contact() {
       <ContactSection>
         <ContactInfo>
           <ContactName>Ylva Landoff Lindberg</ContactName>
-          <ContactText>Frontend Developer & Creative Technologist</ContactText>
+          <ContactText>
+            Artist, Entrepreneur, Frontend Developer & Creative Technologist
+          </ContactText>
           <ContactPhone>+46 704 92 44 75</ContactPhone>
           <ContactText>mail@ylvalandofflindberg.com</ContactText>
         </ContactInfo>
