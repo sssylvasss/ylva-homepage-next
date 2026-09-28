@@ -27,7 +27,7 @@ export const CloseButton = styled.button`
   padding: 0;
   border: 0;
   background: none;
-  color: #ffffff;
+  color: var(--color-white);
   cursor: pointer;
   z-index: 1001;
 
@@ -41,7 +41,7 @@ export const CloseButton = styled.button`
   }
 
   &:focus-visible {
-    outline: 2px solid #ffffff;
+    outline: 2px solid var(--color-white);
     outline-offset: 4px;
   }
 `;

@@ -1,17 +1,12 @@
 body {
 	margin: 0;
-	font-family: 'Roboto Mono', monospace;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	color: #fc4103;
+	color: var(--color-orange);
 }
 
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
-}
 a {
-	color: #fc4103;
+	color: var(--color-orange);
 	text-decoration: none;
 }
 a:hover {
@@ -21,32 +16,7 @@ a:hover {
 li {
 	text-decoration: none;
 }
-/* Masonry one item on mobile */
-@media screen and (max-width: 767px) {
-	.gallery-masonry-wrapper.gallery-masonry-list--ready {
-		height: auto !important;
-	}
-	figure.gallery-masonry-item {
-		position: relative !important;
-		width: 100% !important;
-		transform: unset !important;
-	}
-	.gallery-masonry-item-wrapper {
-		height: auto !important;
-	}
-	.gallery-masonry .gallery-masonry-item[data-loaded] img {
-		width: 100% !important;
-	}
-	.gallery-masonry {
-		padding-left: 0 !important;
-		padding-right: 0 !important;
-	}
-}
 :root {
   --color-white: #ffffff;
   --color-orange: #fc4103;
-  --color-modal-overlay: rgba(0, 0, 0, 0.5);
-  --breakpoint-mobile: 520px;
-  --breakpoint-tablet: 820px;
-  --breakpoint-desktop: 991px;
 }

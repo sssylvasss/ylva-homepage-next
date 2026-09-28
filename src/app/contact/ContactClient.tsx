@@ -1,10 +1,12 @@
 "use client";
 
 import styled from "styled-components";
-import Image from "next/image";
-import { PageContainer } from "../../styles/globalStyledComponents";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 
 const ContactWrapper = styled.div`
+  box-sizing: border-box; /* padding inside the width, so it doesn't overflow to the right */
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
@@ -15,29 +17,28 @@ const ContactWrapper = styled.div`
   padding: 6rem 2rem 2rem 2rem;
 `;
 
+// Same size as the section titles on the CV and video pages
 const Title = styled.h1`
-  font-size: 2.5rem;
-  font-weight: 600;
-  margin: 0 0 2rem 0;
-  color: #000;
-  position: relative;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 30px 0;
+  padding: 5px 0 10px 0;
+  border-bottom: 2px solid;
+  color: var(--color-orange);
+`;
 
-  &:after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 60px;
-    height: 4px;
-    background-color: #fc4103;
-  }
+const Description = styled.p`
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-orange);
+  max-width: 700px;
+  margin: 0 0 30px 0;
 `;
 
 const ContactSection = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: 3rem;
-  margin-top: 2rem;
 `;
 
 const ContactInfo = styled.div`
@@ -54,16 +55,24 @@ const ContactInfo = styled.div`
 
 const ContactText = styled.p`
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 16px;
   line-height: 1.6;
-  color: #333;
+  color: var(--color-orange);
+`;
+
+const ContactName = styled(ContactText)`
+  font-weight: 700;
+  margin-bottom: 1rem;
+`;
+
+const ContactPhone = styled(ContactText)`
+  margin-top: 1rem;
 `;
 
 const LinksContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  margin-top: 2rem;
 `;
 
 const SocialLink = styled.a`
@@ -74,114 +83,67 @@ const SocialLink = styled.a`
   background: white;
   border: 1px solid #eaeaea;
   border-radius: 8px;
-  text-decoration: none;
-  color: #333;
+  font-size: 16px;
+  color: var(--color-orange);
   transition: all 0.2s ease;
 
-  &:hover {
-    background: #fc4103;
-    color: white;
-    border-color: #fc4103;
-    transform: translateY(-2px);
+  /* "svg" selector outranks MUI's default icon size */
+  & svg {
+    font-size: 20px;
+  }
 
-    img {
-      filter: brightness(0) invert(1);
-    }
+  &:hover {
+    background: var(--color-orange);
+    color: white;
+    border-color: var(--color-orange);
+    transform: translateY(-2px);
   }
 `;
 
-const IconWrapper = styled.div`
-  width: 24px;
-  height: 24px;
-  position: relative;
-`;
-
-const Description = styled.p`
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: #666;
-  max-width: 600px;
-  margin: 1rem 0 2rem 0;
-`;
-
-export const metadata = {
-  title: "Contact - Ylva Landoff Lindberg",
-  description: "Contact information for Ylva Landoff Lindberg",
-};
-
 export default function Contact() {
   return (
-    <PageContainer>
-      <ContactWrapper>
-        <Title>Let&apos;s Connect</Title>
-        <Description>
-          I&apos;m always interested in new opportunities and collaborations.
-          Feel free to reach out through any of the channels below.
-        </Description>
+    <ContactWrapper>
+      <Title>Let&apos;s Connect</Title>
+      <Description>
+        I&apos;m always interested in new opportunities and collaborations. Feel
+        free to reach out through any of the channels below.
+      </Description>
 
-        <ContactSection>
-          <ContactInfo>
-            <ContactText style={{ fontWeight: 600, marginBottom: "1rem" }}>
-              Ylva Landoff Lindberg
-            </ContactText>
-            <ContactText>
-              Frontend Developer & Creative Technologist
-            </ContactText>
-            <ContactText style={{ marginTop: "1rem" }}>
-              +46 704 92 44 75
-            </ContactText>
-            <ContactText>mail@ylvalandofflindberg.com</ContactText>
-          </ContactInfo>
+      <ContactSection>
+        <ContactInfo>
+          <ContactName>Ylva Landoff Lindberg</ContactName>
+          <ContactText>Frontend Developer & Creative Technologist</ContactText>
+          <ContactPhone>+46 704 92 44 75</ContactPhone>
+          <ContactText>mail@ylvalandofflindberg.com</ContactText>
+        </ContactInfo>
 
-          <div>
-            <LinksContainer>
-              <SocialLink
-                href="https://github.com/sssylvasss"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <IconWrapper>
-                  <Image
-                    src="/assets/github_black.svg"
-                    alt="GitHub"
-                    fill
-                    style={{ objectFit: "contain" }}
-                  />
-                </IconWrapper>
-                GitHub
-              </SocialLink>
+        <div>
+          <LinksContainer>
+            <SocialLink
+              href="https://github.com/sssylvasss"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GitHubIcon aria-hidden />
+              GitHub
+            </SocialLink>
 
-              <SocialLink
-                href="https://www.linkedin.com/in/ylva-landoff-lindberg/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <IconWrapper>
-                  <Image
-                    src="/assets/linkedin_black.svg"
-                    alt="LinkedIn"
-                    fill
-                    style={{ objectFit: "contain" }}
-                  />
-                </IconWrapper>
-                LinkedIn
-              </SocialLink>
+            <SocialLink
+              href="https://www.linkedin.com/in/ylva-landoff-lindberg/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <LinkedInIcon aria-hidden />
+              LinkedIn
+            </SocialLink>
 
-              <SocialLink href="mailto:mail@ylvalandofflindberg.com">
-                <IconWrapper>
-                  <Image
-                    src="/assets/email_black.svg"
-                    alt="Email"
-                    fill
-                    style={{ objectFit: "contain" }}
-                  />
-                </IconWrapper>
-                Email
-              </SocialLink>
-            </LinksContainer>
-          </div>
-        </ContactSection>
-      </ContactWrapper>
-    </PageContainer>
+            <SocialLink href="mailto:mail@ylvalandofflindberg.com">
+              <EmailOutlinedIcon aria-hidden />
+              Email
+            </SocialLink>
+          </LinksContainer>
+        </div>
+      </ContactSection>
+    </ContactWrapper>
   );
 }

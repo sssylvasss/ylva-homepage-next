@@ -18,6 +18,8 @@ export const Nav = styled.nav<DarkModeProps>`
     $isTransparent ? "transparent" : $isDark ? "#1a1a1a" : "white"};
   z-index: 1000;
   transition: background-color 0.3s ease;
+  /* Header and menu use the light-only Roboto for a thinner bold (see layout.tsx) */
+  font-family: var(--font-roboto-light), sans-serif;
 `;
 export const TitleLink = styled(Link)`
   text-decoration: none;

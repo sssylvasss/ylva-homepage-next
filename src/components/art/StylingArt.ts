@@ -9,11 +9,6 @@ const BREAKPOINTS = {
   desktop: "991px",
 } as const;
 
-const COLORS = {
-  orange: "#fc4103",
-  white: "#ffffff",
-} as const;
-
 export const VideoContainer = styled.div`
   position: relative;
   padding-top: 56.25%;
@@ -28,13 +23,13 @@ export const StyledReactPlayer = styled(ReactPlayer)`
 
 export const TitleH2 = styled.h2`
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 700;
   margin: 0;
 `;
 
 export const TextP = styled.p`
   font-size: 14px;
-  font-weight: 200;
+  font-weight: 300;
   margin: 0;
 `;
 
@@ -42,7 +37,7 @@ export const CardCaption = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 2px;
-  color: ${COLORS.orange};
+  color: var(--color-orange);
   margin: 5px 0 10px;
 `;
 
@@ -54,7 +49,7 @@ export const CardDivMain = styled.div`
   cursor: pointer;
 
   &:focus-visible {
-    outline: 2px solid ${COLORS.orange};
+    outline: 2px solid var(--color-orange);
     outline-offset: 4px;
   }
 `;
@@ -79,12 +74,12 @@ export const CardImage = styled(Image)`
 // Series page styles
 export const TitleH1 = styled.h1`
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 700;
   margin: 40px 20px 30px 0;
   padding: 5px 0 10px 0;
   border-bottom: 2px solid;
   width: 100%;
-  color: ${COLORS.orange};
+  color: var(--color-orange);
 
   /* Lines up with the left edge of the images */
   @media (min-width: ${BREAKPOINTS.mobile}) {
@@ -102,7 +97,7 @@ export const SeriesText = styled.p`
   margin: -10px 0 30px 0;
   font-size: 14px;
   line-height: 1.5;
-  color: ${COLORS.orange};
+  color: var(--color-orange);
 
   @media (max-width: ${BREAKPOINTS.mobile}) {
     margin: -10px 20px 30px 0;
@@ -199,7 +194,7 @@ export const ModalImage = styled.img.attrs({ loading: "lazy" })`
 `;
 
 export const ModalCaption = styled.div`
-  color: ${COLORS.white};
+  color: var(--color-white);
   text-align: left;
   margin-top: 12px;
   line-height: 1.4;
@@ -223,7 +218,7 @@ const arrowStyles = css`
   padding: 0;
   border: 0;
   background: none;
-  color: ${COLORS.white};
+  color: var(--color-white);
   cursor: pointer;
   z-index: 1001;
 
@@ -240,7 +235,7 @@ const arrowStyles = css`
   }
 
   &:focus-visible {
-    outline: 2px solid ${COLORS.white};
+    outline: 2px solid var(--color-white);
     outline-offset: 4px;
   }
 

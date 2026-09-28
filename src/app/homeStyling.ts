@@ -39,7 +39,7 @@ export const LandingContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
-  background-color: #ffffff;
+  background-color: var(--color-white);
   width: 100vw;
   box-sizing: border-box;
   position: relative;
@@ -84,7 +84,7 @@ export const CircleLinkLeft = styled(Link)<{ $shouldAnimate: boolean }>`
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background-color: #fc4103;
+  background-color: var(--color-orange);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -112,7 +112,7 @@ export const CircleLinkRight = styled(Link)<{ $shouldAnimate: boolean }>`
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background-color: #fc4103;
+  background-color: var(--color-orange);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -140,7 +140,7 @@ export const CircleLinkBottom = styled(Link)<{ $shouldAnimate: boolean }>`
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background-color: #fc4103;
+  background-color: var(--color-orange);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -164,7 +164,7 @@ export const CircleLinkBottom = styled(Link)<{ $shouldAnimate: boolean }>`
 `;
 
 export const CircleText = styled.span`
-  color: #ffffff;
+  color: var(--color-white);
   font-size: 2rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -186,7 +186,7 @@ export const SmallCircleLinkCV = styled(Link)<{ $shouldAnimate: boolean }>`
   cursor: pointer;
   z-index: 20;
   background-color: white;
-  border: 3px solid #fc4103;
+  border: 3px solid var(--color-orange);
   transition: all 0.3s ease;
   top: 130%;
   left: 0%;
@@ -225,7 +225,7 @@ export const SmallCircleLinkContact = styled(Link)<{ $shouldAnimate: boolean }>`
   cursor: pointer;
   z-index: 20;
   background-color: white;
-  border: 3px solid #fc4103;
+  border: 3px solid var(--color-orange);
   transition: all 0.3s ease;
   top: 115%;
   right: 5%;
@@ -255,7 +255,7 @@ export const SmallCircleLinkContact = styled(Link)<{ $shouldAnimate: boolean }>`
 export const SmallCircleText = styled.span`
   font-weight: bold;
   text-transform: uppercase;
-  color: #fc4103;
+  color: var(--color-orange);
   transition: color 0.3s ease;
   font-size: 1.4rem;
 
