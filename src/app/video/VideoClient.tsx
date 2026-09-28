@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import type { Video } from "../../lib/contentfulServer";
 import VideoReactPlayer from "../../components/art/VideoReactPlayer";
 import {

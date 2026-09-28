@@ -52,7 +52,13 @@ export const Ul = styled.ul<{ open: boolean }>`
   margin: 0;
   width: 170px;
   padding-top: 5rem;
-  transition: transform 0.3s ease-in-out;
+  /* Hidden when closed so Tab skips the links.
+     Visibility switches after the slide-out so the animation still shows. */
+  visibility: ${({ open }) => (open ? "visible" : "hidden")};
+  transition: ${({ open }) =>
+    open
+      ? "transform 0.3s ease-in-out"
+      : "transform 0.3s ease-in-out, visibility 0s linear 0.3s"};
   z-index: 1000;
 
   li {

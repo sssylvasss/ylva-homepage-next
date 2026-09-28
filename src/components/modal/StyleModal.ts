@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 export const ModalDiv = styled.div`
   position: fixed;
@@ -20,16 +19,29 @@ export const ModalInnerDiv = styled.div`
   align-items: center;
 `;
 
-export const CloseIcon = styled(CloseOutlinedIcon)`
+export const CloseButton = styled.button`
   position: absolute;
   top: 20px;
   right: 20px;
+  display: flex;
+  padding: 0;
+  border: 0;
+  background: none;
   color: #ffffff;
   cursor: pointer;
-  font-size: 2rem !important;
   z-index: 1001;
+
+  /* "svg" selector outranks MUI's default icon size */
+  & svg {
+    font-size: 2rem;
+  }
 
   &:hover {
     opacity: 0.8;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 4px;
   }
 `;

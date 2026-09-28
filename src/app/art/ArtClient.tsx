@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback, useEffect, useRef } from "react";
+import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import type { Collage } from "../../lib/contentfulServer";
-import { ImageCard } from "../../components/art/ImageCard";
+import { ImageCard, collageAlt } from "../../components/art/ImageCard";
 import {
   Main,
   SeriesWrapper,
@@ -62,8 +63,11 @@ const groupBySerie = (collages: Collage[]): ImageSerie[] => {
 };
 
 export default function ArtClient({ collages }: ArtClientProps) {
-  const [showModal, setShowModal] = useState(false);
-  const [activeCollage, setActiveCollage] = useState<Collage | undefined>();
+  // Index into orderedCollages of the collage shown in the modal; null when closed.
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const touchStartX = useRef<number | null>(null);
+  const backRef = useRef<HTMLButtonElement>(null);
+  const forwardRef = useRef<HTMLButtonElement>(null);
 
   const imageSeries = useMemo(() => groupBySerie(collages), [collages]);
 
@@ -73,21 +77,51 @@ export default function ArtClient({ collages }: ArtClientProps) {
     [imageSeries]
   );
 
+  const activeCollage =
+    activeIndex === null ? undefined : orderedCollages[activeIndex];
+  const isOpen = activeCollage !== undefined;
+
   const openModal = (id: number) => {
-    setActiveCollage(orderedCollages.find((co) => co.collageId === id));
-    setShowModal(true);
+    setActiveIndex(orderedCollages.findIndex((co) => co.collageId === id));
   };
 
-  const imageSlide = (next: boolean) => {
-    if (!activeCollage) return;
-    const imageIndex = orderedCollages.findIndex(
-      (co) => co.collageId === activeCollage.collageId
-    );
-    const total = orderedCollages.length;
-    const newIndex = next
-      ? (imageIndex + 1) % total
-      : (imageIndex - 1 + total) % total;
-    setActiveCollage(orderedCollages[newIndex]);
+  const closeModal = useCallback(() => setActiveIndex(null), []);
+
+  // step: 1 for next, -1 for previous; wraps around at both ends.
+  const imageSlide = useCallback(
+    (step: 1 | -1) => {
+      const total = orderedCollages.length;
+      setActiveIndex((i) => (i === null ? i : (i + step + total) % total));
+    },
+    [orderedCollages.length]
+  );
+
+  // Left/right arrow keys change image while the modal is open. If an arrow button
+  // has focus, focus moves to the one matching the key so the outline follows.
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      const next = e.key === "ArrowRight";
+      imageSlide(next ? 1 : -1);
+      const focused = document.activeElement;
+      if (focused === backRef.current || focused === forwardRef.current) {
+        (next ? forwardRef : backRef).current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [isOpen, imageSlide]);
+
+  // Swipe left/right on touch screens changes image.
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+    touchStartX.current = null;
+    if (Math.abs(deltaX) > 50) imageSlide(deltaX < 0 ? 1 : -1);
   };
 
   return (
@@ -113,20 +147,38 @@ export default function ArtClient({ collages }: ArtClientProps) {
         ))}
       </SeriesWrapper>
 
-      {showModal && (
-        <Modal setShowModal={setShowModal} setActiveCollage={setActiveCollage}>
-          <ArrowBack onClick={() => imageSlide(false)} />
-          <ModalFigure>
+      {activeCollage && (
+        <Modal onClose={closeModal} label={collageAlt(activeCollage)}>
+          <ArrowBack
+            ref={backRef}
+            type="button"
+            aria-label="Previous image"
+            onClick={() => imageSlide(-1)}
+          >
+            <PlayArrowRoundedIcon />
+          </ArrowBack>
+          <ModalFigure onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
             <ModalImage
-              alt={activeCollage?.collageTitle}
-              src={activeCollage?.collageImage?.file?.url}
+              alt={collageAlt(activeCollage)}
+              src={activeCollage.collageImage?.file?.url}
             />
             <ModalCaption>
-              {activeCollage?.collageTitle}
-              {activeCollage?.size && `, ${activeCollage.size}cm.`}
+              {[
+                activeCollage.collageTitle,
+                activeCollage.size && `${activeCollage.size}cm.`,
+              ]
+                .filter(Boolean)
+                .join(", ")}
             </ModalCaption>
           </ModalFigure>
-          <ArrowForward onClick={() => imageSlide(true)} />
+          <ArrowForward
+            ref={forwardRef}
+            type="button"
+            aria-label="Next image"
+            onClick={() => imageSlide(1)}
+          >
+            <PlayArrowRoundedIcon />
+          </ArrowForward>
         </Modal>
       )}
     </Main>

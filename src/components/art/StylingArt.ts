@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import Image from "next/image";
-import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import ReactPlayer from "react-player";
 
 // Theme constants
@@ -53,6 +52,11 @@ export const CardDivMain = styled.div`
   width: 90%;
   margin-bottom: 15px;
   cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid ${COLORS.orange};
+    outline-offset: 4px;
+  }
 `;
 
 // Full width on mobile; same height for every image on larger screens
@@ -209,17 +213,22 @@ export const ModalCaption = styled.div`
   }
 `;
 
-// Filled triangle arrows (back is the play icon mirrored). They sit at the sides;
+// Arrow buttons with a filled triangle icon (mirrored for "back"). They sit at the sides;
 // in portrait they are fixed near the bottom so they stay in place when the image size changes.
-// "&&" raises specificity so font-size beats MUI's default icon size.
 const arrowStyles = css`
   position: fixed;
   top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  padding: 0;
+  border: 0;
+  background: none;
   color: ${COLORS.white};
   cursor: pointer;
   z-index: 1001;
 
-  && {
+  /* "svg" selector outranks MUI's default icon size */
+  & svg {
     font-size: 64px;
 
     @media (min-width: ${BREAKPOINTS.tablet}) {
@@ -230,16 +239,25 @@ const arrowStyles = css`
     }
   }
 
+  &:focus-visible {
+    outline: 2px solid ${COLORS.white};
+    outline-offset: 4px;
+  }
+
   @media (orientation: portrait) {
     top: auto;
     bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+    transform: none;
   }
 `;
 
-export const ArrowBack = styled(PlayArrowRoundedIcon)`
+export const ArrowBack = styled.button`
   ${arrowStyles}
   left: 16px;
-  transform: translateY(-50%) scaleX(-1);
+
+  & svg {
+    transform: scaleX(-1);
+  }
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
     left: 24px;
@@ -247,14 +265,12 @@ export const ArrowBack = styled(PlayArrowRoundedIcon)`
 
   @media (orientation: portrait) {
     left: calc(50% - 88px);
-    transform: scaleX(-1);
   }
 `;
 
-export const ArrowForward = styled(PlayArrowRoundedIcon)`
+export const ArrowForward = styled.button`
   ${arrowStyles}
   right: 16px;
-  transform: translateY(-50%);
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
     right: 24px;
@@ -262,7 +278,6 @@ export const ArrowForward = styled(PlayArrowRoundedIcon)`
 
   @media (orientation: portrait) {
     right: calc(50% - 88px);
-    transform: none;
   }
 `;
 

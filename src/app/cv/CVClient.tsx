@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import type { Cv } from "../../lib/contentfulServer";
 import {
   GlobalText,
