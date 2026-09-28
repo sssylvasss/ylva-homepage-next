@@ -22,9 +22,7 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <ModalDiv>
       <CloseIcon onClick={onClose} aria-label="Close modal" />
-      <ModalInnerDiv>{children ?? null}</ModalInnerDiv>
+      <ModalInnerDiv>{children}</ModalInnerDiv>
     </ModalDiv>
   );
 };
-
-export default Modal;

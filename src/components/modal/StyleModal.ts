@@ -15,20 +15,16 @@ export const ModalDiv = styled.div`
 `;
 
 export const ModalInnerDiv = styled.div`
-  max-height: 90vh;
-  margin: auto 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  position: relative;
 `;
 
 export const CloseIcon = styled(CloseOutlinedIcon)`
   position: absolute;
   top: 20px;
   right: 20px;
-  color: #fc4103;
+  color: #ffffff;
   cursor: pointer;
   font-size: 2rem !important;
   z-index: 1001;
