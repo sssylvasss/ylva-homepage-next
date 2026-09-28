@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import ReactPlayer from "react-player";
@@ -11,9 +12,7 @@ const BREAKPOINTS = {
 } as const;
 
 const COLORS = {
-  white: "#ffff",
   orange: "#fc4103",
-  modalOverlay: "rgba(0, 0, 0, 0.5)",
 } as const;
 
 export const VideoContainer = styled.div`
@@ -28,124 +27,65 @@ export const StyledReactPlayer = styled(ReactPlayer)`
   left: 0;
 `;
 
-export const TableDiv = styled.div`
-  display: block;
-
-  @media (min-width: ${BREAKPOINTS.mobile}) {
-    display: none;
-  }
-`;
-
-export const LaptopDiv = styled.div`
-  display: none;
-
-  @media (min-width: ${BREAKPOINTS.mobile}) {
-    display: block;
-    width: 90%;
-  }
-`;
-
 export const TitleH2 = styled.h2`
   font-size: 16px;
   font-weight: 800;
-  margin: 5px;
-
-  @media (max-width: ${BREAKPOINTS.mobile}) {
-    margin: 5px 20px 5px 0;
-  }
-
-  @media (min-width: ${BREAKPOINTS.desktop}) {
-    color: ${COLORS.orange};
-  }
+  margin: 0;
 `;
 
 export const TextP = styled.p`
   font-size: 14px;
   font-weight: 200;
-  margin: 0 5px 5px 5px;
-  padding: 0 10px 10px 0;
-
-  @media (max-width: ${BREAKPOINTS.mobile}) {
-    margin: 0 20px 5px 0;
-  }
-
-  @media (min-width: ${BREAKPOINTS.desktop}) {
-    color: ${COLORS.orange};
-  }
+  margin: 0;
+  white-space: nowrap;
 `;
 
-export const TextDiv1 = styled.div`
+export const CardCaption = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: left;
-  padding-left: 0;
-  max-width: 270px;
+  row-gap: 2px;
   color: ${COLORS.orange};
-
-  @media (max-width: ${BREAKPOINTS.mobile}) {
-    padding-left: 0;
-    max-width: 100%;
-  }
+  margin: 5px 0 10px;
 `;
 
-export const TextDiv = styled.div`
-  display: none;
-  flex-direction: column;
-  text-align: left;
-
-  @media (min-width: ${BREAKPOINTS.desktop}) {
-    display: block;
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    margin-top: 0;
-    transform: translateY(-8px);
-    transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease,
-      transform 0.3s ease;
-  }
-`;
-
-export const CardDivMain = styled.main`
+export const CardDivMain = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: left;
   width: 90%;
   margin-bottom: 15px;
-  position: relative;
+  cursor: pointer;
+`;
 
-  @media (min-width: ${BREAKPOINTS.tablet}) {
-    margin: 10px;
+// Full width on mobile; same height for every image on larger screens
+export const CardImage = styled(Image)`
+  display: block;
+  width: 100%;
+  height: auto;
+
+  @media (min-width: ${BREAKPOINTS.mobile}) {
     width: auto;
-    align-content: left;
+    max-width: 90vw;
+    height: 240px;
   }
 
   @media (min-width: ${BREAKPOINTS.desktop}) {
-    &:hover ${TextDiv} {
-      max-height: 200px;
-      opacity: 1;
-      margin-top: 8px;
-      transform: translateY(0);
-    }
+    height: 320px;
   }
 `;
 
-// ImageGallery styles
+// Series page styles
 export const TitleH1 = styled.h1`
   font-size: 20px;
   font-weight: 800;
-  margin: 40px 20px 30px 20px;
+  margin: 40px 20px 30px 0;
   padding: 5px 0 10px 0;
   border-bottom: 2px solid;
-  width: calc(100% - 40px);
+  width: 100%;
   color: ${COLORS.orange};
 
-  @media (min-width: ${BREAKPOINTS.tablet}) {
-    width: 100%;
-    margin: 40px 5px 30px 5px;
-  }
-  @media (max-width: ${BREAKPOINTS.mobile}) {
-    margin: 40px 20px 30px 0;
-    width: 100%;
+  /* Lines up with the left edge of the images */
+  @media (min-width: ${BREAKPOINTS.mobile}) {
+    margin: 40px 0 30px 0;
   }
 `;
 
@@ -158,18 +98,43 @@ export const Main = styled.div`
   }
 `;
 
-export const ImageSectionDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  width: 100%;
-`;
-
 export const ImageSectionInnerDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
+
+  @media (min-width: ${BREAKPOINTS.mobile}) {
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+
+    & > ${CardDivMain} {
+      /* Card shrinks to the image width so captions wrap under the image */
+      width: min-content;
+      margin: 0;
+    }
+  }
+
+  @media (min-width: ${BREAKPOINTS.desktop}) {
+    gap: 24px;
+  }
+`;
+
+export const SeriesWrapper = styled.div`
+  width: 100%;
+
+  @media (min-width: ${BREAKPOINTS.mobile}) {
+    width: 90%;
+    margin: 0 auto;
+  }
+`;
+
+export const SeriesSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
 `;
 
 // Modal styles
