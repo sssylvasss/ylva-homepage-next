@@ -1,10 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
-interface DarkModeProps {
-  $isDark?: boolean;
-  $isTransparent?: boolean;
-}
-export const Nav = styled.nav<DarkModeProps>`
+
+export const Nav = styled.nav`
   width: 100%;
   height: 65px;
   padding: 0 20px;
@@ -12,20 +9,18 @@ export const Nav = styled.nav<DarkModeProps>`
   justify-content: space-between;
   align-items: center;
   position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--color-white);
+  z-index: 1000;
+  /* Header and menu use the light-only Roboto for a thinner bold (see layout.tsx) */
+  font-family: var(--font-roboto-light), sans-serif;
 
   /* Laptop: the menu sits right after the title */
   @media (min-width: 821px) {
     justify-content: flex-start;
     gap: 40px;
   }
-  top: 0;
-  left: 0;
-  background-color: ${({ $isDark, $isTransparent }) =>
-    $isTransparent ? "transparent" : $isDark ? "#1a1a1a" : "white"};
-  z-index: 1000;
-  transition: background-color 0.3s ease;
-  /* Header and menu use the light-only Roboto for a thinner bold (see layout.tsx) */
-  font-family: var(--font-roboto-light), sans-serif;
 `;
 export const TitleLink = styled(Link)`
   text-decoration: none;
@@ -35,18 +30,17 @@ export const TitleLink = styled(Link)`
     opacity: 0.8;
   }
 `;
-export const TitleText = styled.h1<DarkModeProps>`
+export const TitleText = styled.h1`
   font-size: 16px;
   font-weight: 800;
   margin: 0;
   padding: 15px 0;
   white-space: nowrap;
-  color: ${({ $isDark }) => ($isDark ? "var(--color-white)" : "inherit")};
-  transition: all 0.3s ease;
+  color: inherit;
 `;
 
 // Laptop menu, hidden on phones
-export const DesktopLinks = styled.ul<DarkModeProps>`
+export const DesktopLinks = styled.ul`
   display: none;
   list-style: none;
   margin: 0;
@@ -59,8 +53,7 @@ export const DesktopLinks = styled.ul<DarkModeProps>`
 
   a {
     font-size: 14px;
-    color: ${({ $isDark }) =>
-      $isDark ? "var(--color-white)" : "var(--color-black)"};
+    color: var(--color-black);
     text-underline-offset: 4px;
 
     &:hover,
@@ -80,7 +73,9 @@ export const Ul = styled.ul<{ open: boolean }>`
     display: none;
   }
   flex-flow: column nowrap;
-  background-color: var(--color-black);
+  background-color: var(--color-white);
+  /* Thin line so the white menu stands out from the white page */
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
   position: fixed;
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
   top: 0;
@@ -101,12 +96,12 @@ export const Ul = styled.ul<{ open: boolean }>`
 
   li {
     padding: 18px 10px;
-    color: white;
+    color: var(--color-black);
     font-weight: bold;
   }
 
   a {
-    color: white;
+    color: var(--color-black);
     text-decoration: none;
     font-weight: bold;
 

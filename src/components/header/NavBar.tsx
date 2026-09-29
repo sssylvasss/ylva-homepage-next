@@ -10,16 +10,14 @@ import { usePathname } from "next/navigation";
 const NavBar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
   const pathname = usePathname();
-  const isDarkMode = pathname === "/code";
-  const isLandingPage = pathname === "/";
 
   return (
-    <Nav $isDark={isDarkMode} $isTransparent={isLandingPage}>
+    <Nav>
       <TitleLink href="/">
-        <TitleText $isDark={isDarkMode}>YLVA LANDOFF LINDBERG</TitleText>
+        <TitleText>YLVA LANDOFF LINDBERG</TitleText>
       </TitleLink>
       {/* Laptop menu; phones use the burger below */}
-      <DesktopLinks $isDark={isDarkMode}>
+      <DesktopLinks>
         {NAV_LINKS.map((link) => (
           <li key={link.href}>
             <Link
@@ -31,7 +29,7 @@ const NavBar: React.FC = () => {
           </li>
         ))}
       </DesktopLinks>
-      <Burger open={open} setOpen={setOpen} $isDark={isDarkMode} />
+      <Burger open={open} setOpen={setOpen} />
       <RightNavBar open={open} setOpen={setOpen} />
     </Nav>
   );

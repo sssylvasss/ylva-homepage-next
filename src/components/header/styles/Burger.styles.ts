@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 interface StyledBurgerProps {
   $open: boolean;
-  $isDark?: boolean;
 }
 
 export const StyledBurger = styled.button<StyledBurgerProps>`
@@ -32,8 +31,7 @@ export const StyledBurger = styled.button<StyledBurgerProps>`
   div {
     width: 2rem;
     height: 2px;
-    background: ${({ $open, $isDark }) =>
-      $open || $isDark ? "var(--color-white)" : "var(--color-black)"};
+    background: var(--color-black);
     border-radius: 10px;
     transition: all 0.3s ease-in-out;
     position: relative;

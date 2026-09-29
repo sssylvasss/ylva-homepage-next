@@ -1,7 +1,7 @@
 import CodeClient from "./CodeClient";
 
 export const metadata = {
-  title: "Code | sssylvasss",
+  title: "Code | Ylva",
   description: "Code projects and development work by Ylva Landoff Lindberg",
 };
 
