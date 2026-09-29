@@ -1,6 +1,5 @@
 import { Roboto } from "next/font/google";
 import localFont from "next/font/local";
-import { AnimationProvider } from "../context/AnimationContext";
 import Layout from "../components/Layout";
 import StyledComponentsRegistry from "./registry";
 import type { Metadata } from "next";
@@ -43,9 +42,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${roboto.className} ${robotoLight.variable}`}>
         <StyledComponentsRegistry>
-          <AnimationProvider>
-            <Layout>{children}</Layout>
-          </AnimationProvider>
+          <Layout>{children}</Layout>
         </StyledComponentsRegistry>
       </body>
     </html>

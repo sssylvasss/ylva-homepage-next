@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 interface StyledBurgerProps {
   $open: boolean;
-  $isDark?: boolean;
 }
 
 export const StyledBurger = styled.button<StyledBurgerProps>`
@@ -20,15 +19,19 @@ export const StyledBurger = styled.button<StyledBurgerProps>`
   cursor: pointer;
   z-index: 1001;
 
+  /* Only on phones; laptops show the menu in the header */
+  @media (min-width: 821px) {
+    display: none;
+  }
+
   &:focus {
     outline: none;
   }
 
   div {
     width: 2rem;
-    height: 0.25rem;
-    background: ${({ $open, $isDark }) =>
-      $open || $isDark ? "var(--color-white)" : "var(--color-orange)"};
+    height: 2px;
+    background: var(--color-black);
     border-radius: 10px;
     transition: all 0.3s ease-in-out;
     position: relative;

@@ -126,6 +126,20 @@ export async function fetchCollage(): Promise<Collage[]> {
   }));
 }
 
+export async function fetchCollageById(
+  collageId: number
+): Promise<Collage | undefined> {
+  const entries = await client.getEntries<CollageEntrySkeleton>({
+    content_type: "spiritOfVietnam",
+    "fields.collageId": collageId,
+    limit: 1,
+  });
+  const item = entries.items[0];
+  return item
+    ? { ...item.fields, collageImage: resolveAssetFields(item.fields.image) }
+    : undefined;
+}
+
 export async function fetchCv(): Promise<Cv[]> {
   const entries = await client.getEntries<CvEntrySkeleton>({
     content_type: "cv",

@@ -3,6 +3,15 @@ import React from "react";
 import Link from "next/link";
 import { Ul } from "./styleHeader";
 
+// Pages in the menu, shared by the phone menu and the laptop menu
+export const NAV_LINKS = [
+  { href: "/art", label: "COLLAGES" },
+  { href: "/video", label: "VIDEO" },
+  { href: "/code", label: "CODE" },
+  { href: "/cv", label: "CV" },
+  { href: "/contact", label: "CONTACT" },
+];
+
 interface RightNavBarProps {
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -11,34 +20,13 @@ interface RightNavBarProps {
 const RightNavBar: React.FC<RightNavBarProps> = ({ open, setOpen }) => {
   return (
     <Ul open={open}>
-      <li>
-        <Link href="/art" onClick={() => setOpen(false)}>
-          ART
-        </Link>
-      </li>
-      <li>
-        <Link href="/video" onClick={() => setOpen(false)}>
-          VIDEO
-        </Link>
-      </li>
-      <li>
-        <Link href="/code" onClick={() => setOpen(false)}>
-          CODE
-        </Link>
-      </li>
-      <li>
-        <Link href="/cv" onClick={() => setOpen(false)}>
-          CV
-        </Link>
-      </li>
-      <li>
-        <Link href="/contact" onClick={() => setOpen(false)}>
-          CONTACT
-        </Link>
-      </li>
-      {/* <Link href="/sapasisters" passHref>
-        <li onClick={handleClick}>Sapa Sisters</li>
-      </Link> */}
+      {NAV_LINKS.map((link) => (
+        <li key={link.href}>
+          <Link href={link.href} onClick={() => setOpen(false)}>
+            {link.label}
+          </Link>
+        </li>
+      ))}
     </Ul>
   );
 };

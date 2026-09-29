@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import Image from "next/image";
 import ReactPlayer from "react-player";
+import { thinBold } from "../../styles/globalStyledComponents";
 
 // Theme constants
 const BREAKPOINTS = {
@@ -22,8 +23,8 @@ export const StyledReactPlayer = styled(ReactPlayer)`
 `;
 
 export const TitleH2 = styled.h2`
+  ${thinBold}
   font-size: 14px;
-  font-weight: 700;
   margin: 0;
 `;
 
@@ -37,7 +38,7 @@ export const CardCaption = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 2px;
-  color: var(--color-orange);
+  color: var(--color-black);
   margin: 5px 0 10px;
 `;
 
@@ -49,7 +50,7 @@ export const CardDivMain = styled.div`
   cursor: pointer;
 
   &:focus-visible {
-    outline: 2px solid var(--color-orange);
+    outline: 2px solid var(--color-black);
     outline-offset: 4px;
   }
 `;
@@ -73,13 +74,13 @@ export const CardImage = styled(Image)`
 
 // Series page styles
 export const TitleH1 = styled.h1`
+  ${thinBold}
   font-size: 18px;
-  font-weight: 700;
   margin: 40px 20px 30px 0;
   padding: 5px 0 10px 0;
-  border-bottom: 2px solid;
+  border-bottom: 1px solid;
   width: 100%;
-  color: var(--color-orange);
+  color: var(--color-black);
 
   /* Lines up with the left edge of the images */
   @media (min-width: ${BREAKPOINTS.mobile}) {
@@ -89,6 +90,7 @@ export const TitleH1 = styled.h1`
 
 export const SeriesYear = styled.span`
   font-size: 12px;
+  font-weight: 300;
 `;
 
 export const SeriesText = styled.p`
@@ -97,7 +99,7 @@ export const SeriesText = styled.p`
   margin: -10px 0 30px 0;
   font-size: 14px;
   line-height: 1.5;
-  color: var(--color-orange);
+  color: var(--color-black);
 
   @media (max-width: ${BREAKPOINTS.mobile}) {
     margin: -10px 20px 30px 0;

@@ -2,8 +2,8 @@ import { fetchCollage } from "../../lib/contentfulServer";
 import ArtClient from "./ArtClient";
 
 export const metadata = {
-  title: "Art | Ylva",
-  description: "Art and collages by Ylva Landoff Lindberg",
+  title: "Collages | Ylva",
+  description: "Collages by Ylva Landoff Lindberg",
 };
 
 export const revalidate = 3600;
