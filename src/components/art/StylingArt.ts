@@ -45,7 +45,7 @@ export const CardCaption = styled.div`
 export const CardDivMain = styled.div`
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
   margin-bottom: 15px;
   cursor: pointer;
 
@@ -55,15 +55,18 @@ export const CardDivMain = styled.div`
   }
 `;
 
-// Full width on mobile; same height for every image on larger screens
+// Edge to edge on mobile (reaching past the page margins, since the card is
+// centered on the screen); same height for every image on larger screens
 export const CardImage = styled(Image)`
   display: block;
-  width: 100%;
+  width: 100vw;
   height: auto;
+  margin: 0 calc(50% - 50vw);
 
   @media (min-width: ${BREAKPOINTS.mobile}) {
     width: auto;
     max-width: 90vw;
+    margin: 0;
     height: 240px;
   }
 
