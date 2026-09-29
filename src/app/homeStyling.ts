@@ -9,6 +9,11 @@ export const ImageWrapper = styled(Link)`
   width: 100vw;
   min-height: 300px;
   margin-top: 65px; /* header height */
+
+  /* No fade on hover (overrides the global link hover in globals.css) */
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 export const FeaturedImage = styled.img`
