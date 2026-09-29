@@ -4,6 +4,7 @@ import styled from "styled-components";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import { thinBold } from "../../styles/globalStyledComponents";
 
 const ContactWrapper = styled.div`
   box-sizing: border-box; /* padding inside the width, so it doesn't overflow to the right */
@@ -19,18 +20,18 @@ const ContactWrapper = styled.div`
 
 // Same size as the section titles on the CV and video pages
 const Title = styled.h1`
+  ${thinBold}
   font-size: 20px;
-  font-weight: 700;
   margin: 0 0 30px 0;
   padding: 5px 0 10px 0;
-  border-bottom: 2px solid;
-  color: var(--color-orange);
+  border-bottom: 1px solid;
+  color: var(--color-black);
 `;
 
 const Description = styled.p`
   font-size: 16px;
   line-height: 1.5;
-  color: var(--color-orange);
+  color: var(--color-black);
   max-width: 700px;
   margin: 0 0 30px 0;
 `;
@@ -42,7 +43,7 @@ const ContactSection = styled.div`
 `;
 
 const ContactInfo = styled.div`
-  background: rgba(252, 65, 3, 0.03);
+  background: rgba(0, 0, 0, 0.03);
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -57,11 +58,11 @@ const ContactText = styled.p`
   margin: 0;
   font-size: 16px;
   line-height: 1.6;
-  color: var(--color-orange);
+  color: var(--color-black);
 `;
 
 const ContactName = styled(ContactText)`
-  font-weight: 700;
+  ${thinBold}
   margin-bottom: 1rem;
 `;
 
@@ -84,7 +85,7 @@ const SocialLink = styled.a`
   border: 1px solid #eaeaea;
   border-radius: 8px;
   font-size: 16px;
-  color: var(--color-orange);
+  color: var(--color-black);
   transition: all 0.2s ease;
 
   /* "svg" selector outranks MUI's default icon size */
@@ -93,9 +94,9 @@ const SocialLink = styled.a`
   }
 
   &:hover {
-    background: var(--color-orange);
+    background: var(--color-black);
     color: white;
-    border-color: var(--color-orange);
+    border-color: var(--color-black);
     transform: translateY(-2px);
   }
 `;

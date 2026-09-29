@@ -1,20 +1,21 @@
 import styled, { keyframes } from "styled-components";
+import { thinBold } from "../../styles/globalStyledComponents";
 
 const glowAnimation = keyframes`
   0% {
-    box-shadow: 0 0 5px rgba(255, 165, 0, 0.2),
-                0 0 10px rgba(255, 165, 0, 0.2),
-                0 0 15px rgba(255, 165, 0, 0.2);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2),
+                0 0 10px rgba(255, 255, 255, 0.2),
+                0 0 15px rgba(255, 255, 255, 0.2);
   }
   50% {
-    box-shadow: 0 0 10px rgba(255, 165, 0, 0.3),
-                0 0 20px rgba(255, 165, 0, 0.3),
-                0 0 30px rgba(255, 165, 0, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3),
+                0 0 20px rgba(255, 255, 255, 0.3),
+                0 0 30px rgba(255, 255, 255, 0.3);
   }
   100% {
-    box-shadow: 0 0 5px rgba(255, 165, 0, 0.2),
-                0 0 10px rgba(255, 165, 0, 0.2),
-                0 0 15px rgba(255, 165, 0, 0.2);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2),
+                0 0 10px rgba(255, 255, 255, 0.2),
+                0 0 15px rgba(255, 255, 255, 0.2);
   }
 `;
 
@@ -115,9 +116,10 @@ export const ProjectImage = styled.div`
 `;
 
 export const ProjectTitle = styled.h3`
+  ${thinBold}
   font-size: 1.5rem;
   margin: 0.5rem 0;
-  color: var(--color-orange);
+  color: var(--color-white);
 `;
 
 export const ProjectDescription = styled.p`
@@ -139,7 +141,7 @@ export const TechTag = styled.span`
   border-radius: 15px;
   margin: 0.5rem 0.5rem 0.5rem 0;
   font-size: 0.9rem;
-  color: var(--color-orange);
+  color: var(--color-white);
   font-family: monospace;
   border: 1px solid rgba(255, 255, 255, 0.1);
 
@@ -156,7 +158,7 @@ export const LinkButton = styled.a`
   background-color: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
-  color: var(--color-orange);
+  color: var(--color-white);
   text-decoration: none;
   font-size: 0.9rem;
   transition: all 0.2s ease;

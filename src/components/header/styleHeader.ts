@@ -12,6 +12,12 @@ export const Nav = styled.nav<DarkModeProps>`
   justify-content: space-between;
   align-items: center;
   position: fixed;
+
+  /* Laptop: the menu sits right after the title */
+  @media (min-width: 821px) {
+    justify-content: flex-start;
+    gap: 40px;
+  }
   top: 0;
   left: 0;
   background-color: ${({ $isDark, $isTransparent }) =>
@@ -23,11 +29,10 @@ export const Nav = styled.nav<DarkModeProps>`
 `;
 export const TitleLink = styled(Link)`
   text-decoration: none;
-  color: var(--color-orange);
+  color: var(--color-black);
 
   &:hover {
     opacity: 0.8;
-    text-shadow: 0 0 8px rgba(255, 165, 0, 0.6);
   }
 `;
 export const TitleText = styled.h1<DarkModeProps>`
@@ -36,15 +41,46 @@ export const TitleText = styled.h1<DarkModeProps>`
   margin: 0;
   padding: 15px 0;
   white-space: nowrap;
-  color: inherit;
+  color: ${({ $isDark }) => ($isDark ? "var(--color-white)" : "inherit")};
   transition: all 0.3s ease;
 `;
 
+// Laptop menu, hidden on phones
+export const DesktopLinks = styled.ul<DarkModeProps>`
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 24px;
+
+  @media (min-width: 821px) {
+    display: flex;
+  }
+
+  a {
+    font-size: 14px;
+    color: ${({ $isDark }) =>
+      $isDark ? "var(--color-white)" : "var(--color-black)"};
+    text-underline-offset: 4px;
+
+    &:hover,
+    &[aria-current="page"] {
+      text-decoration: underline;
+      opacity: 1;
+    }
+  }
+`;
+
+// Phone menu that slides in from the burger, hidden on laptops
 export const Ul = styled.ul<{ open: boolean }>`
   list-style: none;
   display: flex;
+
+  @media (min-width: 821px) {
+    display: none;
+  }
   flex-flow: column nowrap;
-  background-color: var(--color-orange);
+  background-color: var(--color-black);
   position: fixed;
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
   top: 0;

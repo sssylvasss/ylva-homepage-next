@@ -1,4 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+// Titles use the header's light-only Roboto for a thinner bold (see layout.tsx)
+export const thinBold = css`
+  font-family: var(--font-roboto-light), sans-serif;
+  font-weight: 700;
+`;
 
 export const PageContainer = styled.div`
   width: 90%;
@@ -22,7 +28,7 @@ export const GlobalText = styled.p`
 `;
 
 export const SectionTitle = styled.h2`
-  font-weight: 700;
+  ${thinBold}
   font-size: 20px;
   text-align: left;
   margin: 50px 0 20px 0;

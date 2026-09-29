@@ -1,54 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useAnimation } from "../context/AnimationContext";
-import {
-  LandingContainer,
-  HeroSection,
-  CloverContainer,
+import type { Collage } from "../lib/contentfulServer";
+import { collageAlt } from "../components/art/ImageCard";
+import { ImageWrapper, FeaturedImage } from "./homeStyling";
 
-  CircleText,
-  CircleLinkLeft, 
-  CircleLinkRight, 
-  CircleLinkBottom, 
-  SmallCircleLinkCV,
-  SmallCircleLinkContact,
-  SmallCircleText,
-} from "./homeStyling";
+interface HomeClientProps {
+  collage?: Collage;
+}
 
-export default function HomeClient() {
-  const { hasSeenAnimation, setHasSeenAnimation } = useAnimation();
-  // Decided once per mount so marking the animation "seen" below can't cut
-  // this instance's own crash-in animation short.
-  const [shouldAnimate] = useState(() => !hasSeenAnimation);
+export default function HomeClient({ collage }: HomeClientProps) {
+  const file = collage?.collageImage?.file;
+  const imageSize = file?.details?.image;
 
-  useEffect(() => {
-    if (!hasSeenAnimation) {
-      setHasSeenAnimation(true);
-    }
-  }, [hasSeenAnimation, setHasSeenAnimation]);
+  if (!collage || !file?.url) return null;
 
   return (
-    <LandingContainer>
-      <HeroSection>
-        <CloverContainer>
-          <CircleLinkLeft href="/code" $shouldAnimate={shouldAnimate}>
-            <CircleText>Code</CircleText>
-          </CircleLinkLeft>
-          <CircleLinkRight href="/art" $shouldAnimate={shouldAnimate}>
-            <CircleText>Art</CircleText>
-          </CircleLinkRight>
-          <CircleLinkBottom href="/video" $shouldAnimate={shouldAnimate}>
-            <CircleText>Video</CircleText>
-          </CircleLinkBottom>
-          <SmallCircleLinkCV href="/cv" $shouldAnimate={shouldAnimate}>
-            <SmallCircleText>CV</SmallCircleText>
-          </SmallCircleLinkCV>
-          <SmallCircleLinkContact href="/contact" $shouldAnimate={shouldAnimate}>
-            <SmallCircleText>Contact</SmallCircleText>
-          </SmallCircleLinkContact>
-        </CloverContainer>
-      </HeroSection>
-    </LandingContainer>
+    <ImageWrapper
+      href="/art"
+      aria-label="See all collages"
+      $aspectRatio={imageSize ? imageSize.width / imageSize.height : 1}
+    >
+      <FeaturedImage
+        src={file.url.startsWith("http") ? file.url : `https:${file.url}`}
+        alt={collageAlt(collage)}
+        fill
+        sizes="100vw"
+        loading="eager"
+        fetchPriority="high"
+      />
+    </ImageWrapper>
   );
 }
